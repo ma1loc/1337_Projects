@@ -6,11 +6,63 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:47:37 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/29 13:52:04 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:50:42 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_itoa(int n)
-{
+#include "libft.h"
 
+static int	nbr_len(int n)
+{
+	size_t			n_len;
+	unsigned int	nbr;
+
+	n_len = 0;
+	if (n <= 0)
+		n_len = 1;
+	if (n < 0)
+		nbr = -n;
+	else
+		nbr = n;
+	while (nbr > 0)
+	{
+		nbr = nbr / 10;
+		n_len++;
+	}
+	return (n_len);
+}
+
+static char	*is_zero(char *ptr)
+{
+	ptr[0] = '0';
+	return (ptr);
+}
+
+char	*ft_itoa(int n)
+{
+	size_t			n_len;
+	char			*ptr;
+	unsigned int	nbr;
+
+	n_len = nbr_len(n);
+	ptr = malloc(sizeof(char) * (n_len + 1));
+	if (!ptr)
+		return (NULL);
+	ptr[n_len] = '\0';
+	if (n == 0)
+		is_zero(ptr);
+	if (n < 0)
+	{
+		nbr = -n;
+		ptr[0] = '-';
+	}
+	else
+		nbr = n;
+	while (nbr > 0)
+	{
+		--n_len;
+		ptr[n_len] = nbr % 10 + '0';
+		nbr = nbr / 10;
+	}
+	return (ptr);
 }

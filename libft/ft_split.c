@@ -6,16 +6,16 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 21:24:51 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/29 12:36:20 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/10/30 08:46:51 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t ft_count_word(const char *s, char c)
+static size_t	ft_count_word(const char *s, char c)
 {
-	size_t i;
-	size_t count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
 	count = 0;
@@ -31,9 +31,10 @@ static size_t ft_count_word(const char *s, char c)
 	return (count);
 }
 
-static void ft_mem_fill(char *to_fill, const char *s, size_t length, size_t start)
+static void	ft_mem_fill(char *to_fill, const char *s, \
+		size_t length, size_t start)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < length)
@@ -45,12 +46,12 @@ static void ft_mem_fill(char *to_fill, const char *s, size_t length, size_t star
 	to_fill[i] = '\0';
 }
 
-static char *ft_split_words(const char *s, char c, size_t *index)
+static char	*ft_split_words(const char *s, char c, size_t *index)
 {
-	size_t start;
-	size_t i;
-	size_t length;
-	char *s_word;
+	size_t	start;
+	size_t	i;
+	size_t	length;
+	char	*s_word;
 
 	start = *index;
 	i = 0;
@@ -70,12 +71,12 @@ static char *ft_split_words(const char *s, char c, size_t *index)
 	return (s_word);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t index;
-	char **ptr;
-	size_t c_word;
-	size_t i;
+	size_t	index;
+	char	**ptr;
+	size_t	c_word;
+	size_t	i;
 
 	index = 0;
 	c_word = ft_count_word(s, c);
@@ -97,16 +98,4 @@ char **ft_split(char const *s, char c)
 	}
 	ptr[i] = NULL;
 	return (ptr);
-}
-
-#include <stdio.h>
-
-int	main()
-{
-	char str[] = "";
-	//printf("str"", NULL -> %s\n", ft_split(str, NULL));
-	printf("NULL, str"" -> %s\n", ft_split(NULL, str));
-	//printf("NULL, NULL -> %s\n", ft_split(NULL, NULL));
-	printf("\" \",\" \"-> %s\n", ft_split("", ""));
-
 }
