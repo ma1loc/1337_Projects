@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:46:26 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/30 08:38:00 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/01 12:25:59 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char		*d;
 	const unsigned char	*s;
 
+	if (!dst && !src)
+		return (NULL);
 	i = 0;
 	d = (unsigned char *)dst;
 	s = (const unsigned char *)src;
