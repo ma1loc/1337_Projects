@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 21:24:51 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/30 08:46:51 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:15:15 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	ft_count_word(const char *s, char c)
 	return (count);
 }
 
-static void	ft_mem_fill(char *to_fill, const char *s, \
+static void	ft_mem_fill(char *ptr, const char *s, \
 		size_t length, size_t start)
 {
 	size_t	i;
@@ -39,22 +39,20 @@ static void	ft_mem_fill(char *to_fill, const char *s, \
 	i = 0;
 	while (i < length)
 	{
-		to_fill[i] = s[start];
+		ptr[i] = s[start];
 		i++;
 		start++;
 	}
-	to_fill[i] = '\0';
+	ptr[i] = '\0';
 }
 
 static char	*ft_split_words(const char *s, char c, size_t *index)
 {
 	size_t	start;
-	size_t	i;
 	size_t	length;
 	char	*s_word;
 
 	start = *index;
-	i = 0;
 	while (s[start] && s[start] == c)
 		start++;
 	*index = start;

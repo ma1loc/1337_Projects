@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:08:07 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/31 15:35:13 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:27:27 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
 
+	if (fd < 0)
+		return ;
 	i = 0;
 	while (s[i])
 	{

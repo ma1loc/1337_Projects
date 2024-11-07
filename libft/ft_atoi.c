@@ -6,27 +6,17 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 10:45:34 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/30 13:18:54 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:44:19 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-static	int so_long_return(int sign)
-{
-	if (sign == -1)
-		return (1);
-	else
-		return (0);
-	return (0);
-}
-*/
 
 int	ft_atoi(const char *str)
 {
-	int		sign;
-	int		result;
-	int		i;
+	int					sign;
+	unsigned long		result;
+	int					i;
 
 	sign = 1;
 	result = 0;
@@ -39,9 +29,13 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (str[i] <= '9' && str[i] >= '0')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
+		if (result > 9223372036854775807 && sign == 1)
+			return (-1);
+		if (result > 9223372036854775807 && sign == -1)
+			return (0);
 		i++;
 	}
 	return (result * sign);

@@ -6,19 +6,19 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:48 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/28 08:33:34 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:36:39 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t	s_len;
 
-	len = 0;
-	while (s[len])
+	s_len = 0;
+	while (s[s_len])
 	{
-		len++;
+		s_len++;
 	}
-	return (len);
+	return (s_len);
 }

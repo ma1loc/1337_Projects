@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:01:29 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/27 18:48:40 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:58:05 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_calloc(size_t n_case, size_t size)
 	void	*ptr;
 	size_t	t_size;
 
+	if (n_case == 0 || size == 0)
+		return (malloc(0));
 	t_size = n_case * size;
 	ptr = malloc(t_size);
 	if (!ptr)

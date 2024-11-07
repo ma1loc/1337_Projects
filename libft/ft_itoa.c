@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:47:37 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/30 13:50:42 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:19:38 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_itoa(int n)
 		return (NULL);
 	ptr[n_len] = '\0';
 	if (n == 0)
-		is_zero(ptr);
+		return (is_zero(ptr));
 	if (n < 0)
 	{
 		nbr = -n;

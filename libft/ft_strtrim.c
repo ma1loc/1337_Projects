@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:27:40 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/29 07:59:32 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:49:43 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	mem_fill(char *dst, const char *src, size_t len)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = 0;
+	dst[i] = '\0';
 }
 
 char	*ft_strtrim(const char *s1, char const *set)

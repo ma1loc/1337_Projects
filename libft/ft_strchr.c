@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:04:23 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/26 07:47:48 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:54:22 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
+	size_t	i;
 	char	ch;
 
 	i = 0;
@@ -25,7 +25,7 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *) s + i);
 		i++;
 	}
-	if (c == 0)
+	if (ch == '\0')
 		return ((char *) s + i);
 	return (NULL);
 }

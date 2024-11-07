@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:03:18 by yanflous          #+#    #+#             */
-/*   Updated: 2024/10/30 15:19:09 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:50:26 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t	i;
 
 	i = 0;
+	if (!s || !f)
+		return (NULL);
 	t_len = ft_strlen(s);
 	ptr = malloc(sizeof(char) * (t_len + 1));
 	if (!ptr)
