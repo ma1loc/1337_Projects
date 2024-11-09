@@ -15,6 +15,7 @@ SRC = ft_isalpha.c ft_isprint.c ft_memcpy.c  ft_strchr.c  ft_strlen.c  ft_touppe
 
 SRC_BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -41,4 +42,4 @@ fclean:clean
 
 re:fclean all
 
-.PHONY: all clean fclean re
+.PHONY: clean fclean re

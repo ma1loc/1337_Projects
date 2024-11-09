@@ -6,13 +6,13 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 21:24:51 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/05 18:15:15 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:27:28 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count_word(const char *s, char c)
+static size_t	count_word(const char *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -31,7 +31,7 @@ static size_t	ft_count_word(const char *s, char c)
 	return (count);
 }
 
-static void	ft_mem_fill(char *ptr, const char *s, \
+static void	mem_fill(char *ptr, const char *s, \
 		size_t length, size_t start)
 {
 	size_t	i;
@@ -46,7 +46,7 @@ static void	ft_mem_fill(char *ptr, const char *s, \
 	ptr[i] = '\0';
 }
 
-static char	*ft_split_words(const char *s, char c, size_t *index)
+static char	*split_words(const char *s, char c, size_t *index)
 {
 	size_t	start;
 	size_t	length;
@@ -65,33 +65,38 @@ static char	*ft_split_words(const char *s, char c, size_t *index)
 	s_word = malloc(sizeof(char) * (length + 1));
 	if (!s_word)
 		return (NULL);
-	ft_mem_fill(s_word, s, length, start);
+	mem_fill(s_word, s, length, start);
 	return (s_word);
+}
+
+static char	**mem_free(int i, char **ptr)
+{
+	while (i > 0)
+		free(ptr[--i]);
+	free(ptr);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	size_t	index;
 	char	**ptr;
-	size_t	c_word;
-	size_t	i;
+	int		c_word;
+	int		i;
 
+	if (!s)
+		return (NULL);
 	index = 0;
-	c_word = ft_count_word(s, c);
+	c_word = count_word(s, c);
 	ptr = malloc(sizeof(char *) * (c_word + 1));
 	if (!ptr)
 		return (NULL);
 	i = 0;
 	while (i < c_word)
 	{
-		ptr[i] = ft_split_words(s, c, &index);
+		ptr[i] = split_words(s, c, &index);
 		if (!ptr[i])
-		{
-			while (i > 0)
-				free(ptr[--i]);
-			free(ptr);
-			return (NULL);
-		}
+			return (mem_free(i, ptr));
 		i++;
 	}
 	ptr[i] = NULL;

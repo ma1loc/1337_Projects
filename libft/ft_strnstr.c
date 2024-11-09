@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:54:05 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/03 11:01:35 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:40:50 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 
 	if (to_find[0] == '\0')
 		return ((char *)str);
+	if (n == 0)
+		return (NULL);
 	i = 0;
 	while (str[i] && i < n)
 	{

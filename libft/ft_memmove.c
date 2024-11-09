@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:40:05 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:37 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:56:00 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 		}
 	}
 	else
-		ft_memcpy(d, s, n);
+		ft_memcpy(dst, src, n);
 	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 15:12:17 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/06 16:23:32 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:46:31 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	size_t	i;
 
-	if (fd < 0)
+	if (fd < 0 || !s)
 		return ;
 	i = 0;
 	while (s[i])

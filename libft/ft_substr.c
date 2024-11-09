@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 19:57:55 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/06 10:38:30 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:52:49 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s1, unsigned int start, size_t len)
 	if (!s1)
 		return (NULL);
 	s1_len = ft_strlen(s1);
-	if (start > s1_len)
+	if (start >= s1_len)
 		return (ft_strdup(""));
 	if (len > s1_len - start)
 		len = s1_len - start;
