@@ -1,4 +1,6 @@
 #include "get_next_line.h"
+// just for the test.
+#include <stdio.h>
 
 size_t	ft_strlen(char *str)
 {
@@ -12,7 +14,7 @@ size_t	ft_strlen(char *str)
 	return (len);
 }
 
-char *ft_strlcpy(char *dst, char *src, int nbyte)
+char *ft_strncpy(char *dst, char *src, int nbyte)
 {
 	int i;
 
@@ -22,6 +24,7 @@ char *ft_strlcpy(char *dst, char *src, int nbyte)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
+	dst[i] = '\n';
+	dst[i++] = '\0';
 	return (dst);
 }

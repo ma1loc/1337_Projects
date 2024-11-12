@@ -12,6 +12,6 @@
 #include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*ft_strlcpy(char *dst, char *src, int nbyte);
+char	*ft_strncpy(char *dst, char *src, int nbyte);
 
 # endif

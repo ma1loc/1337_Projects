@@ -1,3 +1,4 @@
+this is the first line in the test.txt
 Each line should be read individually.
 This is a test file.
 End of file.

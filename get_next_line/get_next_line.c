@@ -6,10 +6,10 @@
 
 char *get_next_line(int fd)
 {
-	static char buff[BUFFER_SIZE];
-	char 		*next_word;
-	int			rd_count;
-	int			i;
+	static char buff[BUFFER_SIZE];	// _check why (static)?
+	int			rd_count; // the return of the read syscall
+	char 		*line; // get the next line
+	int 		l_word; // count the len of the word
 
 	// _check the fd is -1 or -down, and the buffer is <= 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -18,25 +18,25 @@ char *get_next_line(int fd)
 	// add it to function.
 	// read syscall return number of bytes it read.
 	rd_count = read(fd, buff, BUFFER_SIZE);
-	if (rd_count < 0 || rd_count == 0)
+	if (rd_count <= 0)
 		return (NULL);
-	
+
 	// loop on the r_count.
-	int ln_count = 0;
-	while (buff[ln_count] != '\n')
-		ln_count++;
+	// count the l_word in other way
+	l_word = 0;
+	while (buff[l_word] != '\n')
+		l_word++;
 	// ^^^^^^^^^^^^^^^^^^^
 	// test => printf("%d\n", ln_count);
 	// allocation with malloc.
-	next_word = malloc(sizeof(char) * (ln_count + 1));
-	if (!next_word)
+	// i have to allocate the line and + 2
+	line = malloc(sizeof(char) * (l_word + 2));
+	if (!line)
 		return (NULL);
+
 	// fill the memory allocation with malloc.
-	while (i < ln_count)
-	{
-		next_word[i] = buff[i];
-		i++;
-	}
+	// can i use strncpy?
+	ft_strncpy(line, buff, l_word + 1);
 
 	// if the first line in the txt is nothing?
 	// printf("strlen -> %d\n", ft_strlen(buff[BUFFER_SIZE]));
@@ -51,7 +51,7 @@ char *get_next_line(int fd)
 	ft_strlcpy(ptr, buff, nbyte);
 	*/
 
-	return (next_word);
+	return (line);
 }
 
 // test //
@@ -62,8 +62,8 @@ int main()
 
 	fd = open("test.txt", O_RDONLY);
 
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 
 	return (0);
 }
