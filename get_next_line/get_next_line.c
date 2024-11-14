@@ -2,68 +2,75 @@
 
 #include <stdio.h>
 
-#define BUFFER_SIZE 1024
-
-char *get_next_line(int fd)
+char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 {
-	static char buff[BUFFER_SIZE];	// _check why (static)?
-	int			rd_count; // the return of the read syscall
-	char 		*line; // get the next line
-	int 		l_word; // count the len of the word
+	int		rd_count;
+	char	*line;
+	char	*n_line;
 
-	// _check the fd is -1 or -down, and the buffer is <= 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-
-	// add it to function.
-	// read syscall return number of bytes it read.
-	rd_count = read(fd, buff, BUFFER_SIZE);
+//	rd_count = read(fd, buffer, BUFFER_SIZE);
 	if (rd_count <= 0)
 		return (NULL);
 
-	// loop on the r_count.
-	// count the l_word in other way
-	l_word = 0;
-	while (buff[l_word] != '\n')
-		l_word++;
-	// ^^^^^^^^^^^^^^^^^^^
-	// test => printf("%d\n", ln_count);
-	// allocation with malloc.
-	// i have to allocate the line and + 2
-	line = malloc(sizeof(char) * (l_word + 2));
-	if (!line)
-		return (NULL);
+	line = malloc(sizeof(char) * (BUFFER_SIZE + 2));
+	ft_strncpy(line, buffer, BUFFER_SIZE);
 
-	// fill the memory allocation with malloc.
-	// can i use strncpy?
-	ft_strncpy(line, buff, l_word + 1);
+	// check for new_line in the buffer.
+	if (!ft_strchr(buffer, '\n'))
+		left_c = ft_strchr(buffer, '\n');
 
-	// if the first line in the txt is nothing?
-	// printf("strlen -> %d\n", ft_strlen(buff[BUFFER_SIZE]));
-	// printf("the count -> %d\n", r_count);
-	// end.
-	// function to read from the file until it find  a \n or \0;
-
-	/*
-	ptr = malloc(sizeof(char) * nbyte);
-	if (!ptr)
-		return (NULL);
-	ft_strlcpy(ptr, buff, nbyte);
-	*/
-
-	return (line);
+	return (left_c);
 }
 
-// test //
+// main function.
+char *get_next_line(int fd)
+{
+	// why is it static or not ???.
+	static char	*left_c; // check ? i think that's way i use strchr ???.
+	char 		*buffer; // i will use it to store data
+	char 		*line;
+ 	int			read_bytes;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	
+	// fouces on this part.
+	// hande the leftover content.
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1)); // why +2 or +1 ???
+	if (!buffer)
+		return (NULL);
+	// while loop;
+	// read; the read_bytes and check in the while if the read_bytes has a '\n' charcter.
+	// check if the read_bytes is <= 0.
+	// how do i check the buffer, without nothing on it ???
+	// in the condition -> (left_c) or (buffer) ???.
+	while (!ft_strchr(buffer, '\n')) // check if the buffer has any '\n' charc.
+	{
+		read_bytes = read(fd, buffer, BUFFER_SIZE); 
+		//printf("(read_bytes) the read_bytes that read -> %d\n", read_bytes);
+		//printf("(buffer) this is the buffer current char -> %s\n", buffer);
+		if (read_bytes <= 0)
+			break ;
+		left_c = ft_strjoin(left_c, buffer);
+		//printf("(left_c) the left_c (%s)\n", left_c);
+	}
+	// i think i have to free the buffer here.  = h
+	free(buffer);
+	
+	return (left_c);
+}
+
+// main test
 #include <stdio.h>
 int main()
 {
 	int fd;
 
-	fd = open("test.txt", O_RDONLY);
+	fd = open("text.txt", O_RDONLY);
 
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	printf("the return of GNL -> %s", get_next_line(fd));
+	printf("the return of GNL -> %s", get_next_line(fd));
+	printf("the return of GNL -> %s", get_next_line(fd));
 
 	return (0);
 }
