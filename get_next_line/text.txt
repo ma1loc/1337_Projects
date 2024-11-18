@@ -1,0 +1,10 @@
+In the set of translation units and\valgrind --leak-check=full ./your_program1
+valgrind --leak-check=full ./your_program2
+valgrind --leak-check=full ./your_program3
+valgrind --leak-check=full ./your_program4
+valgrind --leak-check=full ./your_program5
+valgrind --leak-check=full ./your_program6
+valgrind --leak-check=full ./your_program7
+valgrind --leak-check=full ./your_program8
+valgrind --leak-check=full ./your_program9
+valgrind --leak-check=full ./your_program10

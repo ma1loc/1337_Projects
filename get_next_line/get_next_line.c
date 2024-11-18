@@ -1,76 +1,123 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/15 20:20:15 by yanflous          #+#    #+#             */
+/*   Updated: 2024/11/15 20:20:20 by yanflous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
 #include "get_next_line.h"
 
-#include <stdio.h>
-
-char	*fill_line_buffer(int fd, char *left_c, char *buffer)
+static void	mem_fill_join(const char *str, char *ptr, size_t idx)
 {
-	int		rd_count;
-	char	*line;
-	char	*n_line;
+	size_t	i;
 
-//	rd_count = read(fd, buffer, BUFFER_SIZE);
-	if (rd_count <= 0)
-		return (NULL);
-
-	line = malloc(sizeof(char) * (BUFFER_SIZE + 2));
-	ft_strncpy(line, buffer, BUFFER_SIZE);
-
-	// check for new_line in the buffer.
-	if (!ft_strchr(buffer, '\n'))
-		left_c = ft_strchr(buffer, '\n');
-
-	return (left_c);
+	i = 0;
+	while (str[i])
+	{
+		ptr[idx] = str[i];
+		idx++;
+		i++;
+	}
 }
 
-// main function.
-char *get_next_line(int fd)
+static	char	*ft_strjoin(char *s1, char *s2)
 {
-	// why is it static or not ???.
-	static char	*left_c; // check ? i think that's way i use strchr ???.
-	char 		*buffer; // i will use it to store data
-	char 		*line;
- 	int			read_bytes;
+	char	*ptr;
+	size_t	t_len;
+
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	t_len = ft_strlen(s1) + ft_strlen(s2);
+	ptr = malloc(sizeof(char) * (t_len + 1));
+	if (!ptr)
+		return (NULL);
+	mem_fill_join(s1, ptr, 0);
+	mem_fill_join(s2, ptr, ft_strlen(s1));
+	ptr[t_len] = '\0';
+	free(s1);
+	return (ptr);
+}
+
+static char	*extracted_line(char **left_ch)
+{
+	char	*line;
+	char	*tmp;
+	char	*new_line;
+
+	if (!*left_ch)
+		return (NULL);
+	new_line = ft_strchr(*left_ch, '\n');
+	if (new_line)
+	{
+		line = ft_substr(*left_ch, 0, new_line - *left_ch + 1);
+		tmp = ft_strdup(new_line + 1);
+		free(*left_ch);
+		*left_ch = tmp;
+		if (!*left_ch || **left_ch == '\0')
+		{
+			free(*left_ch);
+			*left_ch = NULL;
+		}
+	}
+	else
+	{
+		line = *left_ch;
+		*left_ch = NULL;
+	}
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*left_ch;
+	char		*buffer	;
+	int			read_bytes;
+	char		*new_len;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	
-	// fouces on this part.
-	// hande the leftover content.
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1)); // why +2 or +1 ???
+	read_bytes = 0;
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	// while loop;
-	// read; the read_bytes and check in the while if the read_bytes has a '\n' charcter.
-	// check if the read_bytes is <= 0.
-	// how do i check the buffer, without nothing on it ???
-	// in the condition -> (left_c) or (buffer) ???.
-	while (!ft_strchr(buffer, '\n')) // check if the buffer has any '\n' charc.
+	while (!ft_strchr(left_ch, '\n'))
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE); 
-		//printf("(read_bytes) the read_bytes that read -> %d\n", read_bytes);
-		//printf("(buffer) this is the buffer current char -> %s\n", buffer);
-		if (read_bytes <= 0)
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		if (read_bytes == 0)
 			break ;
-		left_c = ft_strjoin(left_c, buffer);
-		//printf("(left_c) the left_c (%s)\n", left_c);
+		buffer[read_bytes] = '\0';
+		left_ch = ft_strjoin(left_ch, buffer);
 	}
-	// i think i have to free the buffer here.  = h
 	free(buffer);
-	
-	return (left_c);
+	new_len = extracted_line(&left_ch);
+	return (new_len);
 }
 
-// main test
-#include <stdio.h>
-int main()
-{
-	int fd;
+// #include <stdio.h>
+// int main()
+// {
+// 	int fd;
 
-	fd = open("text.txt", O_RDONLY);
+// 	fd = open("text.txt", O_RDONLY);
 
-	printf("the return of GNL -> %s", get_next_line(fd));
-	printf("the return of GNL -> %s", get_next_line(fd));
-	printf("the return of GNL -> %s", get_next_line(fd));
+// 	printf("the return of GNL -> %s", get_next_line(fd));
+// 	printf("the return of GNL -> %s", get_next_line(fd));
+// 	printf("the return of GNL -> %s", get_next_line(fd));
 
-	return (0);
-}
+// 	return (0);
+// }
