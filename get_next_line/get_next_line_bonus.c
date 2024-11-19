@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	mem_fill_join(const char *str, char *ptr, size_t idx)
 {
@@ -78,43 +78,44 @@ static char	*extracted_line(char **left_ch)
 
 char	*get_next_line(int fd)
 {
-	static char	*left_ch;
+	static char	*left_ch[FD_MAX];
 	char		*buffer	;
 	int			read_bytes;
 	char		*new_len;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= FD_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	read_bytes = 0;
 	buffer = malloc((sizeof(char) * BUFFER_SIZE) + 1);
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(left_ch, '\n'))
+	while (!ft_strchr(left_ch[fd], '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
-			return (free(buffer), free(left_ch), left_ch = NULL, NULL);
+			return (free(buffer), free(left_ch[fd]), left_ch[fd] = NULL, NULL);
 		if (read_bytes == 0)
 			break ;
 		buffer[read_bytes] = '\0';
-		left_ch = ft_strjoin(left_ch, buffer);
+		left_ch[fd] = ft_strjoin(left_ch[fd], buffer);
 	}
 	free(buffer);
-	new_len = extracted_line(&left_ch);
+	new_len = extracted_line(&left_ch[fd]);
 	return (new_len);
 }
 
 // #include <stdio.h>
 // int main()
 // {
-// 	int	fd;
-// 	fd = open("text.txt", O_RDONLY);
-// 	char *line;
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
+// 	int fd;
+// fd = open("text.txt", O_RDONLY);
+// char *line;
+// while ((line = get_next_line(fd)) != NULL)
+// {
 // 		printf("%s", line);
 // 		free(line);
-// 	}
-// 	// system("leaks a.out");
-// 	return (0);
+// }
+
+// // system("leaks a.out");
+// return (0);
 // }
