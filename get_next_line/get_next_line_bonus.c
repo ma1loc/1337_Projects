@@ -108,14 +108,14 @@ char	*get_next_line(int fd)
 // int main()
 // {
 // 	int fd;
-// fd = open("text.txt", O_RDONLY);
-// char *line;
-// while ((line = get_next_line(fd)) != NULL)
-// {
-// 		printf("%s", line);
-// 		free(line);
-// }
+// 	fd = open("text.txt", O_RDONLY);
+// 	char *line;
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 			printf("%s", line);
+// 			free(line);
+// 	}
 
-// // system("leaks a.out");
+// 	// system("leaks a.out");
 // return (0);
 // }
