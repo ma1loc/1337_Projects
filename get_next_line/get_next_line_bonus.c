@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 20:20:15 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/15 20:20:20 by yanflous         ###   ########.fr       */
+/*   Created: 2024/11/19 17:53:27 by yanflous          #+#    #+#             */
+/*   Updated: 2024/11/19 17:53:35 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static	char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	if (!s1)
 		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
 	t_len = ft_strlen(s1) + ft_strlen(s2);
 	ptr = malloc(sizeof(char) * (t_len + 1));
 	if (!ptr)

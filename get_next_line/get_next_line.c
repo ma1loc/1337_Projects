@@ -34,8 +34,6 @@ static	char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	if (!s1)
 		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
 	t_len = ft_strlen(s1) + ft_strlen(s2);
 	ptr = malloc(sizeof(char) * (t_len + 1));
 	if (!ptr)
@@ -79,7 +77,7 @@ static char	*extracted_line(char **left_ch)
 char	*get_next_line(int fd)
 {
 	static char	*left_ch;
-	char		*buffer	;
+	char		*buffer;
 	int			read_bytes;
 	char		*new_len;
 
@@ -103,18 +101,3 @@ char	*get_next_line(int fd)
 	new_len = extracted_line(&left_ch);
 	return (new_len);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	int	fd;
-// 	fd = open("text.txt", O_RDONLY);
-// 	char *line;
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s", line);
-// 		free(line);
-// 	}
-// 	// system("leaks a.out");
-// 	return (0);
-// }
