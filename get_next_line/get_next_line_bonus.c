@@ -102,18 +102,33 @@ char	*get_next_line(int fd)
 	return (new_len);
 }
 
-// #include <stdio.h>
-// int main()
-// {
-// 	int fd;
-// 	fd = open("text.txt", O_RDONLY);
-// 	char *line;
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 			printf("%s", line);
-// 			free(line);
-// 	}
+#include <stdio.h>
+#include <fcntl.h>
+int main()
+{
+	int fd1;
+	int fd2;
+	int fd3;
+	
+	fd1 = open("test_file_1.txt", O_RDONLY);
+	fd2 = open("test_file_2.txt", O_RDONLY);
+	fd3 = open("test_file_3.txt", O_RDONLY);
 
-// 	// system("leaks a.out");
-// return (0);
-// }
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd2));
+	printf("%s", get_next_line(fd3));
+
+	printf("\n______________________________\n\n");
+
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd2));
+	printf("%s", get_next_line(fd3));
+
+	printf("\n______________________________\n\n");
+
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd2));
+	printf("%s", get_next_line(fd3));
+	
+	return (0);
+}
