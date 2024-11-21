@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 20:20:56 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/15 20:21:15 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:22:59 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,4 @@ char	*ft_substr(char const *s1, unsigned int start, size_t len)
 	ptr[i] = '\0';
 	return (ptr);
 }
+

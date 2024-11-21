@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 20:20:15 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/15 20:20:20 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:21:33 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,4 @@ char	*get_next_line(int fd)
 	new_len = extracted_line(&left_ch);
 	return (new_len);
 }
+
