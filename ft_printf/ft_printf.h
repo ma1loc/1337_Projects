@@ -9,8 +9,7 @@
 
 // prototypes
 void    ft_putchar(char c);
-// void    ft_putstr(char *s);
+void    ft_putstr(char *s);
 void    ft_putnbr(int nbr);
 
 #endif
-
