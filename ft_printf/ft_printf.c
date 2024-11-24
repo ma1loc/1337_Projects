@@ -31,21 +31,23 @@ int    ft_printf(char *s, ...)
         {
             idx++;
             // count++;
-            if (s[idx] == 'c')                    // if it char   -> %c
+            if (s[idx] == 'c')
                 ft_putchar(va_arg(arg, int));
-            if (s[idx] == 's')                    // if it string -> %s
+            
+            if (s[idx] == 's')
                 ft_putstr(va_arg(arg, char *));
-            // if (s[idx] == 'p')                 // if the string -> %p
-            // noting yet   
-            if (s[idx] == 'd' || s[idx] == 'i')   // if it digit  -> %d or %i
+            
+            if (s[idx] == 'p')
+                ft_putadd(va_arg(arg, unsigned long));
+
+            if (s[idx] == 'd' || s[idx] == 'i')
                 ft_putnbr(va_arg(arg, int));
-            // the hexadecimal (base 16) -> {0-9, A-F}
-            if (s[idx] == 'x' || s[idx] == 'X')                    // if it hexadecimal lower -> %x
-                ft_put_hex(va_arg(arg, int), s[idx]);
-            // if (s[idx] == 'X')                 // if it hexadecimal lower -> %x
-            // noting yet
-            if (s[idx] == 'u')                    // if it udigit -> %u
-                ft_put_unint(va_arg(arg, int));
+
+            if (s[idx] == 'x' || s[idx] == 'X')
+                ft_puthex(va_arg(arg, int), s[idx]);
+            
+            if (s[idx] == 'u')
+                ft_putunbr(va_arg(arg, int));
             
             
             // the (%%) ?
