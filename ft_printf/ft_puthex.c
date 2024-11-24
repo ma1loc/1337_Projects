@@ -1,8 +1,5 @@
 #include "ft_printf.h"
 
-// for the (%x) not the (%X).
-// ======> test this <======
-
 void ft_put_hex(int n, char c)
 {    
     char *hex_based;
