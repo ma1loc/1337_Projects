@@ -2,7 +2,7 @@
 
 void    ft_put_unint(unsigned int n)
 {
-    char c;
+    char    c;
 
     if (n <= 9)
     {
