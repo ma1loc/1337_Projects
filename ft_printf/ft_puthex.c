@@ -1,19 +1,22 @@
 #include "ft_printf.h"
 
-void ft_put_hex(int n, char c)
+int ft_puthex(unsigned long n, char c)
 {    
     char *hex_based;
+    int count;
 
-    // printf("the hex -> %d\n", n);
+    count = 0;
     if (c == 'x')
         hex_based = "0123456789abcdef";
     if (c == 'X')
         hex_based = "0123456789ABCDEF";
+
     if (n >= 0 && n <= 15)
-        ft_putchar(hex_based[n]);
+        count += ft_putchar(hex_based[n]);
     else
     {
-        ft_hexadecimal(n / 16);
-        ft_hexadecimal(n % 16);
+        count += ft_puthex(n / 16, c);
+        count += ft_puthex(n % 16, c);
     }
+    return (count);
 }

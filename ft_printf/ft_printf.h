@@ -4,16 +4,14 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+int ft_printf(const char *s, ...); // done
+int ft_fscheck(va_list arg, char c); // done
+int ft_putchar(char c); // done
+int ft_putstr(char *s); // done
+int ft_putnbr(int n); // done 
+int ft_puthex(unsigned long, char c); // done
 
-#include <stdio.h>
-
-
-int     ft_printf(char *s, ...);
-void    ft_putchar(char c);
-void    ft_putstr(char *s);
-void    ft_putadd(void *add);
-void    ft_putnbr(int n);
-void    ft_putunbr(unsigned int n);
-void    ft_puthex(int n, char c);
+int ft_putuint(unsigned int un); // test it!!!
+int ft_putadd(void *p); // not yet
 
 #endif
