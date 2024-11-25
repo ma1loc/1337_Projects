@@ -9,9 +9,9 @@ int ft_fscheck(va_list arg, char c); // done
 int ft_putchar(char c); // done
 int ft_putstr(char *s); // done
 int ft_putnbr(int n); // done 
-int ft_puthex(unsigned long, char c); // done
+int ft_puthex(unsigned int, char c); // done
+int ft_putuint(unsigned int un); // done
 
-int ft_putuint(unsigned int un); // test it!!!
-int ft_putadd(void *p); // not yet
+int ft_putadd(void *add); // not yet
 
 #endif

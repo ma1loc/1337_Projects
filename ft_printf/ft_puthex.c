@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 21:51:31 by yanflous          #+#    #+#             */
+/*   Updated: 2024/11/25 21:56:15 by yanflous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_puthex(unsigned long n, char c)
+int ft_puthex(unsigned int n, char c)
 {    
     char *hex_based;
     int count;
@@ -11,7 +23,7 @@ int ft_puthex(unsigned long n, char c)
     if (c == 'X')
         hex_based = "0123456789ABCDEF";
 
-    if (n >= 0 && n <= 15)
+    if (n <= 15)
         count += ft_putchar(hex_based[n]);
     else
     {

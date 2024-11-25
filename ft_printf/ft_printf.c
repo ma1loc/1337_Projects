@@ -13,7 +13,12 @@ int    ft_printf(const char *s, ...)
     while (s[i])
     {
         if (s[i] == '%')
-            count += ft_fscheck(arg, s[++i]);
+        {
+            i++;
+            if (s[i] == '\0')
+                return (count);
+            count += ft_fscheck(arg, s[i]);
+        }
         else
             count += ft_putchar(s[i]);
         i++;
