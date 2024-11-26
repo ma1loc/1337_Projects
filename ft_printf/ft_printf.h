@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/26 09:24:45 by yanflous          #+#    #+#             */
+/*   Updated: 2024/11/26 09:30:39 by yanflous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdarg.h>
-#include <unistd.h>
+# include <stdarg.h>
+# include <unistd.h>
 
-int ft_printf(const char *s, ...); // done
-int ft_fscheck(va_list arg, char c); // done
-int ft_putchar(char c); // done
-int ft_putstr(char *s); // done
-int ft_putnbr(int n); // done 
-int ft_puthex(unsigned int, char c); // done
-int ft_putuint(unsigned int un); // done
-
-int ft_putadd(void *add); // not yet
+int	ft_printf(const char *s, ...);
+int	ft_fscheck(va_list arg, char c);
+int	ft_putchar(char c);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n);
+int	ft_puthex(unsigned int un, char c);
+int	ft_putuint(unsigned int un);
+int	ft_putadd(void *add);
 
 #endif
