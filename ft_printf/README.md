@@ -46,11 +46,6 @@ The C standard provides tools to handle variadic arguments via `<stdarg.h>`:
 - `%x` / `%X`: Print a hexadecimal number (lowercase/uppercase).
 - `%%`: Print a literal `%`.include "ft_printf.h"
 
-int main() {
-    ft_printf("Number: %d, String: %s\n", 42, "Hello");
-    return 0;
-}
-
 > ⚠️ **Just for Educational Purposes** 📚  
 > This project is for learning and practicing C programming. Do not use it in production environments.  
 
