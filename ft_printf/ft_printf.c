@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 09:11:52 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/26 09:14:19 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/12/01 15:33:03 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	ft_printf(const char *s, ...)
 	int		count;
 	int		i;
 
+	if (s == NULL)
+		return (-1);
 	va_start(arg, s);
 	i = 0;
 	count = 0;
@@ -49,7 +51,7 @@ int	ft_printf(const char *s, ...)
 		{
 			i++;
 			if (s[i] == '\0')
-				return (count);
+				return (-1);
 			count += ft_fscheck(arg, s[i]);
 		}
 		else
