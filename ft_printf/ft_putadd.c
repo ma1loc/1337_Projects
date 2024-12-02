@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:48:20 by yanflous          #+#    #+#             */
-/*   Updated: 2024/11/26 20:14:21 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:30:14 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_putadd(void *ptr)
 
 	count = 0;
 	if (!ptr)
-		return (ft_putstr("0x0"));
+		return (ft_putstr("(nil)"));
 	add = (unsigned long)ptr;
 	count += ft_putstr("0x");
 	count += puthex(add);
