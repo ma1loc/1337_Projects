@@ -1,27 +1,26 @@
 #!/bin/bash
 
 echo "hello guys!" | wall # brodcasting message to all in the server!!!!d
-
 #
 # Variables command:
 #
 Architecture=$(uname -a) # done
 Physical_CPU=$(lscpu | grep -i "Socket(s)" | awk '{print $2}') # done
 Virtual_CPU=$(lscpu | grep -i "CPU(s)" | awk '{print $2}') # check
-Usage_Memory=$(free -m | grep -i "mem" | awk '{print $3}') # done
-Total_Memory=$(free -m | grep -i "mem" | awk '{print $2}') # done
+Usage_Memory=$(free --mega | grep -i "mem" | awk '{print $3}') # done
+Total_Memory=$(free --mega | grep -i "mem" | awk '{print $2}') # done
 
-Target_Usage=$(echo "scale=3; $Total_Memory * $Usage_Memory / 100" | bc)
+Per=$(echo "$Usage_Memory $Total_Memory" | awk '{printf "%.2f", ($1 / $2) * 100}')
 
-MAC_Addr=$(hostname -I && ip link show | grep -i ether | awk '{print $2}') #-> IP AND MAC ADDRESS "()"
+IP_Addr=$(echo "IP $(hostname -I)")
+MAC_Addr=$(ip link | grep -i ether | awk '{print $2}')
 #
 # excute the command:
 #
-echo "Architecture: ${Architecture}"
-echo "CPU physical: ${Physical_CPU}"
-echo "vCPU: ${Virtual_CPU}"
+echo "Architecture: ${Architecture}" # done
+echo "CPU physical: ${Physical_CPU}" # done
+echo "vCPU: ${Virtual_CPU}" # check
+echo "Memory Usage: ${Usage_Memory}/${Total_Memory}MB (${Per}%)" # done
 
-echo "Memory Usage: ${Usage_Memory}/${Total_Memory}MB" # the used memory {total_memory * (used_memory / 100)}
-echo "$Target_Usage"
 
-echo "Network: ${MAC_Addr}"
+echo "Network: ${IP_Addr} (${MAC_Addr})"
