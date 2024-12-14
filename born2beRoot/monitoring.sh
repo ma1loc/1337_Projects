@@ -8,9 +8,10 @@ echo "hello guys!" | wall # brodcasting message to all in the server!!!!d
 Architecture=$(uname -a) # done
 Physical_CPU=$(lscpu | grep -i "Socket(s)" | awk '{print $2}') # done
 Virtual_CPU=$(lscpu | grep -i "CPU(s)" | awk '{print $2}') # check
+Usage_Memory=$(free -m | grep -i "mem" | awk '{print $3}') # done
+Total_Memory=$(free -m | grep -i "mem" | awk '{print $2}') # done
 
-Usage_Memory=$(free --mega | grep -i "mem" | awk '{print $3}')
-Total_Memory=$(free --mega | grep -i "mem" | awk '{print $2}')
+Target_Usage=$(echo "scale=3; $Total_Memory * $Usage_Memory / 100" | bc)
 
 MAC_Addr=$(hostname -I && ip link show | grep -i ether | awk '{print $2}') #-> IP AND MAC ADDRESS "()"
 #
@@ -21,5 +22,6 @@ echo "CPU physical: ${Physical_CPU}"
 echo "vCPU: ${Virtual_CPU}"
 
 echo "Memory Usage: ${Usage_Memory}/${Total_Memory}MB" # the used memory {total_memory * (used_memory / 100)}
+echo "$Target_Usage"
 
 echo "Network: ${MAC_Addr}"
