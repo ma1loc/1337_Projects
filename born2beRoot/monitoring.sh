@@ -1,4 +1,4 @@
-#!/bin/basddh
+#!/bin/bash
 
 echo "hello guys!" | wall # brodcasting message to all in the server!!!!d
 #
@@ -15,8 +15,9 @@ Disk_Usage=$(df -m | grep -i "^/dev" | awk '{usage += $3} END {print usage}')  #
 Disk_Total_In_M=$(df -m | grep -i "^/dev" | awk '{total_m += $2} END {print total_m}') # done
 Disk_Percentage=$(echo "$Disk_Usage $Disk_Total_In_M" | awk '{printf "%d", ($1 / $2) * 100}') # done
 CPU_Load=$(top -n1 | grep -i "cpu(s)" | awk '{printf "%.1f", (100 - $8)}')
+Last_Boot=$(who -b | awk '{print $3 " " $4}')
 #
-
+LVM_use=$()
 #
 IP_Addr=$(echo "IP $(hostname -I)")
 MAC_Addr=$(ip link | grep -i "ether" | awk '{print $2}')
@@ -27,7 +28,10 @@ echo "#Architecture: ${Architecture}" # done
 echo "#CPU physical: ${Physical_CPU}" # done
 echo "#vCPU: ${Virtual_CPU}" # check
 echo "#Memory Usage: ${Memory_Usage}/${Memory_Total}MB (${Memory_Percentage}%)" # done
-echo "#Disk Usage: ${Disk_Usage}/${Disk_Total}Gb (${Disk_Percentage}%)" # done no
+echo "#Disk Usage: ${Disk_Usage}/${Disk_Total}Gb (${Disk_Percentage}%)" # done check
 echo "#CPU load: ${CPU_Load}%" # done.
-echo "#Last boot: " # working on it
+echo "#Last boot: ${Last_Boot}" # done check
+#
+echo "#LVM use: ${Last_Boot}"
+#
 echo "#Network: ${IP_Addr} (${MAC_Addr})" # check.
