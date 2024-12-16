@@ -14,24 +14,29 @@ Disk_Total=$(df -BG | grep -i "^/dev" | awk '{total += $2} END {print total}') #
 Disk_Usage=$(df -m | grep -i "^/dev" | awk '{usage += $3} END {print usage}')  # -m done check
 Disk_Total_In_M=$(df -m | grep -i "^/dev" | awk '{total_m += $2} END {print total_m}') # done
 Disk_Percentage=$(echo "$Disk_Usage $Disk_Total_In_M" | awk '{printf "%d", ($1 / $2) * 100}') # done
-CPU_Load=$(top -n1 | grep -i "cpu(s)" | awk '{printf "%.1f", (100 - $8)}')
-Last_Boot=$(who -b | awk '{print $3 " " $4}')
+CPU_Load=$(top -n1 | grep -i "cpu(s)" | awk '{printf "%.1f", (100 - $8)}') # done check
+Last_Boot=$(who -b | awk '{print $3 " " $4}') # done check
+LVM_use=$(lsblk | grep -q "lvm" && echo "yes" || echo "no") # done check
 #
-LVM_use=$()
-#
-IP_Addr=$(echo "IP $(hostname -I)")
-MAC_Addr=$(ip link | grep -i "ether" | awk '{print $2}')
+Connections_TCP=$() # undone
+User_log=$(users | wc -w) # done check
+IP_Addr=$(echo "IP $(hostname -I)") # done check
+MAC_Addr=$(ip link | grep -i "ether" | awk '{print $2}') # done check
+Sudo=$(journalctl -q | grep "COMMAND" | wc -l) # undone
 #
 # excute the command:
 #
-echo "#Architecture: ${Architecture}" # done
-echo "#CPU physical: ${Physical_CPU}" # done
-echo "#vCPU: ${Virtual_CPU}" # check
-echo "#Memory Usage: ${Memory_Usage}/${Memory_Total}MB (${Memory_Percentage}%)" # done
-echo "#Disk Usage: ${Disk_Usage}/${Disk_Total}Gb (${Disk_Percentage}%)" # done check
-echo "#CPU load: ${CPU_Load}%" # done.
-echo "#Last boot: ${Last_Boot}" # done check
+echo "#Architecture: ${Architecture}"
+echo "#CPU physical: ${Physical_CPU}"
+echo "#vCPU: ${Virtual_CPU}"
+echo "#Memory Usage: ${Memory_Usage}/${Memory_Total}MB (${Memory_Percentage}%)"
+echo "#Disk Usage: ${Disk_Usage}/${Disk_Total}Gb (${Disk_Percentage}%)"
+echo "#CPU load: ${CPU_Load}%"
+echo "#Last boot: ${Last_Boot}"
+echo "#LVM use: ${LVM_use}"
 #
-echo "#LVM use: ${Last_Boot}"
+echo "#Connections TCP: (not sat)"
 #
-echo "#Network: ${IP_Addr} (${MAC_Addr})" # check.
+echo "#User log: ${User_log}"
+echo "#Network: ${IP_Addr} (${MAC_Addr})"
+echo "#Sudo : ${Sudo} (not sat)"
