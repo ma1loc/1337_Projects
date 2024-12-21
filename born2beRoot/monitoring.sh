@@ -21,15 +21,17 @@ Sudo=$(journalctl -q | grep "COMMAND" | wc -l)
 #
 # Execute the command:
 #
-echo "#Architecture: ${Architecture}"
-echo "#CPU physical: ${Physical_CPU}"
-echo "#vCPU: ${Virtual_CPU}"
-echo "#Memory Usage: ${Memory_Usage}/${Memory_Total}MB (${Memory_Percentage}%)"
-echo "#Disk Usage: ${Disk_Usage}/${Disk_Total}Gb (${Disk_Percentage}%)"
-echo "#CPU load: ${CPU_Load}%"
-echo "#Last boot: ${Last_Boot}"
-echo "#LVM use: ${LVM_use}"
-echo "#Connections TCP: ${Connections_TCP} ESTABLISHED"
-echo "#User log: ${User_log}"
-echo "#Network: IP ${IP_Addr}(${MAC_Addr})"
-echo "#Sudo : ${Sudo} cmd"
+{
+	echo "#Architecture: ${Architecture}"
+	echo "#CPU physical: ${Physical_CPU}"
+	echo "#vCPU: ${Virtual_CPU}"
+	echo "#Memory Usage: ${Memory_Usage}/${Memory_Total}MB (${Memory_Percentage}%)"
+	echo "#Disk Usage: ${Disk_Usage}/${Disk_Total}Gb (${Disk_Percentage}%)"
+	echo "#CPU load: ${CPU_Load}%"
+	echo "#Last boot: ${Last_Boot}"
+	echo "#LVM use: ${LVM_use}"
+	echo "#Connections TCP: ${Connections_TCP} ESTABLISHED"
+	echo "#User log: ${User_log}"
+	echo "#Network: IP ${IP_Addr}(${MAC_Addr})"
+	echo "#Sudo : ${Sudo} cmd"
+} | wall
