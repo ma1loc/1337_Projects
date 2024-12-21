@@ -424,7 +424,7 @@ Note: that’s what called “Public Key”
 
 Sorry I’m done, you can check for more about the SSH at https://goteleport.com/blog/ssh-handshake-explained/
 # "I know there are a lot of things I haven't covered."
-## check this out for more information
-### about to know -> https://miro.com/app/board/uXjVPEVHTXk=/
-### about how to https://42-cursus.gitbook.io/guide/rank-01/born2beroot
-### ammmm https://baigal.medium.com/born2beroot-e6e26dfb50ac
+#### check this out for more information
+#### about to know -> https://miro.com/app/board/uXjVPEVHTXk=/
+#### about how to https://42-cursus.gitbook.io/guide/rank-01/born2beroot
+#### config https://baigal.medium.com/born2beroot-e6e26dfb50ac
