@@ -1,20 +1,51 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
+/*   Updated: 2024/12/29 15:25:30 by yanflous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//	fork(); create a new process id
-//	pipe(); one process writes, another reads.
-//	dup(); dup the fd.
-//	execve();
-//	exit();
-//	perror(); shows msg.
-int main(int argc, char *argv[]) // enviroment
+#include "pipex.h"
+
+// ./pipex	infile "grep a1"
+
+int main(int argc, char **argv)
 {
-	// int fd[2] -> arry of two intergers, is used to store the fd for the pip
+	if (argc == 3)
+		perror("argument error.");
+
+	int		fd[2];
+	pid_t	pid;
+
+	if (pipe(fd) == -1)
+		return (perror("pipe error"), 1);
+
+	pid = fork();
 	
-	fork();
-	fork();
-	fork();
-	write(1,"hello", 5);
+	// open the infile to read from it.
+	int ch_fd = open(argv[1], O_RDONLY);
+	if (ch_fd < 0)
+		perror("ch_fd error");
+
+	if (pid > 0)  // _____________________________________parent pid (write(1))
+	{
+		close(fd[0]);
+		wait();
+		//what's next
+		
+		
+		close(fd[1]);
+	}
+	else if (pid == 0) // _______________________________child pid (read(1))
+	{
+		close(fd[1]);
+
+
+		close(fd[0]);
+	}
 }
