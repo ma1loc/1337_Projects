@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:26:59 by yanflous          #+#    #+#             */
-/*   Updated: 2024/12/29 12:34:23 by yanflous         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:34:03 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	delim_count(char *str, char c)
 char	*get_the_word(char *str, int *index, char c)
 {
 	int		start;
-	char		*word;
+	char	*word;
 	int		count;
 	int		i;
 
@@ -60,7 +60,7 @@ char	*get_the_word(char *str, int *index, char c)
 
 char	**ft_split(char *str, char c)
 {
-	char		**new_str;
+	char	**new_str;
 	int		word_count;
 	int		start;
 	int		index;
@@ -74,7 +74,7 @@ char	**ft_split(char *str, char c)
 	index = 0;
 	while (i < word_count)
 	{
-		new_str[i] = get_the_word(str, &index);
+		new_str[i] = get_the_word(str, &index, c);
 		if (!new_str[i])
 		{
 			while (i > 0)
