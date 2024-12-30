@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int	delim_count(char *str)
+int	delim_count(char *str, char c)
 {
 	int		i;
 	int		count;
@@ -21,29 +21,29 @@ int	delim_count(char *str)
 	count = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] == ' ')
+		while (str[i] && str[i] == c)
 			i++;
-		if (str[i] && str[i] != ' ')
+		if (str[i] && str[i] != c)
 			count++;
-		while (str[i] && str[i] != ' ')
+		while (str[i] && str[i] != c)
 			i++;
 	}
 	return (count);
 }
 
-char	*get_the_word(char *str, int *index)
+char	*get_the_word(char *str, int *index, char c)
 {
 	int		start;
-	char	*word;
+	char		*word;
 	int		count;
 	int		i;
 
 	start = *index;
 	count = 0;
-	while (str[start] && str[start] == ' ')
+	while (str[start] && str[start] == c)
 		start++;
 	*index = start;
-	while (str[*index] && str[*index] != ' ')
+	while (str[*index] && str[*index] != c)
 	{
 		(*index)++;
 		count++;
@@ -58,15 +58,15 @@ char	*get_the_word(char *str, int *index)
 	return (word);
 }
 
-char	**ft_split(char *str)
+char	**ft_split(char *str, char c)
 {
-	char	**new_str;
+	char		**new_str;
 	int		word_count;
 	int		start;
 	int		index;
 	int		i;
 
-	word_count = delim_count(str);
+	word_count = delim_count(str, c);
 	new_str = malloc(sizeof(char *) * (word_count + 1));
 	if (!new_str)
 		return (NULL);
