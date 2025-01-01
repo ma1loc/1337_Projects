@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/01 16:39:38 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/01 18:27:03 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,19 @@ void	error_msg(char *str, int stdio)
 	exit(EXIT_FAILURE);
 }
 
+void	free_memory(char **split_path)
+{
+	int i;
+
+	i = 0;
+	while (split_path[i])
+		free(split_path[i++]);
+	free(split_path);
+}
+
 char	**get_path(char *cmd, char **env)
 {
+	// more then 25lines.
 	int		i;
 	char	**split_path;
 	char	*add_to_path;
@@ -31,35 +42,25 @@ char	**get_path(char *cmd, char **env)
 	i = 0;
 	while (ft_strnstr(env[i], "PATH", 4) == 0)
 		i++;
-	split_path = ft_split(env[i] + 5, ';');
+	if (!env[i])
+		return (NULL);
+	split_path = ft_split(env[i] + 5, ':');
 	i = 0;
 	while (split_path[i])
 	{
 		add_to_path = ft_strjoin(split_path[i], "/");
 		new_path = ft_strjoin(add_to_path, cmd);
 		free(add_to_path);
-		/*
-			the access syscall is a way to check if the path is exist and executable
-			it will return 0 on successfully, -1 on unsuccessfully.
-		*/
 		if (access(new_path, F_OK | X_OK) == 0)
+		{
+			free_memory(split_path);
 			return (new_path);
+		}
 		free(new_path);
 		i++;
 	}
-	i = 0;
-	while (split_path[i])
-		free(split_path[i++]);
-	free(split_path);
-
-	/*
-		while (paths[++i])
-			free(split_path[i]);
-		free(split_path);
-		return (0);
-		return (NULL);
-	*/
-	return (split_path);
+	free_memory(split_path);
+	return (NULL);
 }
 
 void	cmd_executed(char *argv, char **env)
@@ -80,5 +81,4 @@ void	cmd_executed(char *argv, char **env)
 	}
 	if (execve(path, cmd, env) == -1)
 		// error massage.
-
 }
