@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/01 09:57:37 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/01 12:57:10 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	child_process(char **argv, int *fd, char **env)
 
 void	parent_process(char **argv, int *fd, char **env)
 {
-	int out_file;
+	int	out_file;
 
 	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_file == -1)
@@ -36,7 +36,6 @@ void	parent_process(char **argv, int *fd, char **env)
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
 	cmd_executed(argv[3], env);
-
 }
 
 int	main(int argc, char **argv, char **env)
@@ -48,7 +47,6 @@ int	main(int argc, char **argv, char **env)
 	{
 		if (pipe(fd) == -1)
 			error_msg("Error: pipe() failed.", 2);
-
 		pid = fork();
 		if (pid == -1)
 			error_msg("Error: fork() failed.", 2);
@@ -56,7 +54,7 @@ int	main(int argc, char **argv, char **env)
 			child_process(argv, &fd[2], env);
 		else
 		{
-			waitpid(pid);
+			waitpid(pid, NULL, 0); // the , , 0->default, blocks until the child terminates.
 			parent_process(argv, &fd[2], env);
 		}
 	}

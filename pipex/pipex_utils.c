@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/01 09:54:13 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/01 13:05:11 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 // have mode;
 // F_OK | W_OK | R_OK | X_OK -> i need F_OK | X_OK
 // if the func after the return i free is the fun not see the return of scipte it.
-void	error_msg(char *str, int std)
+void	error_msg(char *str, int stdio)
 {
 	size_t	len;
 
 	len = ft_strlen(str);
-	write(std, &str, len);
+	write(stdio, str, len);
 	exit(EXIT_FAILURE);
 }
 
@@ -31,7 +31,7 @@ char	**get_path(char *cmd, char **env)
 {
 	int		i;
 	char	**split_path;
-	char	*add_to_path
+	char	*add_to_path;
 	char	*new_path;
 	
 	i = 0;
