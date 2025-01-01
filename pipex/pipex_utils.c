@@ -6,18 +6,12 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/01 13:05:11 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:39:38 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// get_command_path;
-// access.
-// syntax -> int access(const char *pathname, int mode);
-// have mode;
-// F_OK | W_OK | R_OK | X_OK -> i need F_OK | X_OK
-// if the func after the return i free is the fun not see the return of scipte it.
 void	error_msg(char *str, int stdio)
 {
 	size_t	len;
@@ -44,14 +38,21 @@ char	**get_path(char *cmd, char **env)
 		add_to_path = ft_strjoin(split_path[i], "/");
 		new_path = ft_strjoin(add_to_path, cmd);
 		free(add_to_path);
+		/*
+			the access syscall is a way to check if the path is exist and executable
+			it will return 0 on successfully, -1 on unsuccessfully.
+		*/
 		if (access(new_path, F_OK | X_OK) == 0)
 			return (new_path);
-		free(path);
+		free(new_path);
 		i++;
 	}
+	i = 0;
+	while (split_path[i])
+		free(split_path[i++]);
+	free(split_path);
+
 	/*
-	 	why this is for and why the i = -1;
-		i = -1; i = 0;
 		while (paths[++i])
 			free(split_path[i]);
 		free(split_path);
