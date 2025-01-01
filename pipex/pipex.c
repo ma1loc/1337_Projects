@@ -11,16 +11,8 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <fcntl.h>
-#include <unistd.h>
-/*
-	divide them to a functions.
-	function in the utils shows error ext(exit_failure); 
-	function -> fork && pipe.
-	function -> child.
-	function -> parent.
-*/
-void	child_process(char **argv, char **envp, int *fd)
+
+void	child_process(char **argv, int *fd, char **env)
 {
 	int	in_file;
 
@@ -31,12 +23,10 @@ void	child_process(char **argv, char **envp, int *fd)
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
 	// here i will be execute the command.
-	char *cmd1[] = {"grep", "a1", NULL};
-	execve("/usr/bin/grep", cmd1, NULL);
-	perror("Execve error");
+	cmd_executed(argv[2], env);
 }
 
-void	parent_process(char **argv, char **env, int *fd)
+void	parent_process(char **argv, int *fd, char **env)
 {
 	int out_file;
 
@@ -47,33 +37,9 @@ void	parent_process(char **argv, char **env, int *fd)
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
 	// here to execve
-	char *cmd2[] = {"grep", "a1", NULL};
-	execve("/usr/bin/grep", cmd1, NULL)
-	perror("Execve error");
+	cmd_executed(argv[3], env);
 
 }
-		if (pid == 0) // child
-		{
-			dup2(in_file, STDIN_FILENO);
-			dup2(fd[1], STDOUT_FILENO);
-			close(fd[1]);
-			close(fd[0]);
-			close(in_file);	
-			char *cmd1[] = {"grep", "a1", NULL};
-			execve("/usr/bin/grep", cmd1, NULL);
-		    perror("Execve error");
-		}
-		else // parent
-		{
-			wait(NULL);
-			dup2(fd[0], STDIN_FILENO);
-			dup2(out_file, STDOUT_FILENO);
-			close(fd[0]);
-			close (fd[1]);
-			close (out_file);
-			char *cmd2[] = {"wc", "-w", NULL};
-			execve("/usr/bin/wc", cmd2, NULL);
-			perror("Execve error");
 
 int	main(int argc, char **argv, char **env)
 {

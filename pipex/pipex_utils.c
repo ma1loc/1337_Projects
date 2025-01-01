@@ -13,20 +13,73 @@
 
 
 #include "pipex.h"
+#include <unistd.h>
 
 // get_command_path;
 // access.
 // syntax -> int access(const char *pathname, int mode);
 // have mode;
 // F_OK | W_OK | R_OK | X_OK -> i need F_OK | X_OK
-
-char	**get_command_path(char *command)
+// if the func after the return i free is the fun not see the return of scipte it.
+void	error_msg(char *str)
 {
-	char	*path;
-	char	**split_path;
-	
-	path = "/home/yanflous/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin";
-	split_path = ft_split(path, ':');
+	size_t	len;
 
+	len = ft_strlen(str);
+	write(2, &str, len);
+	exit(EXIT_FAILURE);
+}
+
+char	**get_path(char *cmd, char **env)
+{
+	int	i;
+	char	**split_path;
+	char	*add_to_path
+	char	*new_path;
+	i = 0;
+	while (ft_strnstr(env[i], "PATH", 4) == 0)
+		i++;
+	split_path = ft_split(env[i] + 5, ';');
+	i = 0;
+	while (split_path[i])
+	{
+		add_to_path = ft_strjoin(split_path[i], "/");
+		new_path = ft_strjoin(add_to_path, cmd);
+		free(add_to_path);
+		if (access(new_path, F_OK | X_OK) == 0) // add X_OK to check if it executed
+			return (new_path);
+		free(path);
+		i++;
+	}
+	/*
+	 	why this is for and why the i = -1;
+		i = -1;
+		while (paths[++i])
+			free(split_path[i]);
+		free(split_path);
+		return (0);
+		return (NULL);
+	*/
 	return (split_path);
+}
+
+void	cmd_executed(char *argv, char **env)
+{
+	char	**cmd;
+	char	*path;
+	int	i;
+
+	i = 0;
+	cmd = ft_split(argv, ' ');
+	path = get_path(cmd[0], env);
+	if (!path)
+	{
+		while (cmd[i++])
+			free(cmd[i]);
+		free(cmd);
+		// error massage.
+	}
+	if (execve(path, cmd, env) == -1)
+		// error massage.
+
 }
