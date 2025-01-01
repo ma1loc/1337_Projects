@@ -6,14 +6,11 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2024/12/30 18:38:00 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/01 09:54:13 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "pipex.h"
-#include <unistd.h>
 
 // get_command_path;
 // access.
@@ -21,21 +18,22 @@
 // have mode;
 // F_OK | W_OK | R_OK | X_OK -> i need F_OK | X_OK
 // if the func after the return i free is the fun not see the return of scipte it.
-void	error_msg(char *str)
+void	error_msg(char *str, int std)
 {
 	size_t	len;
 
 	len = ft_strlen(str);
-	write(2, &str, len);
+	write(std, &str, len);
 	exit(EXIT_FAILURE);
 }
 
 char	**get_path(char *cmd, char **env)
 {
-	int	i;
+	int		i;
 	char	**split_path;
 	char	*add_to_path
 	char	*new_path;
+	
 	i = 0;
 	while (ft_strnstr(env[i], "PATH", 4) == 0)
 		i++;
@@ -46,14 +44,14 @@ char	**get_path(char *cmd, char **env)
 		add_to_path = ft_strjoin(split_path[i], "/");
 		new_path = ft_strjoin(add_to_path, cmd);
 		free(add_to_path);
-		if (access(new_path, F_OK | X_OK) == 0) // add X_OK to check if it executed
+		if (access(new_path, F_OK | X_OK) == 0)
 			return (new_path);
 		free(path);
 		i++;
 	}
 	/*
 	 	why this is for and why the i = -1;
-		i = -1;
+		i = -1; i = 0;
 		while (paths[++i])
 			free(split_path[i]);
 		free(split_path);
