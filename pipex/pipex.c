@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/01 12:57:10 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:53:28 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	child_process(char **argv, int *fd, char **env)
 
 	in_file = open(argv[1], O_RDONLY);
 	if (in_file == -1)
-		error_msg("Error: failed \"open()\" to open a file descriptor", 2);
+		error_msg("Error: failed \"open()\" to open a file descriptor\n", STDERR_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
@@ -31,7 +31,7 @@ void	parent_process(char **argv, int *fd, char **env)
 
 	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_file == -1)
-		error_msg("Error: failed \"open()\" to open a file descriptor", 2);
+		error_msg("Error: failed \"open()\" to open a file descriptor\n", STDERR_FILENO);
 	dup2(fd[0], STDIN_FILENO);
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
@@ -42,26 +42,32 @@ int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
+	
+	if (!env || !*env)
+	{
+		error_msg("rah makaynch en a zabi\n", 2);
+		exit(1);
+	}
 
 	if (argc == 5)
 	{
 		if (pipe(fd) == -1)
-			error_msg("Error: pipe() failed.", 2);
+			perror("Error: pipe() failed.");
 		pid = fork();
 		if (pid == -1)
-			error_msg("Error: fork() failed.", 2);
+			perror("Error: fork() failed.");
 		if (pid == 0)
-			child_process(argv, &fd[2], env);
+			child_process(argv, fd, env);
 		else
 		{
 			waitpid(pid, NULL, 0); // the , , 0->default, blocks until the child terminates.
-			parent_process(argv, &fd[2], env);
+			parent_process(argv, fd, env);
 		}
 	}
 	else
 	{
-		error_msg("Error: Incorrect number of arguments.\n", 2);
-		error_msg("Syntax: ./pipex file1 cmd1 cmd2 file2\n", 1);
+		error_msg("Error: Incorrect number of arguments.\n", STDERR_FILENO);
+		error_msg("Syntax: ./pipex file1 cmd1 cmd2 file2.\n", STDOUT_FILENO);
 	}
 	return (0);
 }

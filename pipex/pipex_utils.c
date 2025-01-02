@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/01 18:27:03 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:24:00 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_memory(char **split_path)
 	free(split_path);
 }
 
-char	**get_path(char *cmd, char **env)
+char	*get_path(char *cmd, char **env)
 {
 	// more then 25lines.
 	int		i;
@@ -67,18 +67,18 @@ void	cmd_executed(char *argv, char **env)
 {
 	char	**cmd;
 	char	*path;
-	int	i;
+	int		i;
 
 	i = 0;
 	cmd = ft_split(argv, ' ');
 	path = get_path(cmd[0], env);
 	if (!path)
 	{
-		while (cmd[i++])
-			free(cmd[i]);
+		while (cmd[i])
+			free(cmd[i++]);
 		free(cmd);
-		// error massage.
+		error_msg("command not found.\n", STDERR_FILENO);
 	}
 	if (execve(path, cmd, env) == -1)
-		// error massage.
+		error_msg("field to execute the command.\n", 1);
 }
