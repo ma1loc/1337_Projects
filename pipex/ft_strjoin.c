@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:06:59 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 14:07:03 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:32:45 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	if (!str)
 		return (NULL);
 	while (s1[i])
-		str[i++] = s1[i];
+	{
+		str[i] = s1[i];
+		i++;
+	}
 	j = 0;
 	while (s2[j])
 	{
