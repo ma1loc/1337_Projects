@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:26:59 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 16:52:03 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:21:15 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ char	*get_the_word(char *str, int *index, char c)
 		word[i] = str[start + i];
 		i++;
 	}
-	word[i] = '\0';
-	return (word);
+	return (word[i] = '\0', word);
 }
 
 char	**ft_split(char *str, char c)
