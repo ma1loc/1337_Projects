@@ -6,13 +6,13 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:26:59 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 18:29:24 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:31:05 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int		delim_count(char *str, char c)
+int	delim_count(char *str, char c)
 {
 	int		i;
 	int		count;
