@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:06:59 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 15:32:45 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:35:19 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 		j++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (str[i] = '\0', str);
 }
