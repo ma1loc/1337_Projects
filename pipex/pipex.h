@@ -1,12 +1,24 @@
-# ifndef PIPEX_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/02 17:37:25 by yanflous          #+#    #+#             */
+/*   Updated: 2025/01/02 17:56:51 by yanflous         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PIPEX_H
 # define PIPEX_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+# include <stdlib.h>
 
 char	**ft_split(char *str, char c);
 size_t	ft_strlen(const char *str);
@@ -19,4 +31,4 @@ void	error_msg(char *str, int stdio);
 char	*get_path(char *cmd, char **env);
 void	cmd_executed(char *argv, char **env);
 
-# endif
+#endif

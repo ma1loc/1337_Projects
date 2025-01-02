@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 13:21:32 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:06:51 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	error_msg(char *str, int stdio)
 
 void	free_memory(char **split_path)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split_path[i])
@@ -37,7 +37,7 @@ char	*get_path(char *cmd, char **env)
 	char	**split_path;
 	char	*add_to_path;
 	char	*new_path;
-	
+
 	i = 0;
 	while (ft_strnstr(env[i], "PATH", 4) == 0)
 		i++;
@@ -51,10 +51,7 @@ char	*get_path(char *cmd, char **env)
 		new_path = ft_strjoin(add_to_path, cmd);
 		free(add_to_path);
 		if (access(new_path, F_OK | X_OK) == 0)
-		{
-			free_memory(split_path);
-			return (new_path);
-		}
+			return (free_memory(split_path), new_path);
 		free(new_path);
 		i++;
 	}
