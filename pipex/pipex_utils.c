@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 10:24:00 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:21:32 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	free_memory(char **split_path)
 
 char	*get_path(char *cmd, char **env)
 {
-	// more then 25lines.
 	int		i;
 	char	**split_path;
 	char	*add_to_path;

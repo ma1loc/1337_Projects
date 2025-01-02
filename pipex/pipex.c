@@ -6,11 +6,24 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 10:53:28 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:04:12 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int check_path_exists(char **env)
+{
+    int i = 0;
+
+    while (env[i])
+    {
+        if (ft_strncmp(env[i], "PATH=", 5) == 0)
+            return 1;
+        i++;
+    }
+    return 0;
+}
 
 void	child_process(char **argv, int *fd, char **env)
 {
@@ -43,13 +56,12 @@ int	main(int argc, char **argv, char **env)
 	int		fd[2];
 	pid_t	pid;
 	
-	if (!env || !*env)
+	if (!env || !*env || check_path_exists(env) == 0)
 	{
-		error_msg("rah makaynch en a zabi\n", 2);
+		error_msg("PATH not found in env.\n", 2);
 		exit(1);
 	}
-
-	if (argc == 5)
+	if (argc == 5 )
 	{
 		if (pipe(fd) == -1)
 			perror("Error: pipe() failed.");
@@ -60,7 +72,7 @@ int	main(int argc, char **argv, char **env)
 			child_process(argv, fd, env);
 		else
 		{
-			waitpid(pid, NULL, 0); // the , , 0->default, blocks until the child terminates.
+			waitpid(pid, NULL, 0);
 			parent_process(argv, fd, env);
 		}
 	}
