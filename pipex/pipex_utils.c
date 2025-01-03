@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/02 18:06:51 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/03 13:17:43 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void	error_msg(char *str, int stdio)
 {
-	size_t	len;
-
-	len = ft_strlen(str);
-	write(stdio, str, len);
+	write(stdio, str, ft_strlen(str));
 	exit(EXIT_FAILURE);
 }
 

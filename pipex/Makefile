@@ -20,12 +20,12 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clear:
+clean:
 	$(RM) $(OBJ)
 
-fclear: clear
+fclean: clean
 	$(RM) $(NAME)
 
-re: fclear all
+re: fclean all
 
 .PHONY: all clean fclean re
