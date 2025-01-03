@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/03 13:16:27 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:34:05 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	child_process(char **argv, int *fd, char **env)
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
 	cmd_executed(argv[2], env);
+	close(fd[1]);
+	close(in_file);
 }
 
 void	parent_process(char **argv, int *fd, char **env)
@@ -50,12 +52,15 @@ void	parent_process(char **argv, int *fd, char **env)
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
 	cmd_executed(argv[3], env);
+	close(fd[0]);
+	close(out_file);
 }
 
 void	check_fork_pipe(char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
+	int		status;
 
 	if (pipe(fd) == -1)
 		perror("Error: pipe() failed.");
@@ -66,18 +71,21 @@ void	check_fork_pipe(char **argv, char **env)
 		child_process(argv, fd, env);
 	else
 	{
-		waitpid(pid, NULL, 0);
-		parent_process(argv, fd, env);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			parent_process(argv, fd, env);
+		close(fd[0]);
+		close(fd[1]);
+		exit(1);
 	}
+	close(fd[0]);
+	close(fd[1]);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	if (!env || !*env || check_path_exists(env) == 0)
-	{
-		error_msg("PATH not found in env.\n", 2);
-		exit(1);
-	}
+		error_msg("command not found.\n", 2);
 	if (argc == 5)
 		check_fork_pipe(argv, env);
 	else

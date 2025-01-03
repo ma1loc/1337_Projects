@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/03 13:17:43 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:33:48 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_msg(char *str, int stdio)
 {
 	write(stdio, str, ft_strlen(str));
-	exit(EXIT_FAILURE);
+	exit(1);
 }
 
 void	free_memory(char **split_path)
@@ -36,7 +36,7 @@ char	*get_path(char *cmd, char **env)
 	char	*new_path;
 
 	i = 0;
-	while (ft_strnstr(env[i], "PATH", 4) == 0)
+	while (env[i] && ft_strnstr(env[i], "PATH", 4) == 0)
 		i++;
 	if (!env[i])
 		return (NULL);
@@ -64,6 +64,8 @@ void	cmd_executed(char *argv, char **env)
 
 	i = 0;
 	cmd = ft_split(argv, ' ');
+	if (!cmd || !cmd[0])
+		error_msg("Error: command parsing failed.\n", STDERR_FILENO);
 	path = get_path(cmd[0], env);
 	if (!path)
 	{
@@ -71,7 +73,15 @@ void	cmd_executed(char *argv, char **env)
 			free(cmd[i++]);
 		free(cmd);
 		error_msg("command not found.\n", STDERR_FILENO);
+		exit(1);
 	}
 	if (execve(path, cmd, env) == -1)
-		error_msg("field to execute the command.\n", 1);
+	{
+		free(path);
+		i = 0;
+		while (cmd[i])
+			free(cmd[i++]);
+		free(cmd);
+		error_msg("Failed to execute the command.\n", STDERR_FILENO);
+	}
 }
