@@ -32,8 +32,7 @@ void	child_process(char **argv, int *fd, char **env)
 
 	in_file = open(argv[1], O_RDONLY);
 	if (in_file == -1)
-		error_msg("Error: failed \"open()\" to open\
-		a file descriptor\n", STDERR_FILENO);
+		error_msg("Error: failed \"open()\" to open a file descriptor\n", 2);
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
@@ -46,8 +45,7 @@ void	parent_process(char **argv, int *fd, char **env)
 
 	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_file == -1)
-		error_msg("Error: failed \"open()\" to open\
-		a file descriptor\n", STDERR_FILENO);
+		error_msg("Error: failed \"open()\" to open a file descriptor\n", 2);
 	dup2(fd[0], STDIN_FILENO);
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
