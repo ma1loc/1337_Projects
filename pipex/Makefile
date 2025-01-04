@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror #-fsanitize=address
 NAME=pipex
 
 SRC= pipex.c pipex_utils.c ft_putstr_fd.c ft_strjoin.c ft_strncmp.c \
