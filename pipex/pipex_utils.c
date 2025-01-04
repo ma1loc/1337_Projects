@@ -6,26 +6,20 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/03 17:33:48 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/04 11:23:07 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_msg(char *str, int stdio)
-{
-	write(stdio, str, ft_strlen(str));
-	exit(1);
-}
-
-void	free_memory(char **split_path)
+void	free_memory(char **mem_free)
 {
 	int	i;
 
 	i = 0;
-	while (split_path[i])
-		free(split_path[i++]);
-	free(split_path);
+	while (mem_free[i])
+		free(mem_free[i++]);
+	free(mem_free);
 }
 
 char	*get_path(char *cmd, char **env)
@@ -65,23 +59,17 @@ void	cmd_executed(char *argv, char **env)
 	i = 0;
 	cmd = ft_split(argv, ' ');
 	if (!cmd || !cmd[0])
-		error_msg("Error: command parsing failed.\n", STDERR_FILENO);
+		ft_putstr_fd("Error: command parsing failed.\n");
 	path = get_path(cmd[0], env);
 	if (!path)
 	{
-		while (cmd[i])
-			free(cmd[i++]);
-		free(cmd);
-		error_msg("command not found.\n", STDERR_FILENO);
-		exit(1);
+		free_memory(cmd);
+		ft_putstr_fd("command not found.\n");
 	}
 	if (execve(path, cmd, env) == -1)
 	{
 		free(path);
-		i = 0;
-		while (cmd[i])
-			free(cmd[i++]);
-		free(cmd);
-		error_msg("Failed to execute the command.\n", STDERR_FILENO);
+		free_memory(cmd);
+		ft_putstr_fd("Failed to execute the command.\n");
 	}
 }
