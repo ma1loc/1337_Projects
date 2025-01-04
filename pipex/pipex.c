@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/04 13:03:33 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/04 15:29:12 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	child_process(char **argv, int *fd, char **env)
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
-	cmd_executed(argv[2], env);
 	close(fd[1]);
 	close(in_file);
+	cmd_executed(argv[2], env);
 }
 
 void	parent_process(char **argv, int *fd, char **env)
@@ -51,9 +51,9 @@ void	parent_process(char **argv, int *fd, char **env)
 	dup2(fd[0], STDIN_FILENO);
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
-	cmd_executed(argv[3], env);
 	close(fd[0]);
 	close(out_file);
+	cmd_executed(argv[3], env);
 }
 
 void	check_fork_pipe(char **argv, char **env)
