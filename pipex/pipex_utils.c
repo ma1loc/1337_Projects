@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/04 11:23:07 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/04 15:26:52 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ void	cmd_executed(char *argv, char **env)
 {
 	char	**cmd;
 	char	*path;
-	int		i;
 
-	i = 0;
 	cmd = ft_split(argv, ' ');
 	if (!cmd || !cmd[0])
 		ft_putstr_fd("Error: command parsing failed.\n");
