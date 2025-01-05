@@ -26,7 +26,7 @@ int	check_path_exists(char **env)
 	return (0);
 }
 
-void	child_process(char **argv, int *fd, char **env)
+void	child1_process(char **argv, int *fd, char **env)
 {
 	int	in_file;
 
@@ -39,9 +39,10 @@ void	child_process(char **argv, int *fd, char **env)
 	close(fd[1]);
 	close(in_file);
 	cmd_executed(argv[2], env);
+	exit(1);
 }
 
-void	parent_process(char **argv, int *fd, char **env)
+void	child2_process(char **argv, int *fd, char **env)
 {
 	int	out_file;
 
@@ -54,34 +55,28 @@ void	parent_process(char **argv, int *fd, char **env)
 	close(fd[0]);
 	close(out_file);
 	cmd_executed(argv[3], env);
+	exit(1);
 }
 
 void	check_fork_pipe(char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
-	int		status;
-
+//	int		status;
 	if (pipe(fd) == -1)
 		ft_putstr_fd("Error: pipe() failed.");
 	pid = fork();
 	if (pid == -1)
 		ft_putstr_fd("Error: fork() failed.");
 	if (pid == 0)
-		child_process(argv, fd, env);
-	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-		{
-			close(fd[0]);
-			close(fd[1]);
-			exit(WEXITSTATUS(status));
-		}
-		parent_process(argv, fd, env);
-		close(fd[0]);
-		close(fd[1]);
-	}
+		child1_process(argv, fd, env);
+	pid = fork();
+	if (pid == 0)
+		child2_process(argv, fd, env);
+	close(fd[0]);
+	close(fd[1]);
+	wait(NULL);
+	wait(NULL);
 }
 
 int	main(int argc, char **argv, char **env)
