@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/05 13:56:37 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:06:07 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv, char **env)
 	else
 	{
 		ft_putstr_fd("Error: Incorrect number of arguments.\n"
-			"Syntax ./pipex file1 cmd1 cmd2 file2.\n");
+			"Syntax $> ./pipex file1 cmd1 cmd2 file2.\n");
 	}
 	return (0);
 }
