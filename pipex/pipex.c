@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/05 13:43:33 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:56:37 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	check_fork_pipe(char **argv, char **env)
 	pid_t	pid1;
 	pid_t	pid2;
 	int		status;
-	
+
 	if (pipe(fd) == -1)
 		ft_putstr_fd("Error: pipe() failed.");
 	pid1 = fork();
