@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/04 15:29:12 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:43:33 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,26 @@ void	child2_process(char **argv, int *fd, char **env)
 void	check_fork_pipe(char **argv, char **env)
 {
 	int		fd[2];
-	pid_t	pid;
-//	int		status;
+	pid_t	pid1;
+	pid_t	pid2;
+	int		status;
+	
 	if (pipe(fd) == -1)
 		ft_putstr_fd("Error: pipe() failed.");
-	pid = fork();
-	if (pid == -1)
+	pid1 = fork();
+	if (pid1 == -1)
 		ft_putstr_fd("Error: fork() failed.");
-	if (pid == 0)
+	if (pid1 == 0)
 		child1_process(argv, fd, env);
-	pid = fork();
-	if (pid == 0)
+	pid2 = fork();
+	if (pid2 == 0)
 		child2_process(argv, fd, env);
 	close(fd[0]);
 	close(fd[1]);
-	wait(NULL);
-	wait(NULL);
+	waitpid(pid1, &status, 0);
+	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		exit(WEXITSTATUS(status));
+	waitpid(pid2, &status, 0);
 }
 
 int	main(int argc, char **argv, char **env)
