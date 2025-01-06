@@ -1,67 +1,88 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/05 14:57:37 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/05 16:13:29 by yanflous         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
-int	check_path_exists(char **env)
+void	Syntax_Error()
 {
-	int	i;
-
-	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
+	ft_putstr_fd("Syntax Error: ")
 }
 
-void    check_fork_pipe(char **argv, int cmd_count, char **env)
+void	child_process(char *argv, char **envp)
 {
-    int     pip    
+	pid_t	pid;
+	int		fd[2];
+
+	if (pipe(fd) == -1)
+		ft_putstr_fd("Error: pipe failed.");
+	pid = fork();
+	if (pid == -1)
+		ft_putstr_fd("Error: pipe failed.");
+	if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		execute(argv, envp);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(pid, NULL, 0);
+	}
+}
+
+void	here_doc(char *limiter, int argc)
+{
+	pid_t	reader;
+	int		fd[2];
+	char	*line;
+
+	if (argc < 6)
+		usage();
+	if (pipe(fd) == -1)
+		error();
+	reader = fork();
+	if (reader == 0)
+	{
+		close(fd[0]);
+		while (get_next_line(&line))
+		{
+			if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+				exit(EXIT_SUCCESS);
+			write(fd[1], line, ft_strlen(line));
+		}
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		wait(NULL);
+	}
 }
 
 int	main(int argc, char **argv, char **env)
 {
+	int	in_file;
+	int	out_file;
 	int	cmd_count;
-
-	if (!env || !*env || check_path_exists(env) == 0)
-		ft_putstr_fd("command not found.\n");
-	cmd_count = argc - 3;
 	
-        if (argc >= 5)
-        {
-            if () // check if the argv[1] is it here_doc using strncmp
-            {
-                /*
-                    here mean's you need the here_doc, it means there is no input file
-                    becuase the here_doc repalce the infile
-                    put you steel need the output file the reach the output file at the end
-                    of the argv just use the "argv[argc - 1]"
-                    then call the here_doc function you create.
-                */
-            }
-            else
-            {
-                // here you have to create both input and output file.
-                check_fork_pipe(argv, cmd_count, env);
-            }
-        }
-        else
+	if (argc >= 5)
 	{
-		ft_putstr_fd("Error: Incorrect number of arguments.\n"
-		"Syntax $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2\n"
-		"Syntax $> ./pipex here_doc LIMITER cmd1 cmd2 ... file\n");
+		if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+		{
+			cmd_count = 3;
+			in_file = open(argv[argc], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+			here_doc(argv[2], argc);
+		}
+		else
+		{
+			cmd_count = 2;
+			in_file = open(argv[argc], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+			out_file = open(argv[1], O_RDONLY);
+			dup2(in_file, STDIN_FILENO);
+		}
+		while (cmd_count < argc - 2)
+			child_process(argv[cmd_count++], env);
+		dup2(out_file, STDOUT_FILENO);
+		execute(argv[argc - 2], env);
 	}
-	return (0);
+	
 }
