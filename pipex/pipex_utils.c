@@ -6,11 +6,25 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/04 15:26:52 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/06 09:45:03 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	check_path_exists(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], "PATH=", 5) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	free_memory(char **mem_free)
 {
