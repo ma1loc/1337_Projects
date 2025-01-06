@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:37:25 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/04 11:28:38 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/06 09:41:18 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	cmd_executed(char *argv, char **env);
+int		check_path_exists(char **env);
 
 #endif
