@@ -6,25 +6,11 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/05 15:06:07 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/06 10:19:34 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-int	check_path_exists(char **env)
-{
-	int	i;
-
-	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 void	child1_process(char **argv, int *fd, char **env)
 {
@@ -32,7 +18,7 @@ void	child1_process(char **argv, int *fd, char **env)
 
 	in_file = open(argv[1], O_RDONLY);
 	if (in_file == -1)
-		ft_putstr_fd("Error: failed \"open()\" to open a file descriptor\n");
+		ft_putstr_fd("Error: failed \"open()\" to open input file.\n");
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
@@ -48,7 +34,7 @@ void	child2_process(char **argv, int *fd, char **env)
 
 	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_file == -1)
-		ft_putstr_fd("Error: failed \"open()\" to open a file descriptor\n");
+		ft_putstr_fd("Error: failed \"open()\" to open output file.\n");
 	dup2(fd[0], STDIN_FILENO);
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
