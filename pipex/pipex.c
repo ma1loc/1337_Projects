@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/06 10:19:34 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:26:48 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,22 @@ void	check_fork_pipe(char **argv, char **env)
 	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 		exit(WEXITSTATUS(status));
 	waitpid(pid2, &status, 0);
+	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		exit(WEXITSTATUS(status));
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	if (!env || !*env || check_path_exists(env) == 0)
-		ft_putstr_fd("command not found.\n");
+
+	//if (!env || !*env || check_path_exists(env) == 0)
+	//	ft_putstr_fd("command not found.\n");
 	if (argc == 5)
+	{
+		//if ((access(argv[1], F_OK | X_OK) == -1) || (access(argv[2], F_OK | X_OK) == -1)
+		//|| !env || !*env || check_path_exists(env) == 0)
+		//	ft_putstr_fd("command not found.\n");
 		check_fork_pipe(argv, env);
+	}
 	else
 	{
 		ft_putstr_fd("Error: Incorrect number of arguments.\n"
