@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/06 09:45:03 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:56:42 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,16 @@ void	free_memory(char **mem_free)
 		free(mem_free[i++]);
 	free(mem_free);
 }
-
-char	*get_path(char *cmd, char **env)
+char	*split_path(char *path, char *cmd)
 {
 	int		i;
 	char	**split_path;
 	char	*add_to_path;
 	char	*new_path;
 
-	i = 0;
-	while (env[i] && ft_strnstr(env[i], "PATH", 4) == 0)
-		i++;
-	if (!env[i])
+	split_path = ft_split(path + 5, ':');
+	if (!split_path)
 		return (NULL);
-	split_path = ft_split(env[i] + 5, ':');
 	i = 0;
 	while (split_path[i])
 	{
@@ -60,8 +56,23 @@ char	*get_path(char *cmd, char **env)
 		free(new_path);
 		i++;
 	}
-	free_memory(split_path);
-	return (NULL);
+	return (free_memory(split_path), NULL);
+}
+
+char	*get_path(char *cmd, char **env)
+{
+	int		i;
+	char	*path;
+	
+	if (access(cmd, F_OK | X_OK) == 0)
+		return (ft_strdup(cmd));
+	i = 0;
+	while (env[i] && ft_strnstr(env[i], "PATH", 4) == 0)
+		i++;
+	if (!env[i])
+		return (NULL);
+	path = split_path(env[i], cmd);
+	return (path);
 }
 
 void	cmd_executed(char *argv, char **env)
