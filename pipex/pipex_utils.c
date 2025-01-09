@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/08 10:56:42 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:23:44 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	free_memory(char **mem_free)
 		free(mem_free[i++]);
 	free(mem_free);
 }
+
 char	*split_path(char *path, char *cmd)
 {
 	int		i;
@@ -63,7 +64,7 @@ char	*get_path(char *cmd, char **env)
 {
 	int		i;
 	char	*path;
-	
+
 	if (access(cmd, F_OK | X_OK) == 0)
 		return (ft_strdup(cmd));
 	i = 0;
@@ -82,17 +83,20 @@ void	cmd_executed(char *argv, char **env)
 
 	cmd = ft_split(argv, ' ');
 	if (!cmd || !cmd[0])
-		ft_putstr_fd("Error: command parsing failed.\n");
+	{
+		free_memory(cmd);
+		ft_putstr_fd("Error: command parsing failed.\n", 1);
+	}
 	path = get_path(cmd[0], env);
 	if (!path)
 	{
 		free_memory(cmd);
-		ft_putstr_fd("command not found.\n");
+		ft_putstr_fd("command not found.\n", 127);
 	}
 	if (execve(path, cmd, env) == -1)
 	{
 		free(path);
 		free_memory(cmd);
-		ft_putstr_fd("Failed to execute the command.\n");
+		ft_putstr_fd("Failed to execute the command.\n", 1);
 	}
 }
