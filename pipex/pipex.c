@@ -63,10 +63,10 @@ void	check_fork_pipe(char **argv, char **env)
 		child2_process(argv, fd, env);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid1, &status, 0);
-	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-		exit(WEXITSTATUS(status));
+	waitpid(pid1, NULL, 0);
+	// if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 	waitpid(pid2, &status, 0);
+		exit(WEXITSTATUS(status));
 }
 
 int	main(int argc, char **argv, char **env)
