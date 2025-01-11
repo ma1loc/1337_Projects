@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/09 09:29:18 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/11 09:26:07 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ void	check_fork_pipe(char **argv, char **env)
 	close(fd[0]);
 	close(fd[1]);
 	waitpid(pid1, NULL, 0);
-	// if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 	waitpid(pid2, &status, 0);
-		exit(WEXITSTATUS(status));
+	exit(WEXITSTATUS(status));
 }
 
 int	main(int argc, char **argv, char **env)
