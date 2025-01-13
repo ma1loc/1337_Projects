@@ -65,7 +65,9 @@ char	*get_path(char *cmd, char **env)
 	int		i;
 	char	*path;
 
-	if (access(cmd, F_OK | X_OK) == 0)
+	if (ft_strnstr(cmd, "/", ft_strlen(cmd)) != NULL)
+		return (ft_strdup(cmd));
+	else if (access(cmd, F_OK | X_OK) == 0)
 		return (ft_strdup(cmd));
 	i = 0;
 	while (env[i] && ft_strnstr(env[i], "PATH", 4) == 0)

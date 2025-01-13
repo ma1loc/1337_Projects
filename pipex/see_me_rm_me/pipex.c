@@ -12,19 +12,37 @@
 
 #include "pipex.h"
 
+void	parsing_cmd(char *argv, char **env)
+{
+	int	i;	
+
+	i = 0;
+	while (argv[i])
+	{
+		if (argv[i] == '\'')
+			argv[i] = ' ';
+		i++;
+	}
+	cmd_executed(argv, env);
+}
+
 void	child1_process(char **argv, int *fd, char **env)
 {
 	int	in_file;
 
 	in_file = open(argv[1], O_RDONLY);
 	if (in_file == -1)
+	{
+		close(fd[1]);
+		close(fd[0]);
 		ft_putstr_fd("Error: failed \"open()\" to open input file.\n", 1);
+	}
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(in_file, STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	close(in_file);
-	cmd_executed(argv[2], env);
+	parsing_cmd(argv[2], env);
 	exit(1);
 }
 
@@ -34,13 +52,17 @@ void	child2_process(char **argv, int *fd, char **env)
 
 	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_file == -1)
+	{
+		close(fd[1]);
+		close(fd[0]);
 		ft_putstr_fd("Error: failed \"open()\" to open output file.\n", 1);
+	}
 	dup2(fd[0], STDIN_FILENO);
 	dup2(out_file, STDOUT_FILENO);
 	close(fd[1]);
 	close(fd[0]);
 	close(out_file);
-	cmd_executed(argv[3], env);
+	parsing_cmd(argv[3], env);
 	exit(1);
 }
 
