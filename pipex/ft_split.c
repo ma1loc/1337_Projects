@@ -84,6 +84,5 @@ char	**ft_split(char *str, char c)
 		}
 		i++;
 	}
-	new_str[i] = NULL;
-	return (new_str);
+	return (new_str[i] = NULL, new_str);
 }
