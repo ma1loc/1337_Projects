@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 18:37:58 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/09 11:23:44 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/13 09:46:08 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ char	*get_path(char *cmd, char **env)
 	int		i;
 	char	*path;
 
-	if (access(cmd, F_OK | X_OK) == 0)
+	if (ft_strnstr(cmd, "/", ft_strlen(cmd)) != NULL)
+		return (ft_strdup(cmd));
+	else if (access(cmd, F_OK | X_OK) == 0)
 		return (ft_strdup(cmd));
 	i = 0;
 	while (env[i] && ft_strnstr(env[i], "PATH", 4) == 0)
@@ -97,6 +99,6 @@ void	cmd_executed(char *argv, char **env)
 	{
 		free(path);
 		free_memory(cmd);
-		ft_putstr_fd("Failed to execute the command.\n", 1);
+		ft_putstr_fd("Failed to execute the command.\n", 127);
 	}
 }
