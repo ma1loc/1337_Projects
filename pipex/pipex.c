@@ -78,15 +78,19 @@ void	check_fork_pipe(char **argv, char **env)
 	pid1 = fork();
 	if (pid1 == -1)
 		ft_putstr_fd("Error: fork() failed.", 1);
-	if (pid1 == 0)
+	else if (pid1 == 0)
 		child1_process(argv, fd, env);
 	pid2 = fork();
-	if (pid2 == 0)
+	if (pid2 == -1)
+		ft_putstr_fd("Error: fork() failed.", 1);
+	else if (pid2 == 0)
 		child2_process(argv, fd, env);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, &status, 0);
+	//waitpid(pid1, NULL, 0);
+	//waitpid(pid2, &status, 0);
+	wait(NULL);
+	wait(&status);
 	exit(WEXITSTATUS(status));
 }
 
