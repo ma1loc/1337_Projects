@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:35:20 by yanflous          #+#    #+#             */
-/*   Updated: 2025/01/11 09:26:07 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:49:51 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	parsing_cmd(char *argv, char **env)
 		i++;
 	}
 	cmd_executed(argv, env);
+	exit(0);
 }
 
 void	child1_process(char **argv, int *fd, char **env)
@@ -43,7 +44,7 @@ void	child1_process(char **argv, int *fd, char **env)
 	close(fd[1]);
 	close(in_file);
 	parsing_cmd(argv[2], env);
-	exit(1);
+	exit(0);
 }
 
 void	child2_process(char **argv, int *fd, char **env)
@@ -63,7 +64,7 @@ void	child2_process(char **argv, int *fd, char **env)
 	close(fd[0]);
 	close(out_file);
 	parsing_cmd(argv[3], env);
-	exit(1);
+	exit(0);
 }
 
 void	check_fork_pipe(char **argv, char **env)
@@ -87,9 +88,12 @@ void	check_fork_pipe(char **argv, char **env)
 		child2_process(argv, fd, env);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, &status, 0);
-	exit(WEXITSTATUS(status));
+	wait(NULL);
+	wait(&status);
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
+	else
+		exit(1);
 }
 
 int	main(int argc, char **argv, char **env)
