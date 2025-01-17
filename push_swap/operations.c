@@ -1,6 +1,7 @@
 #include "push_swap.h"
+#include <sys/select.h>
 
-void	sa(t_stack *stack_a)
+void	sa(t_stack *stack_a, int print_flag)
 {
 	// if the stack have just < 2 ? or nothing????
 	if (!stack_a || !stack_a->head || !stack_a->head->next)
@@ -30,10 +31,11 @@ void	sa(t_stack *stack_a)
 	// the tail have to change.
 	if (stack_a->size == 2)
 		stack_a->tail = first_node;
-	write(1, "sa\n", 3);
+	if (print_flag)
+		write(1, "sa\n", 3);
 }
 
-void	sb(t_stack *stack_b)
+void	sb(t_stack *stack_b, int print_flag)
 {
 	if (!stack_b || !stack_b->head || !stack_b->head->next)
 		return ;
@@ -52,37 +54,45 @@ void	sb(t_stack *stack_b)
 	stack_b->head = second_node;
 	if (stack_b->size == 2)
 		stack_b->tail = first_node;
-	write(1, "sb\n", 3);
+	if (print_flag)
+		write(1, "sb\n", 3);
 }
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	sa(stack_a);
-	sb(stack_b);
+	sa(stack_a, 0);
+	sb(stack_b, 0);
 	write(1, "ss\n", 3);
 }
 
-void	pa(t_stack *stack_a, t_stack *stack_b)
+void	pa(t_stack *stack_a, t_stack *stack_b, int print_flag)
 {
-	// push first element in stack_b on top of stack_a
 	// first thing first here have to check stack_b is empty
 	if (!stack_b || !stack_b->head || !stack_b->head->next)
 		return ;
 
+	// push first element in stack_b on top of stack_a
 	t_list	*first_node_a;
-	t_list	*first_node_b;
-
+	t_list	*tmp;
+	
+	// remove the first node in "b".
+	tmp = stack_b->head;
+	stack_b->head = stack_b->head->next;
+	if (stack_b->head) // -> check out this <- //
+		stack_b->head->prev = NULL;
+	tmp->next = stack_a->head;
+	if (stack_a->head)
+		stack_a->head->prev = tmp;
+	stack_a->head = tmp;
+	tmp->prev = NULL;
+	stack_a->size++;
+	stack_b->size--;
+	/*
 	first_node_a = stack_a->head;
-	first_node_b = stack_b->head;
+	first_node_a->prev = tmp;
+	stack_a->head = tmp;
+	*/
 	
-	// stack_a add the "b" in top of "a"
-	first_node_a->prev = stack_b->head;
-	stack_a->head = first_node_a->prev;
-	stack_a->head->prev = NULL; // i think i alrady NULL?
-	
-	// remove the top element from the "b"
-	first_node_b->next->prev = NULL;
-	stack_b->head = first_node_b->next;
-	
-	// i thing after removing the element from the "b" i have to "size -1"?
+	if (print_flag)
+		write(1, "pa\n", 3);
 }

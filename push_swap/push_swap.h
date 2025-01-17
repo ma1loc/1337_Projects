@@ -14,7 +14,7 @@ size_t  ft_strlen(char *str);
 char    **ft_split(char *str, char separator);
 void    ft_putstr_fd(char *str);
 
-// duple linked list. for the nodes
+// doubly linked list. for the nodes
 typedef	struct s_list
 {
 	int	value;
@@ -34,10 +34,10 @@ typedef	struct s_stack
 
 
 // Operations
-void	sa(t_stack *stack_a); // swap stack a;
-void	sb(t_stack *stack_b); //swap stack b;
+void	sa(t_stack *stack_a, int print_flag); // swap stack a;
+void	sb(t_stack *stack_b, int print_flag); //swap stack b;
 void	ss(t_stack *stack_a, t_stack *stack_b); // swap the stack both of them.
-void	pa(t_stack *stack_a, t_stack *stack_b); // push 
+void	pa(t_stack *stack_a, t_stack *stack_b, int print_flag); // push 
 
 void	pb();
 void	ra();
