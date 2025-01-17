@@ -31,12 +31,14 @@ typedef	struct s_stack
 	int size;
 } t_stack;
 
+
+
 // Operations
 void	sa(t_stack *stack_a); // swap stack a;
-void	sb(t_stack *stack_b); // swap stack b;
+void	sb(t_stack *stack_b); //swap stack b;
+void	ss(t_stack *stack_a, t_stack *stack_b); // swap the stack both of them.
+void	pa(t_stack *stack_a, t_stack *stack_b); // push 
 
-void	ss();
-void	pa();
 void	pb();
 void	ra();
 void	rb();
