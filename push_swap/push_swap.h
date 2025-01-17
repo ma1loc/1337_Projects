@@ -1,10 +1,11 @@
 # ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h> // delete this.
+#include <stdio.h> // delete_me
 #include <unistd.h>
 #include <stdlib.h>
 
+// how know
 int     main(int argc, char **argv);
 
 // libft
@@ -30,7 +31,21 @@ typedef	struct s_stack
 	int size;
 } t_stack;
 
-// push_swap
+// Operations
+void	sa(t_stack *stack_a); // swap stack a;
+void	sb(t_stack *stack_b); // swap stack b;
+
+void	ss();
+void	pa();
+void	pb();
+void	ra();
+void	rb();
+void	rr();
+void	rra();
+void	rrb();
+void	rrr();
+
+// push_swap noting to do with this know
 void    is_valid_num(char **argv);
 
 
