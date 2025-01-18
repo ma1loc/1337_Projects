@@ -1,10 +1,9 @@
 #include "push_swap.h"
-#include <sys/select.h>
 
 void	sa(t_stack *stack_a, int print_flag)
 {
 	// if the stack have just < 2 ? or nothing????
-	if (!stack_a || !stack_a->head || !stack_a->head->next)
+	if (!stack_a || !stack_a->head || !stack_a->head->next) // check this out //
 		return ;
 	t_list *first_node;
 	t_list *second_node;
@@ -65,34 +64,3 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 	write(1, "ss\n", 3);
 }
 
-void	pa(t_stack *stack_a, t_stack *stack_b, int print_flag)
-{
-	// first thing first here have to check stack_b is empty
-	if (!stack_b || !stack_b->head || !stack_b->head->next)
-		return ;
-
-	// push first element in stack_b on top of stack_a
-	t_list	*first_node_a;
-	t_list	*tmp;
-	
-	// remove the first node in "b".
-	tmp = stack_b->head;
-	stack_b->head = stack_b->head->next;
-	if (stack_b->head) // -> check out this <- //
-		stack_b->head->prev = NULL;
-	tmp->next = stack_a->head;
-	if (stack_a->head)
-		stack_a->head->prev = tmp;
-	stack_a->head = tmp;
-	tmp->prev = NULL;
-	stack_a->size++;
-	stack_b->size--;
-	/*
-	first_node_a = stack_a->head;
-	first_node_a->prev = tmp;
-	stack_a->head = tmp;
-	*/
-	
-	if (print_flag)
-		write(1, "pa\n", 3);
-}
