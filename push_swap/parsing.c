@@ -1,22 +1,19 @@
 #include "push_swap.h"
 
-void	is_valid_num(char **argv)
+int	is_digite(char *str)
 {
-	int	i;
-	int	j;
+	size_t	i;
 
-	i = 1;
-	j = 0;
-	while (!argv[i][j])
-	{
-		j = 0;
-		while (!argv[i][j])
-		{
-			if ((argv[i][j] >= '0' && argv[i][j] <= '9') || (argv[i][j] == ' '))
-				j++;
-			else
-				ft_putstr_fd("Error\n");
-		}
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
 		i++;
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (0);
 	}
+	return (1);
 }
+

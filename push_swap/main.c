@@ -15,8 +15,11 @@ int	main(int argc, char **argv)
 
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-
+	
 	stack_a = NULL;
 	stack_b = NULL;
-
+	
+	// 1# split the input first
+	// 2# check if there's a non num.
+	// 3# check if there's a num more then ones ["11 11"] -> "Error"
 }

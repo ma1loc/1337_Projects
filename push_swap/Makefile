@@ -4,7 +4,8 @@ CFLAGS= -Wall -Wextra -Werror
 
 NAME= push_swap
 
-SRC= main.c push_swap.c push_swap_utils.c ft_strlen.c ft_putstr_fd.c ft_split.c ft_atoi.c parsing.c
+SRC= main.c push_swap.c push_swap_utils.c \
+     ft_strlen.c ft_putstr_fd.c ft_split.c ft_atoi.c parsing.c
 
 OBJ=$(SRC:.c=.o)
 

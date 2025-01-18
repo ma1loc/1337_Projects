@@ -13,7 +13,7 @@ t_list	*new_node(int data ,int idx)
 	return (node);
 }
 
-size_t	node_size(t_list *list)
+size_t	size_node(t_list *list)
 {
 	size_t	len;
 	
@@ -21,10 +21,19 @@ size_t	node_size(t_list *list)
 		return (0);
 
 	len = 0;
-	while (list->next)
+	while (list)
 	{
 		list = list->next;
 		len++;
 	}
 	return (len);
+}
+
+t_list	*last_node(t_list *header)
+{
+	if (!header)
+		return (NULL);
+	while (header->next)
+		header = header->next;
+	return (header);
 }
