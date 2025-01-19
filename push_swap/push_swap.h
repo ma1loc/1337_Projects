@@ -39,9 +39,9 @@ void	pb(t_stack *stack_a, t_stack *stack_b); // push a to b
 void	ra(t_stack *stack_a, int print_flag); // rotate a
 void	rb(t_stack *stack_b, int print_flag); // rotate b
 void	rr(t_stack *stack_a, t_stack *stack_b); // rotate a and b
-void	rra(); // reverse rotate a
-void	rrb(); // reverse rotate b
-void	rrr(); // reverse rotate a and b
+void	rra(t_stack *stack_a, int print_flag); // reverse rotate a
+void	rrb(t_stack *stack_b, int print_flag); // reverse rotate b
+void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
 
 // func for parsing (duplicat, char, --, ++, skip taps/speces/new_line...)
 
