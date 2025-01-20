@@ -17,6 +17,20 @@ int	is_digit(char *str)
 	return (1);
 }
 
+int	is_duplicate(t_stack *stack, int nbr)
+{
+	t_list *header;
+
+	header = stack->head;
+	while (header)
+	{
+		if (header->value == 0)
+			return (1);
+		header = header->next;
+	}
+	return (0);
+}
+
 int	has_space(char *str)
 {
 	int	i;
@@ -30,3 +44,5 @@ int	has_space(char *str)
 	}
 	return (0);
 }
+
+void	

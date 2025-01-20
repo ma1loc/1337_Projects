@@ -10,6 +10,32 @@ void	free_split(char **split)
 	free(split);
 }
 
+// improved version
+
+void	single_arg(char *arg, t_stack *stack)
+{
+	if (is_digit(arg) || is_valid_atoi(arg))
+		cleanup_and_exit(); // function to free the stack and if there's split allocation.
+}
+
+void	space_arg(char *arg, t_stack *stack);
+
+void	split_input(char **argv, t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (has_space(argv[i]))
+			space_arg();
+		else
+			single_arg();
+		i++;
+	}
+}
+
+/*
 void	split_input(char **argv, t_stack *stack)
 {
 	int	i;
@@ -55,3 +81,4 @@ void	split_input(char **argv, t_stack *stack)
 		i++;
 	}
 }
+*/

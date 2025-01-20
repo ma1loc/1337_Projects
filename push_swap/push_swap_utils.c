@@ -67,7 +67,7 @@ t_stack	*stack_init(void)
 	return (stack);
 }
 
-/* i don't think soo i have to use it lol.
+/* i don't think soo i have to use it, lol.
 size_t	ft_lst_size(t_stack *stack)
 {
 	size_t	len;
