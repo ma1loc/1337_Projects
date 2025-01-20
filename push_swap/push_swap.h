@@ -11,7 +11,8 @@ int     main(int argc, char **argv);
 long	ft_atoi(char *str);
 size_t  ft_strlen(char *str);
 char    **ft_split(char *str, char separator);
-void    ft_putstr_fd(char *str);
+void    ft_putstr_fd();
+char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 
 // doubly linked list. for the nodes
 typedef	struct s_list
@@ -42,6 +43,13 @@ void	rr(t_stack *stack_a, t_stack *stack_b); // rotate a and b
 void	rra(t_stack *stack_a, int print_flag); // reverse rotate a
 void	rrb(t_stack *stack_b, int print_flag); // reverse rotate b
 void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
+
+// push_swap
+t_list	*new_node(int data, int idx);
+size_t	size_node(t_list *header);
+t_list	*last_node(t_list *header);
+int	is_digit(char *str);
+int	has_space(char *str);
 
 // func for parsing (duplicat, char, --, ++, skip taps/speces/new_line...)
 

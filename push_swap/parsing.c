@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	is_digite(char *str)
+int	is_digit(char *str)
 {
 	size_t	i;
 
@@ -17,3 +17,21 @@ int	is_digite(char *str)
 	return (1);
 }
 
+int	has_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	split_argv(char *argv)
+{
+
+}

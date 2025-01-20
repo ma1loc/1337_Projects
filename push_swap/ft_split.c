@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	delim_count(char *str, char c)
+int	delim_count(char *str, char separator)
 {
 	int		i;
 	int		count;
@@ -9,17 +9,17 @@ int	delim_count(char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] == c)
+		while (str[i] && str[i] == separator)
 			i++;
-		if (str[i] && str[i] != c)
+		if (str[i] && str[i] != separator)
 			count++;
-		while (str[i] && str[i] != c)
+		while (str[i] && str[i] != separator)
 			i++;
 	}
 	return (count);
 }
 
-char	*get_the_word(char *str, int *index, char c)
+char	*get_the_word(char *str, int *index, char separator)
 {
 	int		start;
 	char	*word;
@@ -28,10 +28,10 @@ char	*get_the_word(char *str, int *index, char c)
 
 	start = *index;
 	count = 0;
-	while (str[start] && str[start] == c)
+	while (str[start] && str[start] == separator)
 		start++;
 	*index = start;
-	while (str[*index] && str[*index] != c)
+	while (str[*index] && str[*index] != separator)
 	{
 		(*index)++;
 		count++;
