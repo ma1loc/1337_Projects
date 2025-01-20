@@ -1,7 +1,16 @@
 #include "push_swap.h"
 
-// split the input.
-void	split_input(char **argv)
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
+
+void	split_input(char **argv, t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -16,31 +25,32 @@ void	split_input(char **argv)
 		if ((has_space(argv[i])) == 1)
 		{
 			split_argv = ft_split(argv[i], ' ');
+			if (!split_argv)
+				ft_putstr_fd("Error\n", STDERR_FILENO);
 			while (split_argv[j])
 			{
-				if (is_valid_digit(split_argv[j]) == 1)
+				if (is_digit(split_argv[j]) == 1)
 				{
-					while (split_argv[j])
-						free(split_argv[j++]);
-					free(split_argv);
+					free_split(split_argv);
 					ft_putstr_fd("Error\n", STDERR_FILENO);
 				}
 				else
 				{
+					if (is_valid_atoi(argv[i]) == 1)
+						ft_putstr_fd("Error\n", STDERR_FILENO);
 					nbr = ft_atoi(split_argv[j]);
-					ft_lst_add_back()
+					ft_lst_add_back(stack, nbr);
 				}
 				j++;
 			}
-			while (split_argv[j])
-				free(split_argv[j++]);
-			free(split_argv);
+			free_split(split_argv);
 		}
 		else
 		{
+			if (is_valid_atoi(argv[i]) == 1)
+				ft_putstr_fd("Error\n", STDERR_FILENO);
 			nbr = ft_atoi(argv[i]);
-			// i thing here i have to allocate to the nbr;
-			
+			ft_lst_add_back(stack, nbr);
 		}
 		i++;
 	}

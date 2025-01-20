@@ -48,10 +48,13 @@ void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
 t_list	*ft_lst_new(int value);
 size_t	ft_lst_size(t_stack *stack);
 t_list	*ft_last_node(t_list *header);
+void	ft_lst_add_back(t_stack *stack, int value);
 int	is_digit(char *str);
 int	has_space(char *str);
-int	is_valid_digit(char *str);
-
+//int	is_valid_digit(char *str);
+t_stack	*stack_init(void);
+int	is_valid_atoi(char *str);
+void	split_input(char **argv, t_stack *stack);
 // func for parsing (duplicat, char, --, ++, skip taps/speces/new_line...)
 
 /// push_swap noting to do with this know

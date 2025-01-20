@@ -1,16 +1,14 @@
 #include "push_swap.h"
 
-int	is_valid_digit(char *str)
+int	is_valid_atoi(char *str)
 {
 	long int nbr;
-	
+
+	nbr = ft_atoi(str);
 	if (!is_digit(str))
 		return (1);
-		//ft_putstr_fd("Error\n", STDERR_FILENO);
-	nbr = ft_atoi(str);
-	if (nbr > 2147483647 || nbr < -2147483648)
+	else if (nbr > 2147483647 || nbr < -2147483648)
 		return (1);
-		//ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (0);
 }
 
@@ -18,14 +16,12 @@ long int ft_atoi(char *str)
 {
 	int		i;
 	int		sign;
-	long	result;
+	long int	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	
-	if (is_valid_digit(str) == 1)
-		ft_putstr_fd("Error\n", STDERR_FILENO);
+
 	while (str[i] && ((str[i] == ' ') || (str[i] >= 9 && str[i] <= 13)))
 		i++;
 	if (str[i] == '+' || str[i] == '-')

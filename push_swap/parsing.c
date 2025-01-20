@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdint.h>
 
 int	is_digit(char *str)
 {
