@@ -11,7 +11,7 @@ int     main(int argc, char **argv);
 long	ft_atoi(char *str);
 size_t  ft_strlen(char *str);
 char    **ft_split(char *str, char separator);
-void    ft_putstr_fd();
+void    ft_putstr_fd(char *str, int std);
 char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 
 // doubly linked list. for the nodes
@@ -23,7 +23,7 @@ typedef	struct s_list
 	struct	s_list	*prev;
 } t_list;
 
-// the stack of the nodes
+// the header of the nodes
 typedef	struct s_stack
 {
 	t_list *head;
@@ -45,11 +45,12 @@ void	rrb(t_stack *stack_b, int print_flag); // reverse rotate b
 void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
 
 // push_swap
-t_list	*new_node(int data, int idx);
-size_t	size_node(t_list *header);
-t_list	*last_node(t_list *header);
+t_list	*ft_lst_new(int value);
+size_t	ft_lst_size(t_stack *stack);
+t_list	*ft_last_node(t_list *header);
 int	is_digit(char *str);
 int	has_space(char *str);
+int	is_valid_digit(char *str);
 
 // func for parsing (duplicat, char, --, ++, skip taps/speces/new_line...)
 

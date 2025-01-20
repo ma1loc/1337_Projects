@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
-void    ft_putstr_fd()
+void    ft_putstr_fd(char *str, int std)
 {
-    write(STDERR_FILENO, "Error\n", 6);
+    write(std, str, ft_strlen(str));
     exit(1);
 }

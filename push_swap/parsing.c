@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdint.h>
 
 int	is_digit(char *str)
 {
@@ -29,9 +30,4 @@ int	has_space(char *str)
 		i++;
 	}
 	return (0);
-}
-
-void	split_argv(char *argv)
-{
-
 }
