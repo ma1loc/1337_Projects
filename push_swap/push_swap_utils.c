@@ -16,8 +16,8 @@ t_list	*ft_lst_new(int value)
 
 void	ft_lst_add_back(t_stack *stack, int value)
 {
-	t_list *new_node;
-	t_list *last_node;
+	t_list	*new_node;
+	t_list	*last_node;
 
 	new_node = ft_lst_new(value);
 	if (!new_node)
@@ -39,7 +39,7 @@ void	ft_lst_add_back(t_stack *stack, int value)
 
 int	is_sorted(t_stack *stack)
 {
-	t_list *header;
+	t_list	*header;
 
 	header = stack->head;
 	if (!header || !header->next)
@@ -55,7 +55,7 @@ int	is_sorted(t_stack *stack)
 
 t_stack	*stack_init(void)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
@@ -66,26 +66,6 @@ t_stack	*stack_init(void)
 
 	return (stack);
 }
-
-/* i don't think soo i have to use it, lol.
-size_t	ft_lst_size(t_stack *stack)
-{
-	size_t	len;
-	t_list	current;
-
-	if (!stack)
-		return (0);
-
-	len = 0;
-	current = stack->head;
-	while (current)
-	{
-		current = current->next;
-		len++;
-	}
-	return (len);
-}
-*/
 
 t_list	*ft_last_node(t_list *header)
 {

@@ -1,7 +1,6 @@
 # ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h> // delete_me
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -50,18 +49,18 @@ size_t	ft_lst_size(t_stack *stack);
 t_list	*ft_last_node(t_list *header);
 void	ft_lst_add_back(t_stack *stack, int value);
 t_stack	*stack_init(void);
-int	is_digit(char *str);
-int	has_space(char *str);
-int	is_valid_atoi(char *str);
+int		is_digit(char *str);
+int		has_space(char *str);
+int		is_valid_atoi(char *str);
 void	split_input(char **argv, t_stack *stack);
 void	free_split(char **split);
 void	free_stack(t_stack *stack);
 void	cleanup_and_exit(t_stack *stack, char **split);
-int	is_duplicate(t_stack *stack, int nbr);
-// func for parsing (duplicat, char, --, ++, skip taps/speces/new_line...)
-/// push_swap noting to do with this know
-// func push the new nodes to the stack
-// func check if the numbers is sorted before
+int		is_duplicate(t_stack *stack, int nbr);
+int		is_sorted(t_stack *stack);
+// void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
+void	sort_stacks(t_stack *stack_a);
+
 // sorting 2-3 numbers
 // sorting 4-5 numbers
 // sorting >5  numbers, yepppp
