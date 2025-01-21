@@ -10,15 +10,11 @@ int	main(int argc, char **argv)
 		return (1);
 	
 	stack_a = NULL;
-//	stack_b = NULL;
-	// initalization of the stack
 	stack_a = stack_init();
-//	stack_b = stack_init();
 	
 	split_input(argv, stack_a);
-	// function to free the stack.
-	// 1# split the input first
 
+	// 1# split the input first
 	// 2# check if there's a non num.
 	// 3# check if there's a num more then ones ["11 11"] -> "Error"
 	// 4# check if the numbers is alrady sorted.

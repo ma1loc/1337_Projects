@@ -12,21 +12,21 @@ int	is_digit(char *str)
 		if (str[i] >= '0' && str[i] <= '9')
 			i++;
 		else
-			return (0);
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int	is_duplicate(t_stack *stack, int nbr)
 {
-	t_list *header;
+	t_list *node;
 
-	header = stack->head;
-	while (header)
+	node = stack->head;
+	while (node)
 	{
-		if (header->value == 0)
+		if (node->value == nbr)
 			return (1);
-		header = header->next;
+		node = node->next;
 	}
 	return (0);
 }
@@ -44,5 +44,3 @@ int	has_space(char *str)
 	}
 	return (0);
 }
-
-void	
