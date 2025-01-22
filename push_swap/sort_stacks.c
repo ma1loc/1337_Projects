@@ -4,37 +4,29 @@
 
 void	sort_three(t_stack *stack_a)
 {
-	t_list	*head;
-	
-	int first;
+	int	first;
 	int second;
-	int therd;
+	int third;
 
-	head = stack_a->head;
-	first = head->value;
-	second = head->next->value;
-	therd = head->next->next->value;
+	first = stack_a->head->value;
+	second = stack_a->head->next->value;
+	third = stack_a->head->next->next->value;
 
-	if (stack_a->size == 2)
-		sa(stack_a, 1);
-	else
+	if (first < second && second > third)
 	{
-		if (first < second && second > therd) // 132
-		{
-			rra(stack_a, 1); // 213
-			sa(stack_a, 1); // 123 done
-		}
-		else if (first > second && second < therd) // 213;
-			sa(stack_a, 1); // 123 done
-		else if (first < second && first > therd)  // 231
-			rra(stack_a, 1); // 123 done
-		else if (first > second && second > therd) // 321
-		{
-			sa(stack_a, 1); // 231
-			rra(stack_a, 1); // 123 done
-		}
-		else if (first > second && first > therd) // 312
-			ra(stack_a, 1); // 123 done
+		rra(stack_a, 1);
+		sa(stack_a, 1);
+	}
+	else if (first > second && second < third)
+		ra(stack_a, 1);
+	else if (first > second && first > third)
+		ra(stack_a, 1);
+	else if (first < second && first > third)
+		rra(stack_a, 1);
+	else if (first > second && second > third)
+	{
+		sa(stack_a, 1);
+		rra(stack_a, 1);
 	}
 }
 
@@ -44,11 +36,7 @@ void	sort_up_five();
 // void	sort_stacks(t_stack *stack_a, t_stack *stack_b)
 void	sort_stacks(t_stack *stack_a)
 {
-	int stack_size;
-	
-	stack_size = stack_a->size;
-
-	if (stack_size <= 3)
+	if (stack_a->size == 3)
 		sort_three(stack_a);
 	//else if (stack_size <= 5)
 	//	five_sort(stack_a, stack_b);
@@ -56,4 +44,3 @@ void	sort_stacks(t_stack *stack_a)
 	//	sort_up_five(stack_a, stack_b);
 
 }
- 
