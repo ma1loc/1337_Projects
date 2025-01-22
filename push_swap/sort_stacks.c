@@ -1,6 +1,11 @@
 #include "push_swap.h"
 
 // example 2 1 3 6 5 8 = 12 instructions, check this out.
+// 132-done
+// 231-not
+// 213-not
+// 321-not
+// 312-done
 
 void	sort_three(t_stack *stack_a)
 {
