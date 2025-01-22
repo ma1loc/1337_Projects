@@ -27,6 +27,6 @@ fclean: clean
 
 re: fclean all
 
-.SCENDARY: $(OBJ)
+.SECONDARY:  $(OBJ)
 
 .PHONY: clean fclean re
