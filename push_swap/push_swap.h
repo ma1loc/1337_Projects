@@ -1,6 +1,7 @@
 # ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdio.h> // remove it
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -52,14 +53,13 @@ t_stack	*stack_init(void);
 int		is_digit(char *str);
 int		has_space(char *str);
 int		is_valid_atoi(char *str);
-void	split_input(char **argv, t_stack *stack);
+void	split_input(char **argv, t_stack *stack_a, t_stack *stack_b);
 void	free_split(char **split);
 void	free_stack(t_stack *stack);
-void	cleanup_and_exit(t_stack *stack, char **split);
+void	cleanup_and_exit(t_stack *stack_a, t_stack *stack_b, char **split);
 int		is_duplicate(t_stack *stack, int nbr);
 int		is_sorted(t_stack *stack);
-// void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
-void	sort_stacks(t_stack *stack_a);
+void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
 
 // sorting 2-3 numbers
 // sorting 4-5 numbers

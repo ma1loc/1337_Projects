@@ -25,11 +25,14 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-void	cleanup_and_exit(t_stack *stack, char **split)
+void	cleanup_and_exit(t_stack *stack_a, t_stack *stack_b, char **split)
 {
 	if (split)
 		free_split(split);
-	if (stack)
-		free_stack(stack);
+	if (stack_a)
+	{
+		free_stack(stack_a);
+		free_stack(stack_b);
+	}
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 }
