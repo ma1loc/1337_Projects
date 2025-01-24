@@ -107,6 +107,6 @@ void	sort_stacks(t_stack *stack_a, t_stack *stack_b)
 		sort_four(stack_a, stack_b);
 	else if (stack_a->size == 5)
 		sort_five(stack_a, stack_b);
-	else
-		printf("No Algo ,sweetheart");
+	else if (stack_a->size > 5)
+		sort_num(stack_a, stack_b);
 }

@@ -63,4 +63,3 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 	sb(stack_b, 0);
 	write(1, "ss\n", 3);
 }
-

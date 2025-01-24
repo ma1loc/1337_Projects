@@ -7,23 +7,20 @@
 
 int     main(int argc, char **argv);
 
-// libft
+
 long	ft_atoi(char *str);
 size_t  ft_strlen(char *str);
 char    **ft_split(char *str, char separator);
 void    ft_putstr_fd(char *str, int std);
 char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 
-// doubly linked list. for the nodes
 typedef	struct s_list
 {
 	int	value;
-	int	index;
 	struct	s_list	*next;
 	struct	s_list	*prev;
 } t_list;
 
-// the header of the nodes
 typedef	struct s_stack
 {
 	t_list *head;
@@ -31,7 +28,6 @@ typedef	struct s_stack
 	int size;
 } t_stack;
 
-// Operations
 void	sa(t_stack *stack_a, int print_flag); // swap stack a;
 void	sb(t_stack *stack_b, int print_flag); //swap stack b;
 void	ss(t_stack *stack_a, t_stack *stack_b); // swap the stack both of them.
@@ -44,7 +40,7 @@ void	rra(t_stack *stack_a, int print_flag); // reverse rotate a
 void	rrb(t_stack *stack_b, int print_flag); // reverse rotate b
 void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
 
-// push_swap
+
 t_list	*ft_lst_new(int value);
 size_t	ft_lst_size(t_stack *stack);
 t_list	*ft_last_node(t_list *header);
@@ -60,9 +56,8 @@ void	cleanup_and_exit(t_stack *stack_a, t_stack *stack_b, char **split);
 int		is_duplicate(t_stack *stack, int nbr);
 int		is_sorted(t_stack *stack);
 void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
-
-// sorting 2-3 numbers
-// sorting 4-5 numbers
-// sorting >5  numbers, yepppp
+int		*sorted_array(t_stack *stack_a);
+void	sort_num(t_stack *stack_a, t_stack *stack_b);
+int		count_chunk(int stack_size);
 
 # endif
