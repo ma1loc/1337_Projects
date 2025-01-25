@@ -10,7 +10,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 	head = stack_a->head;
 	array  = sorted_array(stack_a);
 
-	while (!head)
+	while (head)
 	{
 		while (array[index] < head->value)
 			index++;
@@ -21,13 +21,13 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 		}
 		else if (index < head->value + count_chunk)
 			pb(stack_a, stack_b);
-		// else
-		// 	sb(stack_a, stack_b);
+		else
+			ra(stack_a, 1);
 		head = head->next;
 	}
 	index = 0;
 	head = stack_b->head;
-	while (!head)
+
 	{
 		// here i have to work with the size / 2 to see the best move to stack a
 		
