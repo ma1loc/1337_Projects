@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 void	sort_num(t_stack *stack_a, t_stack *stack_b)
 {
 	int		*array;
@@ -42,7 +41,6 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 	}
 	free(array);
 }
-
 	
 	// if (j <= stack_a->size / 2)
 	// 	ra(stack_a, 1);
