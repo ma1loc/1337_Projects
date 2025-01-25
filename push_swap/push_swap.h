@@ -40,6 +40,7 @@ void	rra(t_stack *stack_a, int print_flag); // reverse rotate a
 void	rrb(t_stack *stack_b, int print_flag); // reverse rotate b
 void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
 
+int		find_largest(t_stack *stack);
 
 t_list	*ft_lst_new(int value);
 size_t	ft_lst_size(t_stack *stack);

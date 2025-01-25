@@ -46,16 +46,14 @@ int	*sorted_array(t_stack *stack)
 	return (array);
 }
 
-int count_chunk(int stack_size)
+int		count_chunk(int stack_size)
 {
-    if (stack_size <= 50)
-        return (5);
-    else if (stack_size <= 100)
-        return (8);
-	else if (stack_size <= 250)
-		return (12);
-    else if (stack_size <= 500)
-        return (20);
-    else
-        return (35);
+	if (stack_size <= 50)
+		return (10);
+	else if (stack_size <= 100)
+		return (20);
+	else if (stack_size >= 500)
+		return (30);
+	else
+		return (20);
 }

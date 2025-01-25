@@ -16,6 +16,28 @@ int		find_smallest(t_stack *stack)
 	return (nbr);
 }
 
+int	find_largest(t_stack *stack)
+{
+	t_list	*node;
+	int	nbr;
+
+	if (!stack || !stack->head)
+	{
+		printf("im here");
+		return (1);
+	} // Handle empty stack (or return an error value)
+	node = stack->head;
+	nbr = node->value;
+	while (node)
+	{
+		if (nbr < node->value)
+			nbr = node->value;
+		node = node->next;
+	}
+	return (nbr);
+}
+
+
 void	move_to_top(t_stack *stack, int smallest)
 {
 	t_list	*head;
