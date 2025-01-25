@@ -3,44 +3,48 @@
 void	sort_num(t_stack *stack_a, t_stack *stack_b)
 {
 	int		*array;
-	int		chunk_num;
-	int		chunk_size;
-	int		i;
-	int		j;
-	int		start;
-	int		end;
+	int		index;
+	t_list *head;
 
-	array = sorted_array(stack_a);
-	chunk_num = count_chunk(stack_a->size);
-	chunk_size = (stack_a->size / chunk_num);
+	index = 0;
+	head = stack_a->head;
+	array  = sorted_array(stack_a);
 
-	i = 0;
-	while (i < chunk_num)
+	while (!head)
 	{
-		start = i * chunk_size;
-		end = (i + 1) * chunk_size;
-
-		t_list *node = stack_a->head;
-		j = 0;
-		while (j < stack_a->size)
+		while (array[index] < head->value)
+			index++;
+		if (index > head->value)
 		{
-			if (node->value >= array[start] && node->value < array[end])
-			{
-				if (j <= stack_a->size / 2)
-					ra(stack_a, 1);
-				else
-					rra(stack_a, 1);
-				pb(stack_a, stack_b);
-				node = stack_a->head;
-			}
-			else
-				node = node->next;
-			j++;
+			pb(stack_a, stack_b);
+			rb(stack_b, 1);
 		}
-		i++;
+		else if (index < head->value + count_chunk)
+			pb(stack_a, stack_b);
+		// else
+		// 	sb(stack_a, stack_b);
+		head = head->next;
 	}
-	while (stack_b->size > 0)
-		pa(stack_a, stack_b);
-
+	index = 0;
+	head = stack_b->head;
+	while (!head)
+	{
+		// here i have to work with the size / 2 to see the best move to stack a
+		
+	}
+		// if (j <= stack_a->size / 2)
+		// 			ra(stack_a, 1);
+		// 		else
+		// 			rra(stack_a, 1);
+		// 		pb(stack_a, stack_b);
+		// 		node = stack_a->head;
+		// 	}
+		// 	else
+		// 		node = node->next;
+	// if (j <= stack_a->size / 2)
+	// 	ra(stack_a, 1);
+	// else
+	// 	rra(stack_a, 1);
+	// pb(stack_a, stack_b);
 	free(array);
 }
