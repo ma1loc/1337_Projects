@@ -16,7 +16,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 
 typedef	struct s_list
 {
-	int	value;
+	int		value;
 	struct	s_list	*next;
 	struct	s_list	*prev;
 } t_list;
