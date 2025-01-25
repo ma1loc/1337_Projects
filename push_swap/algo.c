@@ -25,7 +25,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 			ra(stack_a, 1);
 		head = head->next;
 	}
-	
+
 	index = 0;
 	head = stack_b->head;
 	while (head)
