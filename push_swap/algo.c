@@ -14,7 +14,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 	{
 		while (array[index] < head->value)
 			index++;
-		if (index > head->value)
+		if (index < head->value)
 		{
 			pb(stack_a, stack_b);
 			rb(stack_b, 1);
@@ -25,12 +25,13 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 			ra(stack_a, 1);
 		head = head->next;
 	}
+	
 	index = 0;
 	head = stack_b->head;
-
+	while (head)
 	{
+		// in this loop i have to put the element of the stack_b to a with the best move
 		// here i have to work with the size / 2 to see the best move to stack a
-		
 	}
 		// if (j <= stack_a->size / 2)
 		// 			ra(stack_a, 1);
@@ -41,6 +42,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 		// 	}
 		// 	else
 		// 		node = node->next;
+	
 	// if (j <= stack_a->size / 2)
 	// 	ra(stack_a, 1);
 	// else
