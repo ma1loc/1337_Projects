@@ -1,20 +1,33 @@
 #include "push_swap.h"
 
+static int	ft_lstsize(t_list *lst)
+{
+	int	c_size;
+
+	if (!lst)
+		return (0);
+	c_size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		c_size++;
+	}
+	return (c_size);
+}
+
 void	sort_num(t_stack *stack_a, t_stack *stack_b)
 {
 	int		*array;
 	int		index;
 	t_list *head;
-	// int		stack_size;
 	int max = find_largest(stack_b);
 	index = 0;
 	head = stack_a->head;
 	array  = sorted_array(stack_a);
 
 
-	while (stack_a)
+	while (ft_lstsize(stack_a->head))
 	{
-		// stack_size = stack_a->size;
 		while (array[index] < head->value)
 			index++;
 		if (index < stack_b->size)
@@ -29,10 +42,10 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 	}
 
 	head = stack_b->head;
-	while (stack_b)
+	while (ft_lstsize(stack_b->head))
 	{
 		index = 0;
-		while(array[index]!= max)
+		while(array[index] != max)
 			index++;
 		if (index <= stack_b->size / 2)
 					rb(stack_b, 1);

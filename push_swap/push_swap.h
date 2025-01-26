@@ -18,13 +18,11 @@ typedef	struct s_list
 {
 	int		value;
 	struct	s_list	*next;
-	struct	s_list	*prev;
 } t_list;
 
 typedef	struct s_stack
 {
 	t_list *head;
-	t_list *tail;
 	int size;
 } t_stack;
 

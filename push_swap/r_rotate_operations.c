@@ -27,7 +27,7 @@ void	rrb(t_stack *stack_b, int print_flag)
 	t_list *first_node;
 	t_list *last_node;
 
-	if (!stack_b || !stack_b->head || !stack_b->head->next)
+	if (!stack_b || !stack_b->head || !stack_b->head->next || !stack_b->tail)
 		return ;
 
 	first_node = stack_b->head;

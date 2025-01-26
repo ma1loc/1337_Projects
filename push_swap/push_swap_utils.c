@@ -9,11 +9,10 @@ t_list	*ft_lst_new(int value)
 		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
-	new_node->prev = NULL;
 	return (new_node);
 }
 
-void	ft_lst_add_back(t_stack *stack, int value)
+void	ft_lst_add_back(t_stack *stack, int value) // check this out
 {
 	t_list	*new_node;
 	t_list	*last_node;
@@ -22,16 +21,11 @@ void	ft_lst_add_back(t_stack *stack, int value)
 	if (!new_node)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 	if (!stack->head)
-	{
 		stack->head = new_node;
-		stack->tail = new_node;
-	}
 	else
 	{
 		last_node = ft_last_node(stack->head);
 		last_node->next = new_node;
-		new_node->prev = last_node;
-		stack->tail = new_node;
 	}
 	stack->size++;
 }
@@ -60,7 +54,6 @@ t_stack	*stack_init(void)
 	if (!stack)
 		return (NULL);
 	stack->head = NULL;
-	stack->tail = NULL;
 	stack->size = 0;
 
 	return (stack);
