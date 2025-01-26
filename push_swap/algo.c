@@ -5,7 +5,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 	int		*array;
 	int		index;
 	t_list *head;
-	int		stack_size;
+	// int		stack_size;
 	int max = find_largest(stack_b);
 	index = 0;
 	head = stack_a->head;
@@ -14,7 +14,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 
 	while (stack_a)
 	{
-		stack_size = stack_a->size;
+		// stack_size = stack_a->size;
 		while (array[index] < head->value)
 			index++;
 		if (index < stack_b->size)
@@ -22,7 +22,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 			pb(stack_a, stack_b);
 			rb(stack_b, 1);
 		}
-		else if (index < stack_b->size + count_chunk)
+		else if (index < stack_b->size + count_chunk(stack_a->size))
 			pb(stack_a, stack_b);
 		else
 			ra(stack_a, 1);
@@ -34,8 +34,6 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 		index = 0;
 		while(array[index]!= max)
 			index++;
-		// in this loop i have to put the element of the stack_b to a with the best move
-		// here i have to work with the size / 2 to see the best move to stack a
 		if (index <= stack_b->size / 2)
 					rb(stack_b, 1);
 		else
