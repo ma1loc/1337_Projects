@@ -22,10 +22,7 @@ int	find_largest(t_stack *stack)
 	int	nbr;
 
 	if (!stack || !stack->head)
-	{
-		printf("im here");
-		return (1);
-	} // Handle empty stack (or return an error value)
+		return (-1);
 	node = stack->head;
 	nbr = node->value;
 	while (node)

@@ -17,6 +17,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 typedef	struct s_list
 {
 	int		value;
+	int		index;
 	struct	s_list	*next;
 } t_list;
 
@@ -41,7 +42,7 @@ void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
 int		find_largest(t_stack *stack);
 
 t_list	*ft_lst_new(int value);
-size_t	ft_lst_size(t_stack *stack);
+int		ft_lst_size(t_stack *stack);
 t_list	*ft_last_node(t_list *header);
 void	ft_lst_add_back(t_stack *stack, int value);
 t_stack	*stack_init(void);
@@ -58,5 +59,6 @@ void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
 int		*sorted_array(t_stack *stack_a);
 void	sort_num(t_stack *stack_a, t_stack *stack_b);
 int		count_chunk(int stack_size);
+
 
 # endif

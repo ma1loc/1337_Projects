@@ -48,12 +48,12 @@ int	*sorted_array(t_stack *stack)
 
 int		count_chunk(int stack_size)
 {
-	if (stack_size <= 50)
-		return (10);
-	else if (stack_size <= 100)
-		return (20);
-	else if (stack_size >= 500)
-		return (30);
+	if (stack_size <= 130)
+		return (13);
+	else if (stack_size > 130 && stack_size <= 230)
+		return (21);
+	else if (stack_size > 230)
+		return (51);//her 41 choise
 	else
 		return (20);
 }

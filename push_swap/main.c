@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	// header = stack_a->head;
 	// while (header)
 	// {
-	// 	printf("%d\n", header->value);
+	// 	printf("%d\n", header->index);
 	// 	header = header->next;
 	// }
 	free_stack(stack_a);
