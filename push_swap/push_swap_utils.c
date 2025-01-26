@@ -59,11 +59,12 @@ t_stack	*stack_init(void)
 	return (stack);
 }
 
-t_list	*ft_last_node(t_list *header)
+t_list *ft_last_node(t_list *head)
 {
-	if (!header)
+	if (!head)
 		return (NULL);
-	while (header->next)
-		header = header->next;
-	return (header);
+	while (head->next)
+		head = head->next;
+	return (head);
 }
+

@@ -24,6 +24,15 @@ int	main(int argc, char **argv)
 		else	
 			sort_stacks(stack_a, stack_b);
 	}
+	// remove it
+	// t_list *header;
+
+	// header = stack_a->head;
+	// while (header)
+	// {
+	// 	printf("%d\n", header->value);
+	// 	header = header->next;
+	// }
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return(0);

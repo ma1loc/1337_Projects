@@ -73,18 +73,18 @@ void	sort_three(t_stack *stack_a)
 	second = stack_a->head->next->value;
 	third = stack_a->head->next->next->value;
 
-	if (first > second && first > third && second < third)
+	if (first > second && first > third && second < third) // 3 1 2
 		ra(stack_a, 1);
-	else if (first < second && first > third)
+	else if (first < second && first > third) // 2 3 1
 		rra(stack_a, 1);
-	else if (first > second && first < third)
+	else if (first > second && first < third) // 2 1 3
 		sa(stack_a, 1);
-	else if (first < second && second > third)
+	else if (first < second && second > third) // 1 3 2
 	{
 		sa(stack_a, 1);
 		ra(stack_a, 1);
 	}
-	else if (first > second && second > third)
+	else if (first > second && second > third) // 3 2 1
 	{
 		sa(stack_a, 1);
 		rra(stack_a, 1);
@@ -120,6 +120,7 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	pa(stack_b, stack_a);
 	pa(stack_b, stack_a);
 }
+
 
 void	sort_stacks(t_stack *stack_a, t_stack *stack_b)
 {
