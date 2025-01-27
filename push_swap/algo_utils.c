@@ -53,7 +53,7 @@ int		count_chunk(int stack_size)
 	else if (stack_size > 130 && stack_size <= 230)
 		return (21);
 	else if (stack_size > 230)
-		return (51);//her 41 choise
+		return (51);
 	else
 		return (20);
 }

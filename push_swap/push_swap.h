@@ -27,17 +27,17 @@ typedef	struct s_stack
 	int size;
 } t_stack;
 
-void	sa(t_stack *stack_a, int print_flag); // swap stack a;
-void	sb(t_stack *stack_b, int print_flag); //swap stack b;
-void	ss(t_stack *stack_a, t_stack *stack_b); // swap the stack both of them.
-void	pa(t_stack *stack_a, t_stack *stack_b); // push b to a
-void	pb(t_stack *stack_a, t_stack *stack_b); // push a to b
-void	ra(t_stack *stack_a, int print_flag); // rotate a
-void	rb(t_stack *stack_b, int print_flag); // rotate b
-void	rr(t_stack *stack_a, t_stack *stack_b); // rotate a and b
-void	rra(t_stack *stack_a, int print_flag); // reverse rotate a
-void	rrb(t_stack *stack_b, int print_flag); // reverse rotate b
-void	rrr(t_stack *stack_a, t_stack *stack_b); // reverse rotate a and b
+void	sa(t_stack *stack_a, int print_flag);
+void	sb(t_stack *stack_b, int print_flag);
+void	ss(t_stack *stack_a, t_stack *stack_b);
+void	pa(t_stack *stack_a, t_stack *stack_b);
+void	pb(t_stack *stack_a, t_stack *stack_b);
+void	ra(t_stack *stack_a, int print_flag);
+void	rb(t_stack *stack_b, int print_flag);
+void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rra(t_stack *stack_a, int print_flag);
+void	rrb(t_stack *stack_b, int print_flag);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 int		find_largest(t_stack *stack);
 
@@ -59,6 +59,9 @@ void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
 int		*sorted_array(t_stack *stack_a);
 void	sort_num(t_stack *stack_a, t_stack *stack_b);
 int		count_chunk(int stack_size);
-
+int     count_chunk(int stack_size);
+void    put_index(t_stack *stack);
+int     find_max_pos(t_stack *stack);
+int     get_min_index(t_stack *stack);
 
 # endif
