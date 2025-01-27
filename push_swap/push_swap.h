@@ -1,31 +1,28 @@
-# ifndef PUSH_SWAP_H
+#ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h> // remove it
-#include <unistd.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-int     main(int argc, char **argv);
-
-
+int		main(int argc, char **argv);
 long	ft_atoi(char *str);
-size_t  ft_strlen(char *str);
-char    **ft_split(char *str, char separator);
-void    ft_putstr_fd(char *str, int std);
+size_t	ft_strlen(char *str);
+char	**ft_split(char *str, char separator);
+void	ft_putstr_fd(char *str, int std);
 char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 
-typedef	struct s_list
+typedef struct s_list
 {
-	int		value;
-	int		index;
-	struct	s_list	*next;
-} t_list;
+	int				value;
+	int				index;
+	struct s_list	*next;
+}	t_list;
 
-typedef	struct s_stack
+typedef struct s_stack
 {
-	t_list *head;
-	int size;
-} t_stack;
+	t_list		*head;
+	int			size;
+}	t_stack;
 
 void	sa(t_stack *stack_a, int print_flag);
 void	sb(t_stack *stack_b, int print_flag);
@@ -59,9 +56,12 @@ void	sort_stacks(t_stack *stack_a, t_stack *stack_b);
 int		*sorted_array(t_stack *stack_a);
 void	sort_num(t_stack *stack_a, t_stack *stack_b);
 int		count_chunk(int stack_size);
-int     count_chunk(int stack_size);
-void    put_index(t_stack *stack);
-int     find_max_pos(t_stack *stack);
-int     get_min_index(t_stack *stack);
+int		count_chunk(int stack_size);
+void	put_index(t_stack *stack);
+int		find_max_pos(t_stack *stack);
+int		get_min_index(t_stack *stack);
+void	sort_three(t_stack *stack_a);
+void	sort_four(t_stack *stack_a, t_stack *stack_b);
+void	sort_five(t_stack *stack_a, t_stack *stack_b);
 
-# endif
+#endif

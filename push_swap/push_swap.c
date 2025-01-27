@@ -27,7 +27,7 @@ void	split_nbr(t_stack *stack_a, t_stack *stack_b, char *number, char **split_ar
 void	space_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
 {
 	char	**split_argv;
-	int	i;
+	int		i;
 
 	split_argv = ft_split(arg, ' ');
 	if (!split_argv)

@@ -3,7 +3,7 @@
 int		find_smallest(t_stack *stack)
 {
 	t_list	*node;
-	int	nbr;
+	int		nbr;
 
 	node = stack->head;
 	nbr = node->value;
@@ -16,10 +16,10 @@ int		find_smallest(t_stack *stack)
 	return (nbr);
 }
 
-int	find_largest(t_stack *stack)
+int		find_largest(t_stack *stack)
 {
 	t_list	*node;
-	int	nbr;
+	int		nbr;
 
 	if (!stack || !stack->head)
 		return (-1);
@@ -33,7 +33,6 @@ int	find_largest(t_stack *stack)
 	}
 	return (nbr);
 }
-
 
 void	move_to_top(t_stack *stack, int smallest)
 {
@@ -116,17 +115,4 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 
 	pa(stack_b, stack_a);
 	pa(stack_b, stack_a);
-}
-
-
-void	sort_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a->size == 3)
-		sort_three(stack_a);
-	else if (stack_a->size == 4)
-		sort_four(stack_a, stack_b);
-	else if (stack_a->size == 5)
-		sort_five(stack_a, stack_b);
-	else if (stack_a->size > 5)
-		sort_num(stack_a, stack_b);
 }

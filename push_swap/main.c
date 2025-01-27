@@ -1,17 +1,28 @@
 #include "push_swap.h"
 
+void	sort_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	if (stack_a->size == 3)
+		sort_three(stack_a);
+	else if (stack_a->size == 4)
+		sort_four(stack_a, stack_b);
+	else if (stack_a->size == 5)
+		sort_five(stack_a, stack_b);
+	else if (stack_a->size > 5)
+		sort_num(stack_a, stack_b);
+}
+
 int	main(int argc, char **argv)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
-	
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-
 	stack_a = stack_init();
 	stack_b = stack_init();
 	split_input(argv, stack_a, stack_b);
-	if(is_sorted(stack_a))
+	if (is_sorted(stack_a))
 	{
 		free_stack(stack_a);
 		free_stack(stack_b);
@@ -21,19 +32,10 @@ int	main(int argc, char **argv)
 	{
 		if (stack_a->size == 2)
 			sa(stack_a, 1);
-		else	
+		else
 			sort_stacks(stack_a, stack_b);
 	}
-	// remove it
-	// t_list *header;
-
-	// header = stack_a->head;
-	// while (header)
-	// {
-	// 	printf("%d\n", header->index);
-	// 	header = header->next;
-	// }
 	free_stack(stack_a);
 	free_stack(stack_b);
-	return(0);
+	return (0);
 }

@@ -19,7 +19,7 @@ int	is_digit(char *str)
 
 int	is_duplicate(t_stack *stack, int nbr)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = stack->head;
 	while (node)
@@ -44,4 +44,3 @@ int	has_space(char *str)
 	}
 	return (0);
 }
-
