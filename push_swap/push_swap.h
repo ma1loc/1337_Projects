@@ -58,10 +58,12 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b);
 int		count_chunk(int stack_size);
 int		count_chunk(int stack_size);
 void	put_index(t_stack *stack);
-int		find_max_pos(t_stack *stack);
 int		get_min_index(t_stack *stack);
+int		find_max_pos(t_stack *stack);
 void	sort_three(t_stack *stack_a);
 void	sort_four(t_stack *stack_a, t_stack *stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
+int		find_smallest(t_stack *stack);
+void	move_to_top(t_stack *stack, int smallest);
 
 #endif
