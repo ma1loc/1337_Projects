@@ -17,15 +17,16 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
+	if (argc == 1)
+		return (0);
+	if (argc == 2 && !argv[1][0])
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 	stack_a = stack_init();
 	stack_b = stack_init();
 	split_input(argv, stack_a, stack_b);
 	if (is_sorted(stack_a))
 	{
-		free_stack(stack_a);
-		free_stack(stack_b);
+		free_stacks(stack_a, stack_b);
 		return (0);
 	}
 	else
@@ -35,7 +36,6 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(stack_a, stack_b);
 	}
-	free_stack(stack_a);
-	free_stack(stack_b);
+	free_stacks(stack_a, stack_b);
 	return (0);
 }

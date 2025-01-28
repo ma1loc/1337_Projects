@@ -36,3 +36,9 @@ void	cleanup_and_exit(t_stack *stack_a, t_stack *stack_b, char **split)
 	}
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 }
+
+void	free_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+}

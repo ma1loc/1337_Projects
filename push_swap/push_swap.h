@@ -64,5 +64,6 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b);
 int		find_smallest(t_stack *stack);
 void	move_to_top(t_stack *stack, int smallest);
 int		all_space(char *str);
+void	free_stacks(t_stack *stack_a, t_stack *stack_b);
 
 #endif
