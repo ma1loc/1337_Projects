@@ -91,12 +91,10 @@ int	ft_lst_size(t_stack *stack)
 
 int	count_chunk(int stack_size)
 {
-	if (stack_size <= 130)
-		return (13);
-	else if (stack_size > 130 && stack_size <= 230)
-		return (21);
-	else if (stack_size > 230)
-		return (51);
+	if (stack_size <= 100)
+		return (stack_size / 6);
+	else if (stack_size <= 500)
+		return (stack_size / 10);
 	else
-		return (20);
+		return (stack_size / 25);
 }
