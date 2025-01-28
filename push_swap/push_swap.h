@@ -37,7 +37,6 @@ void	rrb(t_stack *stack_b, int print_flag);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 int		find_largest(t_stack *stack);
-
 t_list	*ft_lst_new(int value);
 int		ft_lst_size(t_stack *stack);
 t_list	*ft_last_node(t_list *header);
@@ -65,5 +64,6 @@ void	sort_four(t_stack *stack_a, t_stack *stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
 int		find_smallest(t_stack *stack);
 void	move_to_top(t_stack *stack, int smallest);
+int		all_space(char *str);
 
 #endif

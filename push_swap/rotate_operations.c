@@ -8,9 +8,7 @@ void	ra(t_stack *stack_a, int print_flag)
 	if (!stack_a || !stack_a->head || !stack_a->head->next)
 		return ;
 	first_node = stack_a->head;
-	last_node = stack_a->head;
-	while (last_node->next)
-		last_node = last_node->next;
+	last_node = ft_last_node(stack_a->head);
 	stack_a->head = first_node->next;
 	last_node->next = first_node;
 	first_node->next = NULL;
@@ -26,9 +24,7 @@ void	rb(t_stack *stack_b, int print_flag)
 	if (!stack_b || !stack_b->head || !stack_b->head->next)
 		return ;
 	first_node = stack_b->head;
-	last_node = stack_b->head;
-	while (last_node->next)
-		last_node = last_node->next;
+	last_node = ft_last_node(stack_b->head);
 	stack_b->head = first_node->next;
 	last_node->next = first_node;
 	first_node->next = NULL;

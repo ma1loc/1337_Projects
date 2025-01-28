@@ -46,3 +46,17 @@ int	has_space(char *str)
 	}
 	return (0);
 }
+
+int	all_space(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}

@@ -12,7 +12,8 @@ void	single_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
 	ft_lst_add_back(stack_a, nbr);
 }
 
-void	split_nbr(t_stack *stack_a, t_stack *stack_b, char *number, char **split_argv)
+void	split_nbr(t_stack *stack_a, t_stack *stack_b,
+	char *number, char **split_argv)
 {
 	int	nbr;
 
@@ -29,6 +30,8 @@ void	space_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
 	char	**split_argv;
 	int		i;
 
+	if (all_space(arg))
+		cleanup_and_exit(stack_a, stack_b, NULL);
 	split_argv = ft_split(arg, ' ');
 	if (!split_argv)
 		cleanup_and_exit(stack_a, stack_b, NULL);
