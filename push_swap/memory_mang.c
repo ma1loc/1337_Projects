@@ -6,7 +6,10 @@ void	free_split(char **split)
 
 	i = 0;
 	while (split[i])
-		free(split[i++]);
+	{
+		free(split[i]);
+		i++;
+	}
 	free(split);
 }
 
@@ -25,20 +28,16 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-void	cleanup_and_exit(t_stack *stack_a, t_stack *stack_b, char **split)
-{
-	if (split)
-		free_split(split);
-	if (stack_a)
-	{
-		free_stack(stack_a);
-		free_stack(stack_b);
-	}
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-}
-
 void	free_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	free_stack(stack_a);
 	free_stack(stack_b);
+}
+
+void	cleanup_and_exit(t_stack *stack_a, t_stack *stack_b, char **split)
+{
+	if (split)
+		free_split(split);
+	free_stacks(stack_a, stack_b);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 }

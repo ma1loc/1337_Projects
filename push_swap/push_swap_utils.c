@@ -12,22 +12,22 @@ t_list	*ft_lst_new(int value)
 	return (new_node);
 }
 
-void	ft_lst_add_back(t_stack *stack, int value)
+void	ft_lst_add_back(t_stack *stack_a, t_stack *stack_b, int value)
 {
 	t_list	*new_node;
 	t_list	*last_node;
 
 	new_node = ft_lst_new(value);
 	if (!new_node)
-		ft_putstr_fd("Error\n", STDERR_FILENO);
-	if (!stack->head)
-		stack->head = new_node;
+		cleanup_and_exit(stack_a, stack_b, NULL);
+	if (!stack_a->head)
+		stack_a->head = new_node;
 	else
 	{
-		last_node = ft_last_node(stack->head);
+		last_node = ft_last_node(stack_a->head);
 		last_node->next = new_node;
 	}
-	stack->size++;
+	stack_a->size++;
 }
 
 int	is_sorted(t_stack *stack)

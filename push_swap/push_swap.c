@@ -10,7 +10,7 @@ void	split_nbr(t_stack *stack_a, t_stack *stack_b,
 	nbr = ft_atoi(number);
 	if (is_duplicate(stack_a, nbr))
 		cleanup_and_exit(stack_a, stack_b, split_argv);
-	ft_lst_add_back(stack_a, nbr);
+	ft_lst_add_back(stack_a, stack_b, nbr);
 }
 
 void	space_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
@@ -32,16 +32,16 @@ void	space_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
 	free_split(split_argv);
 }
 
-void	single_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
+void	single_arg(char *number, t_stack *stack_a, t_stack *stack_b)
 {
 	int	nbr;
 
-	if (is_digit(arg) || is_valid_atoi(arg))
+	if (is_digit(number) || is_valid_atoi(number))
 		cleanup_and_exit(stack_a, stack_b, NULL);
-	nbr = ft_atoi(arg);
+	nbr = ft_atoi(number);
 	if (is_duplicate(stack_a, nbr))
 		cleanup_and_exit(stack_a, stack_b, NULL);
-	ft_lst_add_back(stack_a, nbr);
+	ft_lst_add_back(stack_a, stack_b, nbr);
 }
 
 void	split_input(char **argv, t_stack *stack_a, t_stack *stack_b)

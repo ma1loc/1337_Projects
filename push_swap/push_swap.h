@@ -40,7 +40,7 @@ int		find_largest(t_stack *stack);
 t_list	*ft_lst_new(int value);
 int		ft_lst_size(t_stack *stack);
 t_list	*ft_last_node(t_list *header);
-void	ft_lst_add_back(t_stack *stack, int value);
+void	ft_lst_add_back(t_stack *stack, t_stack *stack_b, int value);
 t_stack	*stack_init(void);
 int		is_digit(char *str);
 int		has_space(char *str);
