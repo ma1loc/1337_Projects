@@ -71,28 +71,28 @@ void	push_max(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_num(t_stack *stack_a, t_stack *stack_b)
 {
-	int		stack_a_size;
-	int		chunk_size;
-	int		current_chunk;
-	t_list	*current;
+	int		stack_a_size; // hold the stack size (i think i can remove this ?)
+	int		chunk_size; // hold chunk size;
+	int		current_index;  // the current index = 0
+	t_list	*node;	// hold the node
 
-	stack_a_size = stack_a->size;
-	chunk_size = count_chunk(stack_a_size);
-	current_chunk = 0;
-	put_index(stack_a);
-	while (stack_a->size > 0)
+	stack_a_size = stack_a->size; // initialize it with the size of the stack_a
+	chunk_size = count_chunk(stack_a_size); // for example we have stack_a = 6 / 6 = 1
+	current_index = 0; // current index use in the loop
+	put_index(stack_a); // put the index to the element in stack_a
+	while (stack_a->size > 0)	// loop all stack
 	{
-		current = stack_a->head;
-		if (current->index <= (current_chunk + 1) * chunk_size)
+		node = stack_a->head;
+		if (node->index <= (current_index + 1) * chunk_size)
 		{
 			pb(stack_a, stack_b);
-			if (current->index <= current_chunk * chunk_size + (chunk_size / 2))
+			if (node->index <= current_index * chunk_size + (chunk_size / 2))
 				rb(stack_b, 1);
 		}
 		else
 			ra(stack_a, 1);
-		if (get_min_index(stack_a) > (current_chunk + 1) * chunk_size)
-			current_chunk++;
+		if (get_min_index(stack_a) > (current_index + 1) * chunk_size)
+			current_index++;
 	}
 	push_max(stack_a, stack_b);
 }

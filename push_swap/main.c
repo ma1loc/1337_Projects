@@ -26,4 +26,12 @@ int	main(int argc, char **argv)
 	split_input(argv, stack_a, stack_b);
 	if (is_sorted(stack_a))
 		return (free_stacks(stack_a, stack_b), 0);
+	else
+	{
+		if (stack_a->size == 2)
+			sa(stack_a, 1);
+		else
+			sort_stacks(stack_a, stack_b);
+	}
+	return (free_stacks(stack_a, stack_b), 0);
 }
