@@ -1,15 +1,5 @@
 #include "push_swap.h"
 
-int	is_valid_atoi(char *str)
-{
-	long int	nbr;
-
-	nbr = ft_atoi(str);
-	if (is_digit(str) || (nbr > 2147483647 || nbr < -2147483648))
-		return (1);
-	return (0);
-}
-
 long int	ft_atoi(char *str)
 {
 	int			i;

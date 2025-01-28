@@ -1,17 +1,5 @@
 #include "push_swap.h"
 
-void	single_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
-{
-	int	nbr;
-
-	if (is_digit(arg) || is_valid_atoi(arg))
-		cleanup_and_exit(stack_a, stack_b, NULL);
-	nbr = ft_atoi(arg);
-	if (is_duplicate(stack_a, nbr))
-		cleanup_and_exit(stack_a, stack_b, NULL);
-	ft_lst_add_back(stack_a, nbr);
-}
-
 void	split_nbr(t_stack *stack_a, t_stack *stack_b,
 	char *number, char **split_argv)
 {
@@ -42,6 +30,18 @@ void	space_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
 		i++;
 	}
 	free_split(split_argv);
+}
+
+void	single_arg(char *arg, t_stack *stack_a, t_stack *stack_b)
+{
+	int	nbr;
+
+	if (is_digit(arg) || is_valid_atoi(arg))
+		cleanup_and_exit(stack_a, stack_b, NULL);
+	nbr = ft_atoi(arg);
+	if (is_duplicate(stack_a, nbr))
+		cleanup_and_exit(stack_a, stack_b, NULL);
+	ft_lst_add_back(stack_a, nbr);
 }
 
 void	split_input(char **argv, t_stack *stack_a, t_stack *stack_b)
