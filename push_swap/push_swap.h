@@ -5,7 +5,6 @@
 # include <stdlib.h>
 
 int		main(int argc, char **argv);
-long	ft_atoi(char *str);
 size_t	ft_strlen(char *str);
 char	**ft_split(char *str, char separator);
 void	ft_putstr_fd(char *str, int std);
@@ -44,7 +43,6 @@ void	ft_lst_add_back(t_stack *stack, t_stack *stack_b, int value);
 t_stack	*stack_init(void);
 int		is_digit(char *str);
 int		has_space(char *str);
-long	int	ft_atoi(char *str);
 void	split_input(char **argv, t_stack *stack_a, t_stack *stack_b);
 void	free_split(char **split);
 void	free_stack(t_stack *stack);
@@ -65,6 +63,6 @@ int		find_smallest(t_stack *stack);
 void	move_to_top(t_stack *stack, int smallest);
 int		all_space(char *str);
 void	free_stacks(t_stack *stack_a, t_stack *stack_b);
-int		is_valid_atoi(char *str);
+int		ft_atoi(char *str, t_stack *stack_a, t_stack *stack_b, char **split);
 
 #endif

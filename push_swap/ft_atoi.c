@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-long int	ft_atoi(char *str)
+int	ft_atoi(char *str, t_stack *stack_a, t_stack *stack_b, char **split)
 {
-	int			i;
-	int			sign;
-	long int	result;
+	int		i;
+	int		sign;
+	long	result;
 
 	i = 0;
 	sign = 1;
@@ -19,7 +19,10 @@ long int	ft_atoi(char *str)
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + str[i] - '0';
+		result = result * 10 + (str[i] - '0');
+		if ((sign == 1 && result > 2147483647)
+			|| (sign == -1 && - result < -2147483648))
+			cleanup_and_exit(stack_a, stack_b, split);
 		i++;
 	}
 	return (result * sign);

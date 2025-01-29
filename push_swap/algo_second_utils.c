@@ -2,36 +2,36 @@
 
 int	get_min_index(t_stack *stack)
 {
-	t_list	*current;
+	t_list	*node;
 	int		min_index;
 
-	current = stack->head;
-	if (!current)
+	node = stack->head;
+	if (!node)
 		return (0);
-	min_index = current->index;
-	while (current)
+	min_index = node->index;
+	while (node)
 	{
-		if (current->index < min_index)
-			min_index = current->index;
-		current = current->next;
+		if (node->index < min_index)
+			min_index = node->index;
+		node = node->next;
 	}
 	return (min_index);
 }
 
 int	get_max_index(t_stack *stack)
 {
-	t_list	*current;
+	t_list	*node;
 	int		max_index;
 
-	current = stack->head;
-	if (!current)
+	node = stack->head;
+	if (!node)
 		return (0);
-	max_index = current->index;
-	while (current)
+	max_index = node->index;
+	while (node)
 	{
-		if (current->index > max_index)
-			max_index = current->index;
-		current = current->next;
+		if (node->index > max_index)
+			max_index = node->index;
+		node = node->next;
 	}
 	return (max_index);
 }

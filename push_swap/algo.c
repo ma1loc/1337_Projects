@@ -71,16 +71,16 @@ void	push_max(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_num(t_stack *stack_a, t_stack *stack_b)
 {
-	int		stack_a_size; // hold the stack size (i think i can remove this ?)
-	int		chunk_size; // hold chunk size;
-	int		current_index;  // the current index = 0
-	t_list	*node;	// hold the node
+	int		stack_a_size;
+	int		chunk_size;
+	int		current_index;
+	t_list	*node;
 
-	stack_a_size = stack_a->size; // initialize it with the size of the stack_a
-	chunk_size = count_chunk(stack_a_size); // for example we have stack_a = 6 / 6 = 1
-	current_index = 0; // current index use in the loop
-	put_index(stack_a); // put the index to the element in stack_a
-	while (stack_a->size > 0)	// loop all stack
+	stack_a_size = stack_a->size;
+	chunk_size = count_chunk(stack_a_size);
+	current_index = 0;
+	put_index(stack_a);
+	while (stack_a->size > 0)
 	{
 		node = stack_a->head;
 		if (node->index <= (current_index + 1) * chunk_size)

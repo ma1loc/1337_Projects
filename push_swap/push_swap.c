@@ -5,9 +5,9 @@ void	split_nbr(t_stack *stack_a, t_stack *stack_b,
 {
 	int	nbr;
 
-	if (is_digit(number) || is_valid_atoi(number))
+	if (is_digit(number))
 		cleanup_and_exit(stack_a, stack_b, split_argv);
-	nbr = ft_atoi(number);
+	nbr = ft_atoi(number, stack_a, stack_b, split_argv);
 	if (is_duplicate(stack_a, nbr))
 		cleanup_and_exit(stack_a, stack_b, split_argv);
 	ft_lst_add_back(stack_a, stack_b, nbr);
@@ -36,9 +36,9 @@ void	single_arg(char *number, t_stack *stack_a, t_stack *stack_b)
 {
 	int	nbr;
 
-	if (is_digit(number) || is_valid_atoi(number))
+	if (is_digit(number))
 		cleanup_and_exit(stack_a, stack_b, NULL);
-	nbr = ft_atoi(number);
+	nbr = ft_atoi(number, stack_a, stack_b, NULL);
 	if (is_duplicate(stack_a, nbr))
 		cleanup_and_exit(stack_a, stack_b, NULL);
 	ft_lst_add_back(stack_a, stack_b, nbr);
