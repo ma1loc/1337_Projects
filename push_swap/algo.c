@@ -56,28 +56,37 @@ void	push_max(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max_pos;
 
+
 	while (stack_b->size > 0)
 	{
 		max_pos = find_max_pos(stack_b);
 		if (max_pos <= stack_b->size / 2)
-			while (max_pos--)
+		{
+			while (max_pos)
+			{
 				rb(stack_b, 1);
+				max_pos--;
+			}
+		}
 		else
-			while (max_pos++ < stack_b->size)
+		{
+			while (max_pos < stack_b->size)
+			{
 				rrb(stack_b, 1);
+				max_pos++;
+			}
+		}
 		pa(stack_a, stack_b);
 	}
 }
 
 void	sort_num(t_stack *stack_a, t_stack *stack_b)
 {
-	int		stack_a_size;
 	int		chunk_size;
 	int		current_index;
 	t_list	*node;
 
-	stack_a_size = stack_a->size;
-	chunk_size = count_chunk(stack_a_size);
+	chunk_size = count_chunk(stack_a->size);
 	current_index = 0;
 	put_index(stack_a);
 	while (stack_a->size > 0)
