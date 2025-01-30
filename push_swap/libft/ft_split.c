@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../src_push_swap/push_swap.h"
 
 int	delim_count(char *str, char separator)
 {

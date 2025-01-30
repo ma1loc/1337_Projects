@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../src_push_swap/push_swap.h"
 
 int	ft_atoi(char *str, t_stack *stack_a, t_stack *stack_b, char **split)
 {

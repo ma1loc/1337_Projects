@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../src_push_swap/push_swap.h"
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 {

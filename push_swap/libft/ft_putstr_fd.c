@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../src_push_swap/push_swap.h"
 
 void	ft_putstr_fd(char *str, int std)
 {
