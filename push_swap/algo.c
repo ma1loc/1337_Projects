@@ -2,25 +2,25 @@
 
 int	find_max_pos(t_stack *stack)
 {
-	t_list	*current;
+	t_list	*node;
 	int		max_index;
 	int		position;
 	int		max_position;
 
-	current = stack->head;
-	if (!current)
+	node = stack->head;
+	if (!node)
 		return (0);
-	max_index = current->index;
+	max_index = node->index;
 	position = 0;
 	max_position = 0;
-	while (current)
+	while (node)
 	{
-		if (current->index > max_index)
+		if (node->index > max_index)
 		{
-			max_index = current->index;
+			max_index = node->index;
 			max_position = position;
 		}
-		current = current->next;
+		node = node->next;
 		position++;
 	}
 	return (max_position);
@@ -28,25 +28,25 @@ int	find_max_pos(t_stack *stack)
 
 int	find_min_pos(t_stack *stack)
 {
-	t_list	*current;
+	t_list	*node;
 	int		min_index;
 	int		position;
 	int		min_position;
 
-	current = stack->head;
-	if (!current)
+	node = stack->head;
+	if (!node)
 		return (0);
-	min_index = current->index;
+	min_index = node->index;
 	position = 0;
 	min_position = 0;
-	while (current)
+	while (node)
 	{
-		if (current->index < min_index)
+		if (node->index < min_index)
 		{
-			min_index = current->index;
+			min_index = node->index;
 			min_position = position;
 		}
-		current = current->next;
+		node = node->next;
 		position++;
 	}
 	return (min_position);
@@ -55,7 +55,6 @@ int	find_min_pos(t_stack *stack)
 void	push_max(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max_pos;
-
 
 	while (stack_b->size > 0)
 	{
@@ -100,8 +99,8 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 		}
 		else
 			ra(stack_a, 1);
-		if (get_min_index(stack_a) > (current_index + 1) * chunk_size)
-			current_index++;
+		if (get_min_index(stack_a) > (current_index + 1) * chunk_size) // here i check all chunk elements are processed or not
+			current_index++; // if all elements are processed then move to next chunk
 	}
 	push_max(stack_a, stack_b);
 }
