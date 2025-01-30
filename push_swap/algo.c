@@ -26,32 +26,6 @@ int	find_max_pos(t_stack *stack)
 	return (max_position);
 }
 
-int	find_min_pos(t_stack *stack)
-{
-	t_list	*node;
-	int		min_index;
-	int		position;
-	int		min_position;
-
-	node = stack->head;
-	if (!node)
-		return (0);
-	min_index = node->index;
-	position = 0;
-	min_position = 0;
-	while (node)
-	{
-		if (node->index < min_index)
-		{
-			min_index = node->index;
-			min_position = position;
-		}
-		node = node->next;
-		position++;
-	}
-	return (min_position);
-}
-
 void	push_max(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max_pos;
