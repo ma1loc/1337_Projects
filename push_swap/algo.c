@@ -99,8 +99,8 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 		}
 		else
 			ra(stack_a, 1);
-		if (get_min_index(stack_a) > (current_index + 1) * chunk_size) // here i check all chunk elements are processed or not
-			current_index++; // if all elements are processed then move to next chunk
+		if (get_min_index(stack_a) > (current_index + 1) * chunk_size)
+			current_index++;
 	}
 	push_max(stack_a, stack_b);
 }
