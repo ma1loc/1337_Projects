@@ -1,34 +1,50 @@
 CC= cc
 
-CFLAGS= -Wall -Wextra -Werror -g
+CFLAGS= -Wall -Wextra -Werror
 
 NAME= push_swap
+B_NAME= checker
 
-B_NAME = checker
+SRC= src_push_swap/main.c src_push_swap/push_swap.c src_push_swap/push_swap_utils.c \
+     operations/swap_operations.c operations/push_operations.c \
+     operations/rotate_operations.c operations/r_rotate_operations.c \
+     src_push_swap/parsing.c src_push_swap/memory_mang.c src_push_swap/sort_stacks.c \
+     libft/ft_atoi.c libft/ft_strnstr.c libft/ft_strlen.c libft/ft_putstr_fd.c \
+     libft/ft_split.c src_push_swap/algo.c src_push_swap/algo_utils.c \
+     src_push_swap/algo_second_utils.c src_push_swap/sort_stacks_utils.c
 
-SRC= main.c push_swap.c push_swap_utils.c swap_operations.c push_operations.c \
-	rotate_operations.c r_rotate_operations.c parsing.c  memory_mang.c sort_stacks.c \
-	ft_atoi.c ft_strnstr.c ft_strlen.c ft_putstr_fd.c ft_split.c algo.c algo_utils.c \
-	algo_second_utils.c sort_stacks_utils.c
+B_SRC= src_push_swap/push_swap.c src_push_swap/push_swap_utils.c src_checker/checker.c src_checker/get_next_line.c src_checker/get_next_line_utils.c \
+    operations/swap_operations.c operations/push_operations.c \
+    operations/rotate_operations.c operations/r_rotate_operations.c \
+    src_push_swap/parsing.c src_push_swap/memory_mang.c src_push_swap/sort_stacks.c \
+    libft/ft_atoi.c libft/ft_strnstr.c libft/ft_strlen.c libft/ft_putstr_fd.c \
+    libft/ft_split.c src_push_swap/algo.c src_push_swap/algo_utils.c \
+    src_push_swap/algo_second_utils.c src_push_swap/sort_stacks_utils.c libft/ft_strncmp.c
 
-OBJ=$(SRC:.c=.o)
+OBJ= $(SRC:.c=.o)
+B_OBJ= $(B_SRC:.c=.o)
 
 all: $(NAME)
 
+bonus: $(B_NAME)
+
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+$(B_NAME): $(B_OBJ)
+	$(CC) $(CFLAGS) $(B_OBJ) -o $(B_NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(B_OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(B_NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: all bonus clean fclean re
 
-.SECONDARY:  $(OBJ)
+.SECONDARY:  $(OBJ) $(B_OBJ)
