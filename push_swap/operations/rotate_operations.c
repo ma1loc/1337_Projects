@@ -32,9 +32,10 @@ void	rb(t_stack *stack_b, int print_flag)
 		write(1, "rb\n", 3);
 }
 
-void	rr(t_stack *stack_a, t_stack *stack_b)
+void	rr(t_stack *stack_a, t_stack *stack_b, int print_flag)
 {
 	ra(stack_a, 0);
 	rb(stack_b, 0);
-	write(1, "rr\n", 3);
+	if (print_flag)
+		write(1, "rr\n", 3);
 }

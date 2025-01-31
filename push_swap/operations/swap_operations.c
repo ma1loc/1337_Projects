@@ -28,9 +28,10 @@ void	sb(t_stack *stack_b, int print_flag)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
+void	ss(t_stack *stack_a, t_stack *stack_b, int print_flag)
 {
 	sa(stack_a, 0);
 	sb(stack_b, 0);
-	write(1, "ss\n", 3);
+	if (print_flag)
+		write(1, "ss\n", 3);
 }

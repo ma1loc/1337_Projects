@@ -49,7 +49,7 @@ void	push_max(t_stack *stack_a, t_stack *stack_b)
 				max_pos++;
 			}
 		}
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, 1);
 	}
 }
 
@@ -67,7 +67,7 @@ void	sort_num(t_stack *stack_a, t_stack *stack_b)
 		node = stack_a->head;
 		if (node->index <= (current_index + 1) * chunk_size)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, 1);
 			if (node->index <= current_index * chunk_size + (chunk_size / 2))
 				rb(stack_b, 1);
 		}

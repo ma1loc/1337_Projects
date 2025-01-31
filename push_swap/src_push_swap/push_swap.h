@@ -25,15 +25,15 @@ typedef struct s_stack
 
 void	sa(t_stack *stack_a, int print_flag);
 void	sb(t_stack *stack_b, int print_flag);
-void	ss(t_stack *stack_a, t_stack *stack_b);
-void	pa(t_stack *stack_a, t_stack *stack_b);
-void	pb(t_stack *stack_a, t_stack *stack_b);
+void	ss(t_stack *stack_a, t_stack *stack_b, int print_flag);
+void	pa(t_stack *stack_a, t_stack *stack_b, int print_flag);
+void	pb(t_stack *stack_a, t_stack *stack_b, int print_flag);
 void	ra(t_stack *stack_a, int print_flag);
 void	rb(t_stack *stack_b, int print_flag);
-void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rr(t_stack *stack_a, t_stack *stack_b, int print_flag);
 void	rra(t_stack *stack_a, int print_flag);
 void	rrb(t_stack *stack_b, int print_flag);
-void	rrr(t_stack *stack_a, t_stack *stack_b);
+void	rrr(t_stack *stack_a, t_stack *stack_b, int print_flag);
 
 int		find_largest(t_stack *stack);
 t_list	*ft_lst_new(int value);

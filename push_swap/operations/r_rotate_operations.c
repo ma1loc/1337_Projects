@@ -40,9 +40,10 @@ void	rrb(t_stack *stack_b, int print_flag)
 		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_stack *stack_a, t_stack *stack_b)
+void	rrr(t_stack *stack_a, t_stack *stack_b, int print_flag)
 {
 	rra(stack_a, 0);
 	rrb(stack_b, 0);
-	write(1, "rrr\n", 4);
+	if (print_flag)
+		write(1, "rrr\n", 4);
 }

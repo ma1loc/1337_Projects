@@ -92,7 +92,7 @@ void	sort_four(t_stack *stack_a, t_stack *stack_b)
 
 	smallest = find_smallest(stack_a);
 	move_to_top(stack_a, smallest);
-	pb(stack_a, stack_b);
+	pb(stack_a, stack_b, 1);
 	sort_three(stack_a);
-	pa(stack_b, stack_a);
+	pa(stack_b, stack_a, 1);
 }
