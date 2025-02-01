@@ -15,7 +15,7 @@ Before sorting `stack_a`, we first create an **array** from its values and sort 
 For example:
 
 ```
-stack_a ->  2  1  5  3  6  4
+stack_a ->   2  1  5  3  6  4
 index    ->  0  0  0  0  0  0
 array    ->  1  2  3  4  5  6  (sorted)
 ```
@@ -23,7 +23,7 @@ array    ->  1  2  3  4  5  6  (sorted)
 We then assign an **index** to each number in `stack_a`, based on its position in the sorted array:
 
 ```
-stack_a ->  2  1  5  3  6  4
+stack_a ->   2  1  5  3  6  4
 index    ->  1  0  4  2  5  3
 array    ->  1  2  3  4  5  6
 ```
