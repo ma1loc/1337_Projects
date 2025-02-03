@@ -59,15 +59,44 @@ void	file_check(char *map)
 
 }
 
+void    wall_check(char *line)
+{
+    int i;
+
+    i = 0;
+    while (line[i] != '\n')
+    {
+        if (line[i] != '1')
+            ft_putstr_fd("Error\nWalls not set as it expected.");
+        i++;
+    }
+}
+void    is_duplicate_char(int fd)
+{
+    // E -> exit dor
+    // P -> position of the player, where the player start
+    
+}
+
 void    is_map_valid(int fd)
 {
     char *line;
+    int i;
+
+    line = get_next_line(fd);
+    wall_check(line);
 
     line = get_next_line(fd);
     while (line)
     {
-        printf("%s", line);
-        free(line);
+        i = 0;
+        if (line[0] != '1')
+            ft_putstr_fd("Error\nWalls not set as it expected.");
+        else
+        {
+            while (line[i])
+            {}
+        }
         line = get_next_line(fd);
     }
 }
