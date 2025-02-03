@@ -12,4 +12,7 @@ int		ft_strncmp(char *s1, char *s2, size_t n);
 char	*ft_strnstr(char *str, char *to_find, size_t len);
 void	ft_putstr_fd(char *str);
 
+// is work?
+void    ft_perror(char *str);
+
 # endif
