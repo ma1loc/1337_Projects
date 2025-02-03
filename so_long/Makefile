@@ -7,7 +7,7 @@ RM= rm -rf
 NAME= so_long
 
 SRC= src_so_long/so_long.c libft/ft_putstr_fd.c  libft/ft_strncmp.c  map_parsing/map_parsing.c \
-	so_long/so_long.c libft/ft_strlen.c libft/ft_strnstr.c 
+	libft/ft_strlen.c libft/ft_strnstr.c libft/ft_perror.c
 
 OBJ=$(SRC:.c=.o)
 
