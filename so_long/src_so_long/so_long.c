@@ -50,13 +50,26 @@ int     is_there_extension(char *map)
     return (1);
 }
 
-void	is_valid_map(char *map)
+void	file_check(char *map)
 {
 	if (is_there_extension(map))
         ft_putstr_fd("Error\nThe extenstion not valid.");
     is_have_dot(map);
     is_there_anything_before_dot(map);
 
+}
+
+void    is_map_valid(int fd)
+{
+    char *line;
+
+    line = get_next_line(fd);
+    while (line)
+    {
+        printf("%s", line);
+        free(line);
+        line = get_next_line(fd);
+    }
 }
 
 int	main(int argc, char **argv)
@@ -66,15 +79,10 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		ft_putstr_fd("Error\nA few args, put the map to play\n");
     if (argc > 1)
-		is_valid_map(argv[1]);
+		file_check(argv[1]);
     
     fd = open(argv[1], O_RDONLY);
     if (fd == -1)
         ft_perror("Error\nopen");
-    // {
-    //     perror("Error\nOpen");
-    //     exit(1);
-    // }
-    // printf("the file no read from\n");
-
+    is_map_valid(fd);
 }
