@@ -6,13 +6,14 @@ RM= rm -rf
 
 NAME= so_long
 
-SRC= 
+SRC= src_so_long/so_long.c libft/ft_putstr_fd.c  libft/ft_strncmp.c  map_parsing/map_parsing.c \
+	so_long/so_long.c libft/ft_strlen.c libft/ft_strnstr.c 
 
-OBJ= $(SRC:.c=.o)
+OBJ=$(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c
@@ -25,3 +26,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: clean fclean re
