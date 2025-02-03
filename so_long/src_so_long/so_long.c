@@ -1,21 +1,29 @@
 #include "so_long.h"
 
-// check if the file is there and have the right permission.
-// check if the file have the right extension.
-int     is_have_dot(char *str)
+void     is_have_dot(char *str)
 {
     int i;
+    int dot;
 
     i = 0;
+    dot = 0;
     while (str[i])
     {
-        if (str[i] == '.')
-            return (0);
+        if (dot == 0 && str[i + 1] == '\n')
+            ft_putstr_fd("Error\nThere's no extension in the file you provide.\
+            \nUsage => \"./so_long map.ber\"");
         i++;
     }
-    return (1);
 }
-int     is_there_extansion(char *map)
+
+void    is_there_anything_before_dot(char *map)
+{
+    if (map[0] == '.')
+        ft_putstr_fd("Error\nPut a name of the file befor the extention.\
+        \nUsage => \"./so_long map.ber\"");
+}
+
+int     is_there_extension(char *map)
 {
     int     i;
     int     j;
@@ -23,9 +31,7 @@ int     is_there_extansion(char *map)
 
     i = 0;
     extension = ".ber";
-
-    if (is_have_dot(map))
-        ft_putstr_fd("Error\nThere's no extension in the file you provide.");
+    
     while (map[i])
     {
         if (map[i] == '.')
@@ -36,6 +42,7 @@ int     is_there_extansion(char *map)
                 if (map[i] == 'r' && map[i + 1] == '\0')
                     return (0);
                 i++;
+                j++;
             }
         }
         i++;
@@ -45,23 +52,29 @@ int     is_there_extansion(char *map)
 
 void	is_valid_map(char *map)
 {
-    int fd;
-
-	if (is_there_extansion(map))
+	if (is_there_extension(map))
         ft_putstr_fd("Error\nThe extenstion not valid.");
-    
-    // if the fils is there 
-    fd = open("map.ber", O_RDONLY);
-    if (fd == -1)
-        perror("Error\n");
+    is_have_dot(map);
+    is_there_anything_before_dot(map);
+
 }
 
 int	main(int argc, char **argv)
 {
+    int fd;
+
 	if (argc == 1)
 		ft_putstr_fd("Error\nA few args, put the map to play\n");
-	else if (argc > 1)
+    if (argc > 1)
 		is_valid_map(argv[1]);
+    
+    fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
+        ft_perror("Error\nopen");
+    // {
+    //     perror("Error\nOpen");
+    //     exit(1);
+    // }
+    // printf("the file no read from\n");
 
-	return (0);
 }
