@@ -1,2 +1,2 @@
-#include "../so_long/so_long.h"
+#include "../src_so_long/so_long.h"
 
