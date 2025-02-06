@@ -1,5 +1,38 @@
 #include "../src_so_long/so_long.h"
 
+int	count_lines(char *map)
+{
+    int		i;
+    int		fd;
+    int		count;
+    char	*line;
+
+    i = 0;
+    count = 0;
+    fd = open(map, O_RDONLY);
+    if (fd == -1)
+        ft_perror("Error\nopen");
+    line = get_next_line(fd);
+    while (line)
+    {
+		count++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (count);
+}
+
+char    **read_map(char *map)
+{
+    char    *line;
+    char    **t_map;
+    int     i;
+    int     fd;
+
+	printf("%d", count_lines(map));
+}
+
 void    wall_check(char *line)
 {
     int i;
@@ -12,6 +45,7 @@ void    wall_check(char *line)
         i++;
     }
 }
+
 void    is_duplicate_char(char *map)
 {
     char    *line;
@@ -30,14 +64,16 @@ void    is_duplicate_char(char *map)
     line = get_next_line(fd);
     while (line)
     {
+        i = 0;
         while(line[i])
         {
             if (line[i] == 'P')
-                p += 1;
+                p++;
             else if (line[i] == 'E')
-                e += 1;
+                e++;
             i++;
         }
+        free(line);
         line = get_next_line(fd);
     }
 
