@@ -13,6 +13,6 @@ int	main(int argc, char **argv)
     if (fd == -1)
         ft_perror("Error\nopen");
     is_map_valid(fd);
-    close(fd);
     is_duplicate_char(argv[1]);
+    close(fd);
 }
