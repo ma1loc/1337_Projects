@@ -22,14 +22,21 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 void    ft_perror(char *str);
 
 // file checking fun
-void     is_have_dot(char *str);
-void    is_there_anything_before_dot(char *map);
-int     is_there_extension(char *map);
+void	is_have_dot(char *str);
+void	is_there_anything_before_dot(char *map);
+
+int		is_there_extension(char *map);
 void	file_check(char *map);
 
 // map_parsing fun
-void    wall_check(char *line);
-void    is_duplicate_char(char *map);
-void    is_map_valid(int fd);
+void	wall_check(char **map); // valid
+void	count_duplicate_char_in_the_map(char **map); // valid
+void	check_is_valid_dup_char(char **map, int p, int e);
+
+
+void	is_map_valid(int fd);
+
+void    cleanup_and_exit(char *str, char **readed_map);
+void    mem_free(char **readed_map);
 
 # endif
