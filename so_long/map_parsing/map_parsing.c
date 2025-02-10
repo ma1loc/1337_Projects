@@ -1,5 +1,26 @@
 #include "../src_so_long/so_long.h"
 
+int	count_lines(char *map)
+{
+    int		fd;
+    int		count;
+    char	*line;
+
+    count = 0;
+    fd = open(map, O_RDONLY);
+    if (fd == -1)
+        ft_perror("Error\nOpen");
+    line = get_next_line(fd);
+    while (line)
+    {
+		count++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (count);
+}
+
 char    **read_map(char *map)
 {
     char    *line;
@@ -68,26 +89,7 @@ void    count_duplicate_char_in_the_map(char **map)
 	check_is_valid_dup_char(map, p, e);
 }
 
-int	count_lines(char *map)
-{
-    int		fd;
-    int		count;
-    char	*line;
 
-    count = 0;
-    fd = open(map, O_RDONLY);
-    if (fd == -1)
-        ft_perror("Error\nopen");
-    line = get_next_line(fd);
-    while (line)
-    {
-		count++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (count);
-}
 
 void last_row(char **map)
 {
@@ -114,7 +116,7 @@ void	wall_check(char **map)
 	size_t	len_of_line;
 
     i = 0;
-    while (map[0][i] && map[0][i] != '\n') // valid.
+    while (map[0][i] && map[0][i] != '\n')
     {
         if (map[0][i] != '1')
             cleanup_and_exit("Error\n\"Top Walls\" not set as it expected.", map);
@@ -122,7 +124,7 @@ void	wall_check(char **map)
     }
 	i = 0;
     len_of_line = ft_strlen(map[0]);
-	while (map[i]) // valid.
+	while (map[i])
 	{
         if (map[i][len_of_line - 1] == '\n')
             len_of_line -= 1;

@@ -22,7 +22,7 @@ void    is_map_valid(char **map)
 	if (map[i])
 		len_line = ft_strlen(map[i]);
 	else
-		ft_putstr_fd("Error\nMap is empty.");
+		ft_putstr_fd("Error\nMap is empty."); // leak here.
 
     while (map[i])
     {
@@ -48,6 +48,7 @@ void	process_the_map(char *map)
 	is_map_valid(readed_map);
 	count_duplicate_char_in_the_map(readed_map);
 	wall_check(readed_map);
+	mem_free(readed_map); // free the memeory.
 }
 
 void	pars_the_file(char *map)
