@@ -91,17 +91,18 @@ int	count_lines(char *map)
 
 void last_row(char **map)
 {
-    char *last_row;
+    char *_last_row;
     int i;
 
     i = 0;
     while (map[i])
         i++;
     i--;
-    last_row = map[i];
-	while (last_row[i]) // valid.
+    _last_row = map[i];
+    i = 0;
+	while (_last_row[i])
 	{
-		if (last_row[i] != '1')
+		if (_last_row[i] != '1')
             cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", map);
 		i++;
 	}
