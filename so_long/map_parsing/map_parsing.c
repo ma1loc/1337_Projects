@@ -95,43 +95,30 @@ void	wall_check(char **map)
     int		i;
 	size_t	len_of_line;
 
-	printf("wall_check is here\n");
-
-    // i = 0;
-    // while (map[0][i] && map[0][i] != '\n') // valid.
-    // {
-    //     if (map[0][i] != '1')
-    //         cleanup_and_exit("Error\n\"Top Walls\" not set as it expected.", map);
-    //     i++;
-    // }
-
+    i = 0;
+    while (map[0][i] && map[0][i] != '\n') // valid.
+    {
+        if (map[0][i] != '1')
+            cleanup_and_exit("Error\n\"Top Walls\" not set as it expected.", map);
+        i++;
+    }
 	i = 0;
     len_of_line = ft_strlen(map[0]);
-
-	// printf("----------------\nmap[i][0] == %c\n", map[i][0]);
-	// printf("map[i][len] == %c\n----------------\n", map[i][len_of_line - 2]);
-
-	
-    // len_of_line = ft_strlen(map[0]);
-	while (map[i][0] && map[i][len_of_line - 1]) // not valid.
+	while (map[i]) // valid.
 	{
         if (map[i][len_of_line - 1] == '\n')
-            len_of_line -= 2;
+            len_of_line -= 1;
 
-		printf("%c\n", map[i][len_of_line]);
-        printf("%zu\n", len_of_line);
-
-		if (map[i][0] != '1' || map[i][len_of_line] != '1')
+		if (map[i][0] != '1' || map[i][len_of_line - 1] != '1')
             cleanup_and_exit("Error\n\"Left or Right Walls\" not set as it expected.", map);
 		i++;
 	}
-
-
-	// i = 0;
-	// while (map[len_of_line - 1][i] && map[len_of_line - 1][i] != '\n')
-	// {
-	// 	if (map[len_of_line -1][i] != '1')
-    //         cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", map);
-	// 	i++;
-	// }
+    // segfult
+	i = 0;
+	while (map[len_of_line - 1][i] != '\n') // valid.
+	{
+		if (map[len_of_line - 1][i] != '1')
+            cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", map);
+		i++;
+	}
 }
