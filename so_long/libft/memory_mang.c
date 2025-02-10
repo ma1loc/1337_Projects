@@ -13,4 +13,5 @@ void    mem_free(char **readed_map)
             i++;
         }
     }
+    free(readed_map);
 }

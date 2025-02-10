@@ -28,9 +28,9 @@ int     count_lines(char *map);
 void	process_the_map(char *map);
 
 // map_parsing fun
+void    mem_free(char **readed_map);
 void	is_map_valid(char **map);
 void    cleanup_and_exit(char *str, char **readed_map);
-void    mem_free(char **readed_map);
 
 void	wall_check(char **map);
 void	count_duplicate_char_in_the_map(char **map);

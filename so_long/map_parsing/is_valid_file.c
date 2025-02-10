@@ -12,7 +12,7 @@ void	is_there_extension(char *map)
 	}
 }
 
-void    is_map_valid(char **map) // rectangular problem to check (done)
+void    is_map_valid(char **map)
 {
 	size_t	len_line;
 	char	*line;
