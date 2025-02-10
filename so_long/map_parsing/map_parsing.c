@@ -89,6 +89,23 @@ int	count_lines(char *map)
 	return (count);
 }
 
+void last_row(char **map)
+{
+    char *last_row;
+    int i;
+
+    i = 0;
+    while (map[i])
+        i++;
+    i--;
+    last_row = map[i];
+	while (last_row[i]) // valid.
+	{
+		if (last_row[i] != '1')
+            cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", map);
+		i++;
+	}
+}
 
 void	wall_check(char **map)
 {
@@ -113,12 +130,5 @@ void	wall_check(char **map)
             cleanup_and_exit("Error\n\"Left or Right Walls\" not set as it expected.", map);
 		i++;
 	}
-    // segfult
-	i = 0;
-	while (map[len_of_line - 1][i] != '\n') // valid.
-	{
-		if (map[len_of_line - 1][i] != '1')
-            cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", map);
-		i++;
-	}
+    last_row(map);
 }

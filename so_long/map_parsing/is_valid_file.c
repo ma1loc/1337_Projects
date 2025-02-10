@@ -12,34 +12,6 @@ void	is_there_extension(char *map)
 	}
 }
 
-// void    is_map_valid(int fd)
-// {
-//     char	*line;
-// 	size_t	line_len;
-
-//     line = get_next_line(fd);
-// 	if (!line)
-// 	{
-// 		close(fd);
-// 		ft_putstr_fd("Error\nMap is empty."); // check
-// 	}
-// 	line_len = ft_strlen(line);
-//     while (line)
-//     {
-// 		if (line[line_len - 1] == '\n')
-// 			line_len--;
-//         if (ft_strlen(line) != line_len)
-// 		{
-// 			close(fd);
-// 			free(line);
-// 			ft_putstr_fd("Error\nMap is not \"Rectangular\".\n"); // check
-// 		}
-// 		free(line);
-//         line = get_next_line(fd);
-//     }
-// 	close(fd);
-// }
-
 void    is_map_valid(char **map) // rectangular problem to check (done)
 {
 	size_t	len_line;
