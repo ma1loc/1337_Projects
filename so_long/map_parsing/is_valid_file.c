@@ -1,25 +1,33 @@
 #include "../src_so_long/so_long.h"
 
-void     is_have_dot(char *str) // valid.
-{
-    int i;
-    int dot;
+// void     is_have_dot(char *str)
+// {
+//     int i;
+//     int dot;
 
-    i = 0;
-    dot = 0;
-    while (str[i])
-    {
-        if (str[i] == '.')
-            dot++;
-        i++;
-    }
+//     i = 0;
+//     dot = 0;
+//     while (str[i])
+//     {
+//         if (str[i] == '.')
+//             dot++;
+//         i++;
+//     }
 
-    if (!dot)
-        ft_putstr_fd("Error\nThere's no extension in the file you provide.\
-            \nUsage => \"./so_long map.ber\"");
-}
+//     if (!dot)
+//         ft_putstr_fd("Error\nThere's no extension in the file you provide.\
+//             \nUsage => \"./so_long map.ber\"");
+// }
 
-int     is_there_extension(char *map) // valid.
+
+// void    is_there_anything_before_dot(char *map)
+// {
+//     if (map[0] == '.')
+//         ft_putstr_fd("Error\nPut a name of the file befor the extention.
+//         \nUsage => \"./so_long map.ber\"");
+// }
+
+int     is_there_extension(char *map)
 {
     int	len;
 
@@ -32,19 +40,10 @@ int     is_there_extension(char *map) // valid.
     return (1);
 }
 
-// void    is_there_anything_before_dot(char *map)
-// {
-//     if (map[0] == '.')
-//         ft_putstr_fd("Error\nPut a name of the file befor the extention.
-//         \nUsage => \"./so_long map.ber\"");
-// }
-
-
 void	file_check(char *map)
 {
 	is_there_extension(map); // valid.
-    is_have_dot(map); // valid.
+    // is_have_dot(map); // valid.
     // is_there_anything_before_dot(map);
 
 }
-
