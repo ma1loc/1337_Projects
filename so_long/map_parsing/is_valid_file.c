@@ -36,8 +36,8 @@ void    is_map_valid(char **map)
 
 void	process_the_map(char *map)
 {
-	char	**readed_map;
-	int		*player_position;
+	char		**readed_map;
+	t_position	*player_position;
 
 	readed_map = read_map(map);
 	if (!readed_map)
@@ -48,7 +48,7 @@ void	process_the_map(char *map)
 	player_position = finding_player_position(readed_map);
 	if (!player_position)
 		cleanup_and_exit("Error\nFailed to reach the player position.", readed_map);
-	map_free(readed_map); // free the memeory.
+	map_free(readed_map);
 	free(player_position);
 }
 

@@ -17,7 +17,7 @@ t_position	*finding_player_position(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'P')
-			{ // mod
+			{
 				row_and_col = put_row_and_col(i, j);
 				if (!row_and_col)
         			cleanup_and_exit("Error\nAllocation faild.", map);
