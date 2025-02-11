@@ -28,12 +28,14 @@ int     count_lines(char *map);
 void	process_the_map(char *map);
 
 // map_parsing fun
-void    mem_free(char **readed_map);
+void    map_free(char **readed_map);
 void	is_map_valid(char **map);
 void    cleanup_and_exit(char *str, char **readed_map);
 
 void	wall_check(char **map);
 void	count_duplicate_char_in_the_map(char **map);
 void	check_is_valid_dup_char(char **map, int p, int e);
+int     *finding_player_position(char **map);
+int     *allocate_for_row_and_col(int row, int col, char **map);
 
 # endif

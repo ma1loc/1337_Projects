@@ -60,17 +60,20 @@ void	check_is_valid_dup_char(char **map, int p, int e)
         cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\" of the player in the MAP", map);
     if (e > 1)
         cleanup_and_exit("Error\nThere's a duplicated \"EXIT DORS\" in provided MAP", map);
+        // check here the the collacts.
 }
 
 void    count_duplicate_char_in_the_map(char **map)
 {
     int     p;
     int     e;
+    int     c;
     int     i;
 	int		j;
 
     p = 0;
     e = 0;
+    c = 0;
     i = 0;
 
     while (map[i])
@@ -82,6 +85,8 @@ void    count_duplicate_char_in_the_map(char **map)
                 p++;
             else if (map[i][j] == 'E')
                 e++;
+            else if (map[i][j] == 'C') // add the check of the collacts.
+                c++;
             j++;
         }
 		i++;
