@@ -18,6 +18,7 @@ int	*finding_player_position(char **map)
 		{
 			if (map[i][j] == 'P')
 			{
+				// have i do the structure here instde
 				row_and_col = allocate_for_row_and_col(i, j, map);
 				if (row_and_col == NULL)
         			cleanup_and_exit("Error\nAllocation faild.", map);

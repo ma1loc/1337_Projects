@@ -29,7 +29,7 @@ int *allocate_for_row_and_col(int row, int col, char **map)
 
     row_and_col = malloc(sizeof(int) * 2);
     if (!row_and_col)
-        cleanup_and_exit("Error\nAllocation faild.", map); // batter msg.
+        cleanup_and_exit("Error\nAllocation faild.", map);
     row_and_col[0] = row;
     row_and_col[1] = col;
     return (row_and_col);
