@@ -4,11 +4,11 @@
 // Breadth First Search (BFS)
 
 // find the {row & col}
-int	*finding_player_position(char **map)
+t_position	*finding_player_position(char **map)
 {
-	int	i;
-	int j;
-	int	*row_and_col;
+	int			i;
+	int			j;
+	t_position	*row_and_col;
 
 	i = 0;
 	while (map[i])
@@ -17,10 +17,9 @@ int	*finding_player_position(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'P')
-			{
-				// have i do the structure here instde
-				row_and_col = allocate_for_row_and_col(i, j, map);
-				if (row_and_col == NULL)
+			{ // mod
+				row_and_col = put_row_and_col(i, j);
+				if (!row_and_col)
         			cleanup_and_exit("Error\nAllocation faild.", map);
 				return (row_and_col);
 			}

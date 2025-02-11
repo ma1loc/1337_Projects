@@ -35,7 +35,15 @@ void    cleanup_and_exit(char *str, char **readed_map);
 void	wall_check(char **map);
 void	count_duplicate_char_in_the_map(char **map);
 void	check_is_valid_dup_char(char **map, int p, int e);
-int     *finding_player_position(char **map);
-int     *allocate_for_row_and_col(int row, int col, char **map);
+
+// structure for position of the player;
+typedef struct s_position
+{
+    int row;
+    int col;
+} t_position;
+
+t_position  *finding_player_position(char **map);
+t_position  *put_row_and_col(int _row, int _col);
 
 # endif
