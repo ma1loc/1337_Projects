@@ -22,18 +22,14 @@ void    is_map_valid(char **map)
 	if (map[i])
 		len_line = ft_strlen(map[i]);
 	else
-		ft_putstr_fd("Error\nMap is empty."); // leak here.
-
+		cleanup_and_exit("Error\nMap is empty.", map);
     while (map[i])
     {
 		line = map[i];
 		if (line[len_line - 1] != '\n')
  			len_line--;
 		if (ft_strlen(line) != len_line)
-		{
-			mem_free(&map[i]);
-			ft_putstr_fd("Error\nMap is not \"Rectangular\".\n");
-		}
+            cleanup_and_exit("Error\nMap is not \"Rectangular\".\n", map);
 		i++;
     }
 }
@@ -53,6 +49,6 @@ void	process_the_map(char *map)
 
 void	pars_the_file(char *map)
 {
-	is_there_extension(map); // valid.
-	process_the_map(map); // valid.
+	is_there_extension(map);
+	process_the_map(map);
 }
