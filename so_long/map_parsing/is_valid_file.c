@@ -3,13 +3,12 @@
 void	is_there_extension(char *map)
 {
     int	len;
-
+	
 	len = ft_strlen(map);
-	if (len < 4 || ft_strncmp(&map[len - 4], ".ber", 4) != 0)
-	{
+	if (len < 4 || ft_strncmp(&map[len - 4], ".ber", 4) != 0 ||
+	(ft_strncmp(map, ".ber", 4) == 0))
 		ft_putstr_fd("Error\nThe extenstion not valid.\
-		\nUsage => \"./so_long map.ber\".");
-	}
+		\nUsage => \"./so_long *.ber\".");
 }
 
 void    is_map_valid(char **map)
@@ -36,8 +35,8 @@ void    is_map_valid(char **map)
 
 void	process_the_map(char *map)
 {
-	char		**readed_map;
-	t_position	*player_position;
+	char		**readed_map;		// leak to free
+	t_position	*player_position;	// leak to free
 
 	readed_map = read_map(map);
 	if (!readed_map)
