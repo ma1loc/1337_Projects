@@ -30,38 +30,115 @@ t_position	*finding_player_position(char **map)
 	return (NULL);
 }
 
+// up, down, left, right
+void	up(char **copy_of_map, t_position *position, int *collectors, int *exit) // valid think so
+{
+	while (copy_of_map[position->row])
+	{
+		if (copy_of_map[position->row][position->col] == 'P' \
+		|| copy_of_map[position->row][position->col] == '0' \
+		|| copy_of_map[position->row][position->col] == 'C')
+		{
+			if (copy_of_map[position->row][position->col] == 'C')
+				(*collectors)++;
+			if (copy_of_map[position->row][position->col] == 'E')
+				(*exit) = 1;
+			copy_of_map[position->row][position->col] = 'X';
+		}
+		if (position->row != 0)
+			position->row--;
+		else
+			break;
+	}
+}
+void	down(char **copy_of_map, t_position *position, int *collectors, int *exit) // not valid have some thing on it!
+{
+	int	len;
+
+	len = 0;
+	while (copy_of_map[position->row])
+		len++;
+	printf("len of remining lines -> %d\n", len); // test
+	while (copy_of_map[position->row])
+	{
+		if (copy_of_map[position->row][position->col] == 'P' \
+		|| copy_of_map[position->row][position->col] == '0' \
+		|| copy_of_map[position->row][position->col] == 'C')
+		{
+			if (copy_of_map[position->row][position->col] == 'C')
+				(*collectors)++;
+			if (copy_of_map[position->row][position->col] == 'E')
+				(*exit) = 1;
+			copy_of_map[position->row][position->col] = 'X';
+		}
+		if (position->row != len)
+			position->row++;
+		else
+			break;
+	}
+}
+void	left(char **copy_of_map, t_position *position, int *collectors, int *exit) // valid think so!
+{
+	while (position->col != 0)
+	{
+		if (copy_of_map[position->row][position->col] == 'P' \
+		|| copy_of_map[position->row][position->col] == '0' \
+		|| copy_of_map[position->row][position->col] == 'C')
+		{
+			if (copy_of_map[position->row][position->col] == 'C')
+				(*collectors)++;
+			if (copy_of_map[position->row][position->col] == 'E')
+				(*exit) = 1;
+			copy_of_map[position->row][position->col] = 'X';
+		}
+		else if (copy_of_map[position->row][position->col] == '1')
+			return ;
+		position->col--;
+	}
+}
+void	right(char **copy_of_map, t_position *position, int *collectors, int *exit) // valid think so!
+{
+	int	len;
+
+	len = 0;
+	while (copy_of_map[position->row][len])
+		len++;
+	printf("len of right lines -> %d\n", len); // test
+	while (position->col != len)
+	{
+		if (copy_of_map[position->row][position->col] == 'P' \
+		|| copy_of_map[position->row][position->col] == '0' \
+		|| copy_of_map[position->row][position->col] == 'C')
+		{
+			if (copy_of_map[position->row][position->col] == 'C')
+				(*collectors)++;
+			if (copy_of_map[position->row][position->col] == 'E')
+				(*exit) = 1;
+			copy_of_map[position->row][position->col] = 'X';
+		}
+		else if (copy_of_map[position->row][position->col] == '1')
+			return ;
+		position->col++;
+	}
+}
+
 // walk thgout the map and check if the map has free space to walk. empliment BFS
-void	map_tracking(char **copy_the_map, t_position *row_and_col)
+void	map_tracking(char **copy_of_map, t_position *position)
 {
 	int collectors;
+	int	exit;
 
 	collectors = 0;
-	while (copy_the_map[row_and_col->row])
-	{
-		while (copy_the_map[row_and_col->row][row_and_col->col]) // start with the playser position
-		{
-			if (copy_the_map[row_and_col->row][row_and_col->col] == 'P' || \
-			copy_the_map[row_and_col->row][row_and_col->col] == '0')
-				copy_the_map[row_and_col->row][row_and_col->col] = 'X';
-			
+	exit = 0;
 
-			if (copy_the_map[row_and_col->row][row_and_col->col] == 'C')
-			{
-				copy_the_map[row_and_col->row][row_and_col->col] = 'X';
-				collectors++;
-			}
-			
-			
-			if (copy_the_map[row_and_col->row][row_and_col->col] == '1')
-				break;
-			row_and_col->col++;
-		}
-		row_and_col->row++;
-	}
+	// test the map move (up, down, left, right).
+	right(copy_of_map, position, &collectors, &exit);
+
 	int i = 0;
-	while (copy_the_map[i])
+	while (copy_of_map[i])
 	{
-		printf("%s", copy_the_map[i]);
+		printf("%s", copy_of_map[i]);
 		i++;
 	}
+
 }

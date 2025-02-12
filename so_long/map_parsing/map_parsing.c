@@ -61,6 +61,7 @@ void	check_is_valid_dup_char(char **map, int p, int e)
     if (e > 1)
         cleanup_and_exit("Error\nThere's a duplicated \"EXIT DORS\" in provided MAP", map);
         // check here the the collacts.
+        // if the map has anything rather then (1, 0, P, E, C) exit.
 }
 
 void    count_duplicate_char_in_the_map(char **map)
