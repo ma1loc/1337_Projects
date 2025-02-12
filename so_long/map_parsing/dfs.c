@@ -30,4 +30,38 @@ t_position	*finding_player_position(char **map)
 	return (NULL);
 }
 
-// walk thgout the map and check if the map has free space to walk.
+// walk thgout the map and check if the map has free space to walk. empliment BFS
+void	map_tracking(char **copy_the_map, t_position *row_and_col)
+{
+	int collectors;
+
+	collectors = 0;
+	while (copy_the_map[row_and_col->row])
+	{
+		while (copy_the_map[row_and_col->row][row_and_col->col]) // start with the playser position
+		{
+			if (copy_the_map[row_and_col->row][row_and_col->col] == 'P' || \
+			copy_the_map[row_and_col->row][row_and_col->col] == '0')
+				copy_the_map[row_and_col->row][row_and_col->col] = 'X';
+			
+
+			if (copy_the_map[row_and_col->row][row_and_col->col] == 'C')
+			{
+				copy_the_map[row_and_col->row][row_and_col->col] = 'X';
+				collectors++;
+			}
+			
+			
+			if (copy_the_map[row_and_col->row][row_and_col->col] == '1')
+				break;
+			row_and_col->col++;
+		}
+		row_and_col->row++;
+	}
+	int i = 0;
+	while (copy_the_map[i])
+	{
+		printf("%s", copy_the_map[i]);
+		i++;
+	}
+}

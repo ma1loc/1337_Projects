@@ -22,10 +22,9 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 void    ft_perror(char *str);
 
 void    is_there_extension(char *map);
-void	pars_the_file(char *map);
+void	pars_the_map(char *map);
 char    **read_map(char *map);
 int     count_lines(char *map);
-void	process_the_map(char *map);
 
 // map_parsing fun
 void    map_free(char **readed_map);
@@ -43,7 +42,9 @@ typedef struct s_position
     int col;
 } t_position;
 
-t_position  *finding_player_position(char **map);
-t_position  *put_row_and_col(int _row, int _col);
+void		map_process(char *map);
+t_position	*finding_player_position(char **map);
+t_position	*put_row_and_col(int _row, int _col);
+void		map_tracking(char **copy_the_map, t_position *row_and_col);
 
 # endif

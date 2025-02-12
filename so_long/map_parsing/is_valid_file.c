@@ -33,11 +33,10 @@ void    is_map_valid(char **map)
     }
 }
 
-void	process_the_map(char *map)
+void	map_process(char *map)
 {
-	char		**readed_map;		// leak to free
-	t_position	*player_position;	// leak to free
-	char		**map_copy;
+	char		**readed_map;
+	t_position	*player_position;
 
 	readed_map = read_map(map);
 	if (!readed_map)
@@ -45,18 +44,21 @@ void	process_the_map(char *map)
 	is_map_valid(readed_map);
 	count_duplicate_char_in_the_map(readed_map);
 	wall_check(readed_map);
+	
 	player_position = finding_player_position(readed_map);
 	if (!player_position)
 		cleanup_and_exit("Error\nFailed to reach the player position.", readed_map);
-	map_free(readed_map);
-	free(player_position);
-	map_copy = read_map(map);
-	map_free(map_copy);
-	
+	map_tracking(readed_map, player_position);
+
+	map_free(readed_map);	// free_resurces
+	free(player_position);	// free_resurces
+
 }
 
-void	pars_the_file(char *map)
+
+void	pars_the_map(char *map)
 {
 	is_there_extension(map);
-	process_the_map(map);
+	map_process(map);
+
 }
