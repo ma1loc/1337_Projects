@@ -31,92 +31,93 @@ t_position	*finding_player_position(char **map)
 }
 
 // up, down, left, right
-void	up(char **copy_of_map, t_position *position, int *collectors, int *exit) // valid think so
+// valid think so! (is checkd)
+void	up(char **copy_of_map, t_position *position, int *collectors, int *exit)
 {
-	while (copy_of_map[position->row])
+	while (copy_of_map[position->row][position->col] != '1')
 	{
 		if (copy_of_map[position->row][position->col] == 'P' \
 		|| copy_of_map[position->row][position->col] == '0' \
-		|| copy_of_map[position->row][position->col] == 'C')
+		|| copy_of_map[position->row][position->col] == 'C' \
+		|| copy_of_map[position->row][position->col] == 'E' \
+		|| copy_of_map[position->row][position->col] == 'X')
 		{
 			if (copy_of_map[position->row][position->col] == 'C')
 				(*collectors)++;
 			if (copy_of_map[position->row][position->col] == 'E')
 				(*exit) = 1;
-			copy_of_map[position->row][position->col] = 'X';
+			if (copy_of_map[position->row][position->col] != 'X')
+				copy_of_map[position->row][position->col] = 'X';
 		}
-		if (position->row != 0)
-			position->row--;
-		else
-			break;
+		if (copy_of_map[position->row - 1][position->col] == '1')
+			return ;
+		position->row--;
 	}
 }
-void	down(char **copy_of_map, t_position *position, int *collectors, int *exit) // not valid have some thing on it!
-{
-	int	len;
 
-	len = 0;
-	while (copy_of_map[position->row])
-		len++;
-	printf("len of remining lines -> %d\n", len); // test
-	while (copy_of_map[position->row])
+// not valid have some thing on it! -> check it?
+void	down(char **copy_of_map, t_position *position, int *collectors, int *exit)
+{
+	while (copy_of_map[position->row][position->col] != '1')
 	{
 		if (copy_of_map[position->row][position->col] == 'P' \
 		|| copy_of_map[position->row][position->col] == '0' \
-		|| copy_of_map[position->row][position->col] == 'C')
+		|| copy_of_map[position->row][position->col] == 'C' \
+		|| copy_of_map[position->row][position->col] == 'E' \
+		|| copy_of_map[position->row][position->col] == 'X')
 		{
 			if (copy_of_map[position->row][position->col] == 'C')
 				(*collectors)++;
 			if (copy_of_map[position->row][position->col] == 'E')
 				(*exit) = 1;
-			copy_of_map[position->row][position->col] = 'X';
+			if (copy_of_map[position->row][position->col] != 'X')
+				copy_of_map[position->row][position->col] = 'X';
 		}
-		if (position->row != len)
-			position->row++;
-		else
-			break;
+		position->row++;
 	}
 }
-void	left(char **copy_of_map, t_position *position, int *collectors, int *exit) // valid think so!
+void	left(char **copy_of_map, t_position *position, int *collectors, int *exit)
 {
 	while (position->col != 0)
 	{
 		if (copy_of_map[position->row][position->col] == 'P' \
 		|| copy_of_map[position->row][position->col] == '0' \
-		|| copy_of_map[position->row][position->col] == 'C')
+		|| copy_of_map[position->row][position->col] == 'C' \
+		|| copy_of_map[position->row][position->col] == 'E' \
+		|| copy_of_map[position->row][position->col] == 'X')
 		{
 			if (copy_of_map[position->row][position->col] == 'C')
 				(*collectors)++;
 			if (copy_of_map[position->row][position->col] == 'E')
 				(*exit) = 1;
-			copy_of_map[position->row][position->col] = 'X';
+			if (copy_of_map[position->row][position->col] != 'X')
+				copy_of_map[position->row][position->col] = 'X';
 		}
-		else if (copy_of_map[position->row][position->col] == '1')
+		else if (copy_of_map[position->row][position->col + 1] == '1')
 			return ;
 		position->col--;
 	}
 }
-void	right(char **copy_of_map, t_position *position, int *collectors, int *exit) // valid think so!
-{
-	int	len;
 
-	len = 0;
-	while (copy_of_map[position->row][len])
-		len++;
-	printf("len of right lines -> %d\n", len); // test
-	while (position->col != len)
+
+void	right(char **copy_of_map, t_position *position, int *collectors, int *exit)
+{
+	while (copy_of_map[position->row][position->col] != '1')
 	{
 		if (copy_of_map[position->row][position->col] == 'P' \
 		|| copy_of_map[position->row][position->col] == '0' \
-		|| copy_of_map[position->row][position->col] == 'C')
+		|| copy_of_map[position->row][position->col] == 'C' \
+		|| copy_of_map[position->row][position->col] == 'E' \
+		|| copy_of_map[position->row][position->col] == 'X')
 		{
 			if (copy_of_map[position->row][position->col] == 'C')
 				(*collectors)++;
 			if (copy_of_map[position->row][position->col] == 'E')
 				(*exit) = 1;
-			copy_of_map[position->row][position->col] = 'X';
+			if (copy_of_map[position->row][position->col] != 'X')
+				copy_of_map[position->row][position->col] = 'X';
 		}
-		else if (copy_of_map[position->row][position->col] == '1')
+		if (copy_of_map[position->row][position->col + 1] == '1')
 			return ;
 		position->col++;
 	}
@@ -132,7 +133,15 @@ void	map_tracking(char **copy_of_map, t_position *position)
 	exit = 0;
 
 	// test the map move (up, down, left, right).
+	// up	 -> not valid
+	// down  -> valid
+	// left	 ->
+	// right ->
+	// printf("\nThis is the before position of the player\nrow -> %d\ncol -> %d\n", position->row, position->col);
+
+	down(copy_of_map, position, &collectors, &exit);
 	right(copy_of_map, position, &collectors, &exit);
+	up(copy_of_map, position, &collectors, &exit);
 
 	int i = 0;
 	while (copy_of_map[i])
@@ -140,5 +149,7 @@ void	map_tracking(char **copy_of_map, t_position *position)
 		printf("%s", copy_of_map[i]);
 		i++;
 	}
+
+	// printf("\nThis is the after position of the player\nrow -> %d\ncol -> %d\n", position->row, position->col);
 
 }
