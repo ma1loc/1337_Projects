@@ -29,3 +29,5 @@ t_position	*finding_player_position(char **map)
 	}
 	return (NULL);
 }
+
+// walk thgout the map and check if the map has free space to walk.

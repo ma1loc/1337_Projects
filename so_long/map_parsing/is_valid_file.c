@@ -37,6 +37,7 @@ void	process_the_map(char *map)
 {
 	char		**readed_map;		// leak to free
 	t_position	*player_position;	// leak to free
+	char		**map_copy;
 
 	readed_map = read_map(map);
 	if (!readed_map)
@@ -49,6 +50,9 @@ void	process_the_map(char *map)
 		cleanup_and_exit("Error\nFailed to reach the player position.", readed_map);
 	map_free(readed_map);
 	free(player_position);
+	map_copy = read_map(map);
+	map_free(map_copy);
+	
 }
 
 void	pars_the_file(char *map)
