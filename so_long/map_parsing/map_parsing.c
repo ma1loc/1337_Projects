@@ -50,49 +50,48 @@ char    **read_map(char *map)
 	return (split_map);
 }
 
-void	check_is_valid_dup_char(char **map, int p, int e)
+void	check_is_valid_dup_char(t_game *game)
 {
-    if (p == 0)
-        cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\" in provided MAP.", map);
-    if (e == 0)
-        cleanup_and_exit("Error\nThere's no \"EXIT_DOR\" in provided MAP.", map);
-    if (p > 1)
-        cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\" of the player in the MAP", map);
-    if (e > 1)
-        cleanup_and_exit("Error\nThere's a duplicated \"EXIT DORS\" in provided MAP", map);
-        // check here the the collacts.
-        // if the map has anything rather then (1, 0, P, E, C) exit.
+    if (game->player_count == 0)
+        cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\" in provided MAP.", game->map);
+    if (game->exit_count == 0)
+        cleanup_and_exit("Error\nThere's no \"EXIT_DOR\" in provided MAP.", game->map);
+    if (game->player_count > 1)
+        cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\" in provided MAP", game->map);
+    if (game->exit_count > 1)
+        cleanup_and_exit("Error\nThere's a \"DUP_EXIT DORS\" in provided MAP", game->map);
+    if (game->collectibles == 0)
+        cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\" in provided MAP", game->map);
+    // check here the the collacts.
+    // if the map has anything rather then (1, 0, P, E, C) exit.
 }
 
-void    count_duplicate_char_in_the_map(char **map)
+void    count_duplicate_char_in_the_map(t_game *game)
 {
-    int     p;
-    int     e;
-    int     c;
-    int     i;
-	int		j;
+    int i;
+	int	j;
 
-    p = 0;
-    e = 0;
-    c = 0;
     i = 0;
 
-    while (map[i])
+    while (game->map[i])
     {
         j = 0;
-        while(map[i][j])
-        {
-            if (map[i][j] == 'P')
-                p++;
-            else if (map[i][j] == 'E')
-                e++;
-            else if (map[i][j] == 'C') // add the check of the collacts.
-                c++;
+        while(game->map[i][j])
+        {   // there's no Nmy, have a check here
+            if (game->map[i][j] != '1' && game->map[i][j] != '0' && game->map[i][j] != 'P' 
+            && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\0')
+                cleanup_and_exit("MAP has a characters rather than i have to be", game->map);
+            else if (game->map[i][j] == 'P')
+                game->player_count++;
+            else if (game->map[i][j] == 'E')
+                game->exit_count++;
+            else if (game->map[i][j] == 'C') // add the check of the collacts.
+                game->collectibles++;
             j++;
         }
 		i++;
     }
-	check_is_valid_dup_char(map, p, e);
+	check_is_valid_dup_char(game);
 }
 
 

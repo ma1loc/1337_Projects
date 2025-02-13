@@ -33,32 +33,33 @@ void    is_map_valid(char **map)
     }
 }
 
-void	map_process(char *map)
+t_game	*map_process(char *map)
 {
-	char		**readed_map;
-	t_position	*player_position;
+	t_game *game;
 
-	readed_map = read_map(map);
-	if (!readed_map)
-		ft_putstr_fd("Error\nMap can not be readed.");
-	is_map_valid(readed_map);
-	count_duplicate_char_in_the_map(readed_map);
-	wall_check(readed_map);
+	game = malloc(sizeof(t_game));
+	if (!map)
+		ft_putstr_fd("Error\nAllocation faild.");
+	game->map = read_map(map);
+	is_map_valid(game->map);
+	count_duplicate_char_in_the_map(game);
+	wall_check(game->map);
+	finding_player_position(game);
+	finding_player_exit(game);
+
 	
-	player_position = finding_player_position(readed_map);
-	if (!player_position)
-		cleanup_and_exit("Error\nFailed to reach the player position.", readed_map);
-	map_tracking(readed_map, player_position);
-
-	map_free(readed_map);	// free_resurces
-	free(player_position);	// free_resurces
-
+	return (game);
 }
 
 
 void	pars_the_map(char *map)
 {
-	is_there_extension(map);
-	map_process(map);
+	t_game *game;
 
+	is_there_extension(map);
+	game = map_process(map);
+
+	// free resu.
+	map_free(game->map);
+	free(game);
 }

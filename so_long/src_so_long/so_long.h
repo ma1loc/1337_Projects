@@ -22,7 +22,6 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 void    ft_perror(char *str);
 
 void    is_there_extension(char *map);
-void	pars_the_map(char *map);
 char    **read_map(char *map);
 int     count_lines(char *map);
 
@@ -32,19 +31,39 @@ void	is_map_valid(char **map);
 void    cleanup_and_exit(char *str, char **readed_map);
 
 void	wall_check(char **map);
-void	count_duplicate_char_in_the_map(char **map);
-void	check_is_valid_dup_char(char **map, int p, int e);
 
-// structure for position of the player;
-typedef struct s_position
+typedef struct s_game
 {
-    int row;
-    int col;
-} t_position;
+	char    **map;         // The original map
+	char    **map_copy;    // Copy of the map for validation (BFS)
+	int     rows;          // Number of rows in the map
+	int     cols;          // Number of columns in the map
+	int     player_y;      // Player's Y position (row) 		-- done
+	int     player_x;      // Player's X position (column)		-- done
+	int     exit_x;        // Exit's X position (column) 		-- done
+	int     exit_y;        // Exit's Y position (row) 			-- done
+	int     collectibles;  // Total collectibles count			-- done
+	int     collected;     // Number of collected items
+	int     moves;         // Number of moves taken by the player
+	int		player_count;  // count the number of the P in the map
+	int		exit_count;	   // count the number of the E in the map
 
-void		map_process(char *map);
-t_position	*finding_player_position(char **map);
-t_position	*put_row_and_col(int _row, int _col);
-void		map_tracking(char **copy_the_map, t_position *row_and_col);
+    // void    *mlx;          
+    // void    *win;          
+    // void    *textures[5];
+} t_game;
+
+// typedef struct s_position
+// {
+//     int row;
+//     int col;
+// } t_position;
+
+t_game	*map_process(char *map);
+void	pars_the_map(char *map);
+void	count_duplicate_char_in_the_map(t_game *game);
+void	check_is_valid_dup_char(t_game *game);
+void    finding_player_position(t_game *map);
+void	finding_player_exit(t_game *game);
 
 # endif
