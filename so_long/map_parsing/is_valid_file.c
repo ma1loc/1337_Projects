@@ -33,21 +33,23 @@ void    is_map_valid(char **map)
     }
 }
 
-t_game	*map_process(char *map)
+t_game	*map_processing(char *map)
 {
 	t_game *game;
 
 	game = malloc(sizeof(t_game));
-	if (!map)
+	if (!game)
 		ft_putstr_fd("Error\nAllocation faild.");
+
 	game->map = read_map(map);
 	is_map_valid(game->map);
 	count_duplicate_char_in_the_map(game);
 	wall_check(game->map);
+	game->rows = count_lines(map);
+	game->cols = count_cols(game->map);
 	finding_player_position(game);
-	finding_player_exit(game);
-
-	
+	finding_player_exit(game);	
+	game->map_copy = read_map(map);
 	return (game);
 }
 
@@ -57,9 +59,10 @@ void	pars_the_map(char *map)
 	t_game *game;
 
 	is_there_extension(map);
-	game = map_process(map);
+	game = map_processing(map);
 
 	// free resu.
 	map_free(game->map);
+	map_free(game->map_copy);
 	free(game);
 }

@@ -36,8 +36,8 @@ char    **read_map(char *map)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (free(split_map), NULL);
-	line = get_next_line(fd);
 	i = 0;
+	line = get_next_line(fd);
 	while (line)
 	{
 		split_map[i] = ft_strdup(line);
@@ -62,8 +62,6 @@ void	check_is_valid_dup_char(t_game *game)
         cleanup_and_exit("Error\nThere's a \"DUP_EXIT DORS\" in provided MAP", game->map);
     if (game->collectibles == 0)
         cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\" in provided MAP", game->map);
-    // check here the the collacts.
-    // if the map has anything rather then (1, 0, P, E, C) exit.
 }
 
 void    count_duplicate_char_in_the_map(t_game *game)
@@ -79,7 +77,7 @@ void    count_duplicate_char_in_the_map(t_game *game)
         while(game->map[i][j])
         {   // there's no Nmy, have a check here
             if (game->map[i][j] != '1' && game->map[i][j] != '0' && game->map[i][j] != 'P' 
-            && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\0')
+            && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\n')
                 cleanup_and_exit("MAP has a characters rather than i have to be", game->map);
             else if (game->map[i][j] == 'P')
                 game->player_count++;
@@ -94,9 +92,18 @@ void    count_duplicate_char_in_the_map(t_game *game)
 	check_is_valid_dup_char(game);
 }
 
+int    count_cols(char **map)
+{
+    int len;
 
+    len = 0;
+    while (map[0][len])
+        len++;
+    len--;
+    return (len);
+}
 
-void last_row(char **map)
+void    last_row(char **map)
 {
     char *_last_row;
     int i;

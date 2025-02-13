@@ -29,41 +29,37 @@ int     count_lines(char *map);
 void    map_free(char **readed_map);
 void	is_map_valid(char **map);
 void    cleanup_and_exit(char *str, char **readed_map);
-
 void	wall_check(char **map);
+int    	count_cols(char **map);
+
 
 typedef struct s_game
 {
-	char    **map;         // The original map
-	char    **map_copy;    // Copy of the map for validation (BFS)
-	int     rows;          // Number of rows in the map
-	int     cols;          // Number of columns in the map
+	char    **map;         // The original map					-- done
+	char    **map_copy;    // Copy of the map for validation (BFS) -- done
+	int     rows;          // Number of rows in the map			-- done
+	int     cols;          // Number of columns in the map		-- done
 	int     player_y;      // Player's Y position (row) 		-- done
 	int     player_x;      // Player's X position (column)		-- done
 	int     exit_x;        // Exit's X position (column) 		-- done
 	int     exit_y;        // Exit's Y position (row) 			-- done
 	int     collectibles;  // Total collectibles count			-- done
-	int     collected;     // Number of collected items
-	int     moves;         // Number of moves taken by the player
-	int		player_count;  // count the number of the P in the map
-	int		exit_count;	   // count the number of the E in the map
-
+	int     collected;     // Number of collected items			-- in game
+	int     moves;         // Number of moves taken by the player	-- in game
+	int		player_count;  // count the number of the P in the map	-- done
+	int		exit_count;	   // count the number of the E in the map	-- done
     // void    *mlx;          
     // void    *win;          
     // void    *textures[5];
 } t_game;
 
-// typedef struct s_position
-// {
-//     int row;
-//     int col;
-// } t_position;
-
-t_game	*map_process(char *map);
 void	pars_the_map(char *map);
+t_game	*map_processing(char *map);
 void	count_duplicate_char_in_the_map(t_game *game);
 void	check_is_valid_dup_char(t_game *game);
 void    finding_player_position(t_game *map);
 void	finding_player_exit(t_game *game);
+
+void	map_validation_path();
 
 # endif

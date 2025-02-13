@@ -49,3 +49,12 @@ void	finding_player_exit(t_game *game)
 		row++;
 	}
 }
+// flood fill algo 
+// (y + 1)
+// (y - 1)
+// (x + 1)
+// (x - 1)
+// valid the path of the player !!!
+void	map_validation_path()
+{
+}
