@@ -45,8 +45,9 @@ t_game	*map_processing(char *map)
 	game->map = read_map(map);
 	if (!game->map)
 		cleanup_and_exit("Error\nParsing Faild!!!", game);
-	is_map_valid(game); // done check
+	is_map_valid(game);
 	count_duplicate_char_in_the_map(game);
+	check_is_valid_dup_char(game);
 	wall_check(game);
 	game->rows = count_lines(map);
 	game->cols = count_cols(game->map);
@@ -55,7 +56,6 @@ t_game	*map_processing(char *map)
 	game->map_copy = read_map(map);
 	return (game);
 }
-
 
 void	pars_the_map(char *map)
 {

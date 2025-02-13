@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-// libft functions
+
 size_t	ft_strlen(char *str);
 int		ft_strncmp(char *s1, char *s2, size_t n);
 char	*ft_strnstr(char *str, char *to_find, size_t len);
@@ -20,15 +20,11 @@ char	*ft_strchr(const char *str, char c);
 char	*ft_strdup(const char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 void    ft_perror(char *str);
-
 void    is_there_extension(char *map);
 char    **read_map(char *map);
 int     count_lines(char *map);
-
-// map_parsing fun
-void    map_free(char **readed_map);
 int    	count_cols(char **map);
-
+void    map_free(char **readed_map);
 
 typedef struct s_game
 {
@@ -54,7 +50,6 @@ void	pars_the_map(char *map);
 t_game	*map_processing(char *map);
 void	is_map_valid(t_game *game);
 void	wall_check(t_game *game);
-
 void    cleanup_and_exit(char *str, t_game *game);
 void	count_duplicate_char_in_the_map(t_game *game);
 void	check_is_valid_dup_char(t_game *game);

@@ -77,7 +77,7 @@ void    count_duplicate_char_in_the_map(t_game *game)
     {
         j = 0;
         while(game->map[i][j])
-        {   // there's no Nmy, have a check here
+        {
             if (game->map[i][j] != '1' && game->map[i][j] != '0' && game->map[i][j] != 'P' 
             && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\n')
                 cleanup_and_exit("Error\nMAP has a characters rather than i have to be", game);
@@ -91,7 +91,6 @@ void    count_duplicate_char_in_the_map(t_game *game)
         }
 		i++;
     }
-	check_is_valid_dup_char(game);
 }
 
 int    count_cols(char **map)
