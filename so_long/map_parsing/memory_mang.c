@@ -1,24 +1,24 @@
 #include "../src_so_long/so_long.h"
 
-void    map_free(char **readed_map)
+void    map_free(char **map)
 {
     int i;
 
     i = 0;
-    if (readed_map)
+    while (map[i])
     {
-        while (readed_map[i])
-        {
-            free(readed_map[i]);
-            i++;
-        }
+        free(map[i]);
+        i++;
     }
-    free(readed_map);
+    free(map);
 }
 
-void    cleanup_and_exit(char *str, char **readed_map)
+void    cleanup_and_exit(char *str, t_game *game)
 {
-    if (readed_map)
-        map_free(readed_map);
+    if (game->map)
+        map_free(game->map);
+    if (game->map_copy)
+        map_free(game->map_copy);
+    free(game);
     ft_putstr_fd(str);
 }

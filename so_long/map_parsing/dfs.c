@@ -57,4 +57,5 @@ void	finding_player_exit(t_game *game)
 // valid the path of the player !!!
 void	map_validation_path()
 {
+	
 }

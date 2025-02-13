@@ -53,15 +53,15 @@ char    **read_map(char *map)
 void	check_is_valid_dup_char(t_game *game)
 {
     if (game->player_count == 0)
-        cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\" in provided MAP.", game->map);
+        cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\" in provided MAP.", game);
     if (game->exit_count == 0)
-        cleanup_and_exit("Error\nThere's no \"EXIT_DOR\" in provided MAP.", game->map);
+        cleanup_and_exit("Error\nThere's no \"EXIT_DOR\" in provided MAP.", game);
     if (game->player_count > 1)
-        cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\" in provided MAP", game->map);
+        cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\" in provided MAP", game);
     if (game->exit_count > 1)
-        cleanup_and_exit("Error\nThere's a \"DUP_EXIT DORS\" in provided MAP", game->map);
+        cleanup_and_exit("Error\nThere's a \"DUP_EXIT DORS\" in provided MAP", game);
     if (game->collectibles == 0)
-        cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\" in provided MAP", game->map);
+        cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\" in provided MAP", game);
 }
 
 void    count_duplicate_char_in_the_map(t_game *game)
@@ -70,7 +70,9 @@ void    count_duplicate_char_in_the_map(t_game *game)
 	int	j;
 
     i = 0;
-
+    game->player_count = 0;
+    game->exit_count = 0;
+    game->collectibles = 0;
     while (game->map[i])
     {
         j = 0;
@@ -78,12 +80,12 @@ void    count_duplicate_char_in_the_map(t_game *game)
         {   // there's no Nmy, have a check here
             if (game->map[i][j] != '1' && game->map[i][j] != '0' && game->map[i][j] != 'P' 
             && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\n')
-                cleanup_and_exit("MAP has a characters rather than i have to be", game->map);
+                cleanup_and_exit("Error\nMAP has a characters rather than i have to be", game);
             else if (game->map[i][j] == 'P')
                 game->player_count++;
             else if (game->map[i][j] == 'E')
                 game->exit_count++;
-            else if (game->map[i][j] == 'C') // add the check of the collacts.
+            else if (game->map[i][j] == 'C')
                 game->collectibles++;
             j++;
         }
@@ -103,47 +105,46 @@ int    count_cols(char **map)
     return (len);
 }
 
-void    last_row(char **map)
+void    last_row(t_game *game)
 {
     char *_last_row;
     int i;
 
     i = 0;
-    while (map[i])
+    while (game->map[i])
         i++;
     i--;
-    _last_row = map[i];
+    _last_row = game->map[i];
     i = 0;
 	while (_last_row[i])
 	{
 		if (_last_row[i] != '1')
-            cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", map);
+            cleanup_and_exit("Error\n\"Bottom Walls\" not set as it expected.", game);
 		i++;
 	}
 }
 
-void	wall_check(char **map)
+void	wall_check(t_game *game)
 {
     int		i;
 	size_t	len_of_line;
 
     i = 0;
-    while (map[0][i] && map[0][i] != '\n')
+    while (game->map[0][i] && game->map[0][i] != '\n')
     {
-        if (map[0][i] != '1')
-            cleanup_and_exit("Error\n\"Top Walls\" not set as it expected.", map);
+        if (game->map[0][i] != '1')
+            cleanup_and_exit("Error\n\"Top Walls\" not set as it expected.", game);
         i++;
     }
 	i = 0;
-    len_of_line = ft_strlen(map[0]);
-	while (map[i])
+    len_of_line = ft_strlen(game->map[0]);
+	while (game->map[i])
 	{
-        if (map[i][len_of_line - 1] == '\n')
+        if (game->map[i][len_of_line - 1] == '\n')
             len_of_line -= 1;
-
-		if (map[i][0] != '1' || map[i][len_of_line - 1] != '1')
-            cleanup_and_exit("Error\n\"Left or Right Walls\" not set as it expected.", map);
+		if (game->map[i][0] != '1' || game->map[i][len_of_line - 1] != '1')
+            cleanup_and_exit("Error\n\"Left or Right Walls\" not set as it expected.", game);
 		i++;
 	}
-    last_row(map);
+    last_row(game);
 }

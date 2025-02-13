@@ -27,9 +27,6 @@ int     count_lines(char *map);
 
 // map_parsing fun
 void    map_free(char **readed_map);
-void	is_map_valid(char **map);
-void    cleanup_and_exit(char *str, char **readed_map);
-void	wall_check(char **map);
 int    	count_cols(char **map);
 
 
@@ -55,11 +52,15 @@ typedef struct s_game
 
 void	pars_the_map(char *map);
 t_game	*map_processing(char *map);
+void	is_map_valid(t_game *game);
+void	wall_check(t_game *game);
+
+void    cleanup_and_exit(char *str, t_game *game);
 void	count_duplicate_char_in_the_map(t_game *game);
 void	check_is_valid_dup_char(t_game *game);
 void    finding_player_position(t_game *map);
 void	finding_player_exit(t_game *game);
 
-void	map_validation_path();
+void	map_validation_path(); // path check
 
 # endif
