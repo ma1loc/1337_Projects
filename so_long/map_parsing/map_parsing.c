@@ -55,11 +55,11 @@ void	check_is_valid_dup_char(t_game *game)
     if (game->player_count == 0)
         cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\" in provided MAP.", game);
     if (game->exit_count == 0)
-        cleanup_and_exit("Error\nThere's no \"EXIT_DOR\" in provided MAP.", game);
+        cleanup_and_exit("Error\nThere's no \"EXIT_DOOR\" in provided MAP.", game);
     if (game->player_count > 1)
         cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\" in provided MAP", game);
     if (game->exit_count > 1)
-        cleanup_and_exit("Error\nThere's a \"DUP_EXIT DORS\" in provided MAP", game);
+        cleanup_and_exit("Error\nThere's a \"DUP_EXIT DOORS\" in provided MAP", game);
     if (game->collectibles == 0)
         cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\" in provided MAP", game);
 }

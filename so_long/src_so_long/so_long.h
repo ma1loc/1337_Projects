@@ -28,19 +28,19 @@ void    map_free(char **readed_map);
 
 typedef struct s_game
 {
-	char    **map;         // The original map					-- done
-	char    **map_copy;    // Copy of the map for validation (BFS) -- done
-	int     rows;          // Number of rows in the map			-- done
-	int     cols;          // Number of columns in the map		-- done
-	int     player_row;      // Player's Y position (row) 		-- done
-	int     player_col;      // Player's X position (column)		-- done
-	int     exit_row;        // Exit's Y position (row) 			-- done
-	int     exit_col;        // Exit's X position (column) 		-- done
-	int     collectibles;  // Total collectibles count			-- done
-	int     collected;     // Number of collected items			-- in game
-	int     moves;         // Number of moves taken by the player	-- in game
-	int		player_count;  // count the number of the P in the map	-- done
-	int		exit_count;	   // count the number of the E in the map	-- done
+	char    **map;
+	char    **map_copy;
+	int     rows;
+	int     cols;
+	int     player_row;
+	int     player_col;
+	int     exit_row;
+	int     exit_col;
+	int     collectibles;
+	int     collected;
+	int     moves;
+	int		player_count;
+	int		exit_count;
     // void    *mlx;          
     // void    *win;          
     // void    *textures[5];
@@ -55,7 +55,7 @@ void	count_duplicate_char_in_the_map(t_game *game);
 void	check_is_valid_dup_char(t_game *game);
 void    finding_player_position(t_game *map);
 void	finding_player_exit(t_game *game);
-
-void	map_validation_path(t_game *game, int x, int y); // path check
+void	map_validation_path(t_game *game, int row, int col);
+void	is_reach_all_map(t_game *game);
 
 # endif
