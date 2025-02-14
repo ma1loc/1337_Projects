@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include "../minilibx-linux/mlx_int.h"
 
 
 size_t	ft_strlen(char *str);
