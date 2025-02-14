@@ -32,10 +32,10 @@ typedef struct s_game
 	char    **map_copy;    // Copy of the map for validation (BFS) -- done
 	int     rows;          // Number of rows in the map			-- done
 	int     cols;          // Number of columns in the map		-- done
-	int     player_y;      // Player's Y position (row) 		-- done
-	int     player_x;      // Player's X position (column)		-- done
-	int     exit_x;        // Exit's X position (column) 		-- done
-	int     exit_y;        // Exit's Y position (row) 			-- done
+	int     player_row;      // Player's Y position (row) 		-- done
+	int     player_col;      // Player's X position (column)		-- done
+	int     exit_row;        // Exit's Y position (row) 			-- done
+	int     exit_col;        // Exit's X position (column) 		-- done
 	int     collectibles;  // Total collectibles count			-- done
 	int     collected;     // Number of collected items			-- in game
 	int     moves;         // Number of moves taken by the player	-- in game
@@ -56,6 +56,6 @@ void	check_is_valid_dup_char(t_game *game);
 void    finding_player_position(t_game *map);
 void	finding_player_exit(t_game *game);
 
-void	map_validation_path(); // path check
+void	map_validation_path(t_game *game, int x, int y); // path check
 
 # endif

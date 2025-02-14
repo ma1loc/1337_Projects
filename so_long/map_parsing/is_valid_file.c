@@ -64,6 +64,18 @@ void	pars_the_map(char *map)
 	is_there_extension(map);
 	game = map_processing(map);
 
+	// is valid path? have to check the (x and y) direction
+	map_validation_path(game, game->player_row, game->player_col);
+	int i;
+	i = 0;
+	while (game->map_copy[i])
+	{
+		printf("%s", game->map_copy[i]);
+		i++;
+	}
+
+	printf("\ntotal = %d\ncollctables %d ", game->collectibles, game->collected);
+	printf("exit_count = %d", game->exit_count);
 	// free resu.
 	map_free(game->map);
 	map_free(game->map_copy);

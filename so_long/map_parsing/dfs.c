@@ -1,9 +1,5 @@
 #include "../src_so_long/so_long.h"
 
-// here the algo of the flood fill algorithm
-// Breadth First Search (BFS)
-
-// find the {row & col}
 void	finding_player_position(t_game *game)
 {
 	int	row;
@@ -17,8 +13,8 @@ void	finding_player_position(t_game *game)
 		{
 			if (game->map[row][col] == 'P')
 			{
-				game->player_y = row;
-				game->player_x = col;
+				game->player_row = row;
+				game->player_col = col;
 				return ;
 			}
 			col++;
@@ -40,8 +36,8 @@ void	finding_player_exit(t_game *game)
 		{
 			if (game->map[row][col] == 'E')
 			{
-				game->exit_y = row;
-				game->exit_x = col;
+				game->exit_row = row;
+				game->exit_col = col;
 				return ;
 			}
 			col++;
@@ -49,13 +45,30 @@ void	finding_player_exit(t_game *game)
 		row++;
 	}
 }
-// flood fill algo 
-// (y + 1)
-// (y - 1)
-// (x + 1)
-// (x - 1)
-// valid the path of the player !!!
-void	map_validation_path()
+
+void	map_validation_path(t_game *game, int row, int col)
 {
-	
+    int i;
+
+    int dir[4][2] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+
+    if (row < 0 || col < 0 || row >= game->rows || col >= game->cols)
+        return ;
+    if (game->map_copy[row][col] == '1' || game->map_copy[row][col] == 'V')
+        return ;
+	else if (game->map_copy[row][col] == 'E')
+	{
+        game->exit_count++;
+		return ;
+	}
+	else if (game->map_copy[row][col] == 'C')
+		game->collected++;
+    
+    game->map_copy[row][col] = 'V';
+    i = 0;
+	while (i < 4) 
+	{
+        map_validation_path(game, row + dir[i][0], col + dir[i][1]);
+		i++;
+	}
 }
