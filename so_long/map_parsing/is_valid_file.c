@@ -66,5 +66,6 @@ t_game	*pars_the_map(char *map)
 	game->exit_count = 0;
 	map_validation_path(game, game->player_row, game->player_col);
 	is_reach_all_map(game);
+	map_free(game->map_copy);	// free the copy_map (no more needed)?
 	return (game);
 }
