@@ -56,7 +56,15 @@ typedef	struct s_data
 	
 	int height;
 	int width;
-} t_data;
+}	t_data;
+
+typedef struct s_directions
+{
+	void	*up;
+	void	*down;
+	void	*left;
+	void	*right;
+}	t_directions;
 
 t_game	*pars_the_map(char *map);
 t_game	*map_processing(char *map);
