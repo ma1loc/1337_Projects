@@ -13,7 +13,7 @@ void	init_and_window(t_game *game)
 	height = game->cols * 64;
 	width = game->rows * 64;
 	game->win = mlx_new_window(game->mlx, height, width, "so_long");
-	if (!game->mlx)
+	if (!game->mlx) // use the [mlx_destroy_window]
 		cleanup_and_exit("Error\nWindow failed to open.", game); // here have to free the [game->mlx]
 	data.height = height;
 	data.width = width;
@@ -24,26 +24,14 @@ void	put_img_to_win(t_game *game)
     t_data	data;
 
 	// set the textures (space, wall, playser, ) what if i have more then one in the player for example i have to put all the textures of it
-	data.img = mlx_xpm_file_to_image(game->mlx, "/home/yanflous/Desktop/Project_/so_long/map_rendring/images/wall.xpm", &data.width, &data.height); // check null
+	data.img = mlx_xpm_file_to_image(game->mlx, "/home/yanflous/Desktop/Project_/so_long/map_rendring/images/space.xpm", &data.width, &data.height); // check null
 	if (!data.img) // here have to clear and msg the error
 		cleanup_and_exit("Error\nFailed to reach the image path", game);
 	
 	// have i put it in a functoin to set the all images to the map ??? 
 	//					   [  init	 , 	 window ,  image , ?, ?]
-    // mlx_put_image_to_window(game->mlx, game->win, data.img, 0, 0);
-	// [[[[[[[ test to remove ]]]]]]
-	int	i, j;
-	i = 0;
-	while ((game->cols * 64) != i)
-	{
-		j = 0;
-		while ((game->rows) * 64 != j)
-    	{
-			mlx_put_image_to_window(game->mlx, game->win, data.img, i, j);
-			j+=64;
-		}	
-		i += 64;
-	}
+    mlx_put_image_to_window(game->mlx, game->win, data.img, 0, 0);
+
 }
 
 void    process_the_map_rendering(t_game *game)
