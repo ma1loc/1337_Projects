@@ -18,21 +18,33 @@ void	init_and_window(t_game *game)
 	data.width = width;
 }
 
+// ------------ i have to work for this part now  -------------
 void	put_img_to_win(t_game *game)
 {
     t_data	data; // there remove?
 
 	// set the textures (space, wall, playser, ) what if i have more then one in the player for example i have to put all the textures of it
-	data.img = mlx_xpm_file_to_image(game->mlx, "/home/yanflous/Desktop/Project_/so_long/map_rendring/images/space.xpm", &data.width, &data.height);
+	// why the mlx_xpm_file_to_image take at the end & of int?
+	data.img = mlx_xpm_file_to_image(game->mlx, "/home/yanflous/Desktop/Project_/so_long/map_rendring/img_resource/player/1_up.xpm", &data.width, &data.height);
 	if (!data.img) // here have to clear and msg the error
 	{
 		mlx_destroy_window(game->mlx, game->win);
 		cleanup_and_exit("Error\nFailed to reach the image path", game);
 	}
+
 	// have i put it in a functoin to set the all images to the map ??? 
 	//					   [  init	 , 	 window ,  image , ?, ?]
-    mlx_put_image_to_window(game->mlx, game->win, data.img, 0, 0);
-
+	load_player_images(game);
+	
+	int i = 0;
+	while (i <= 4)
+	{
+		if (i == 4)
+			i = 0;
+		player_directions(game, i);
+		i++;
+	}
+    // mlx_put_image_to_window(game->mlx, game->win, data.img, game->player_col, game->player_row);
 }
 
 void    process_the_map_rendering(t_game *game)
