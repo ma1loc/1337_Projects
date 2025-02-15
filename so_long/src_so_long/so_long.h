@@ -42,9 +42,9 @@ typedef struct s_game
 	int     moves;
 	int		player_count;
 	int		exit_count;
-    // void    *mlx;          
-    // void    *win;          
-    // void    *textures[5];
+    // void    *mlx;
+    // void    *win; 
+    // void    *textures[5]; // 1 0 E P X
 } t_game;
 
 void	pars_the_map(char *map);
@@ -58,5 +58,13 @@ void    finding_player_position(t_game *map);
 void	finding_player_exit(t_game *game);
 void	map_validation_path(t_game *game, int row, int col);
 void	is_reach_all_map(t_game *game);
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+} t_data;
 
 # endif
