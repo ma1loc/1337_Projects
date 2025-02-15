@@ -57,7 +57,7 @@ t_game	*map_processing(char *map)
 	return (game);
 }
 
-void	pars_the_map(char *map)
+t_game	*pars_the_map(char *map)
 {
 	t_game *game;
 
@@ -66,16 +66,5 @@ void	pars_the_map(char *map)
 	game->exit_count = 0;
 	map_validation_path(game, game->player_row, game->player_col);
 	is_reach_all_map(game);
-
-	// int i = 0;
-	// while (game->map_copy[i])
-	// {
-	// 	printf("%s", game->map_copy[i]);
-	// 	i++;
-	// }
-	// printf("\ntotal = %d\ncollctables %d\nexit_count = %d\n", game->collectibles, game->collected , game->exit_count);	
-	// free resu.
-	map_free(game->map);
-	map_free(game->map_copy);
-	free(game);
+	return (game);
 }
