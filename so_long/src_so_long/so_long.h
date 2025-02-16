@@ -5,16 +5,22 @@
 #  define BUFFER_SIZE   42
 # endif
 
-#define UP 0
-#define DOWN 1
-#define LEFT 2
-#define RIGHT 3
+// remove it
+#define UP_KEY XK_Up
+#define DOWN_KEY XK_Down
+#define LEFT_KEY XK_Left
+#define RIGHT_KEY XK_Right
+#define ESC_KEY XK_Escape
+
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <mlx.h>
+#include <X11/keysym.h>
+#include <X11/X.h>
+
 
 size_t	ft_strlen(char *str);
 int		ft_strncmp(char *s1, char *s2, size_t n);
@@ -78,7 +84,7 @@ void	put_img_to_win(t_game *game);
 void	load_player_images(t_game *game);
 void	load_enemy_images(t_game *game);
 void	player_directions(t_game *game, int key_move);
-void	enemy_directions(t_game *game);
+int		press_key(int keycode, t_game *game);
 
 
 #endif

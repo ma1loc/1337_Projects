@@ -18,30 +18,50 @@ void	init_and_window(t_game *game)
 	}
 }
 
-// ------------ i have to work for this part now  -------------
 void	put_img_to_win(t_game *game)
-{
-	// void *img;
-	// int h, w;
-	// img = mlx_xpm_file_to_image(game->mlx, "map_rendring/img_resource/door/door_open.xpm", &h, &w);
-	// if (!img)
-	// {
-	// 	printf("not such file");
-	// 	exit(1);
-	// }
-    // mlx_put_image_to_window(game->mlx, game->win, img, game->player_col, game->player_row);
-
+{	// done so !!!
 	load_player_images(game);
 	load_enemy_images(game);
 
-	// player_directions(game, 0);
-	// enemy_directions(game);
+	player_directions(game, 0);
 }
 
-void    process_the_map_rendering(t_game *game)
+
+
+// void    process_the_map_rendering(t_game *game)
+// {
+// 	// set the textures (space, wall, playser, ) what if i have more then one in the player for example i have to put all the textures of it
+// 	init_and_window(game); // done!!! (Create a new window.)
+// 	put_img_to_win(game);
+
+// 	mlx_key_hook(game->mlx, press_key, game);
+
+// 	mlx_loop(game->mlx); // this is for what? (is keep the window open, i think so !!!)
+// }
+
+#include <mlx.h>
+
+int press_key(int keycode, t_game *game)
 {
-	// set the textures (space, wall, playser, ) what if i have more then one in the player for example i have to put all the textures of it
-	// init_and_window(game); // done!!! (Create a new window.)
-	put_img_to_win(game);
-	// mlx_loop(game->mlx); // this is for what? (is keep the window open, i think so !!!)
+    if (keycode == 65361)  // Left arrow key
+        game->player_col -= 1;
+    else if (keycode == 65363)  // Right arrow key
+        game->player_col += 1;
+    else if (keycode == 65362)  // Up arrow key
+        game->player_row -= 1;
+    else if (keycode == 65364)  // Down arrow key
+        game->player_row += 1;
+    else if (keycode == 65307)  // ESC key
+        exit(0);  // Exit the game
+
+    return 0;
+}
+
+void process_the_map_rendering(t_game *game)
+{
+    init_and_window(game); // Create a new window.
+    put_img_to_win(game);  // Draw the initial state of the map.
+
+    mlx_key_hook(game->win, press_key, game);  // Register the key event handler.
+    mlx_loop(game->mlx);  // Enter the event loop, keeping the window open and responsive.
 }
