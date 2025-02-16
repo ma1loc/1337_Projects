@@ -39,23 +39,23 @@ void	put_img_to_win(t_game *game)
 // 	mlx_loop(game->mlx); // this is for what? (is keep the window open, i think so !!!)
 // }
 
-#include <mlx.h>
+// #include <mlx.h>
 
-int press_key(int keycode, t_game *game)
-{
-    if (keycode == 65361)  // Left arrow key
-        game->player_col -= 1;
-    else if (keycode == 65363)  // Right arrow key
-        game->player_col += 1;
-    else if (keycode == 65362)  // Up arrow key
-        game->player_row -= 1;
-    else if (keycode == 65364)  // Down arrow key
-        game->player_row += 1;
-    else if (keycode == 65307)  // ESC key
-        exit(0);  // Exit the game
+// int press_key(int keycode, t_game *game)
+// {
+//     if (keycode == 65361)  // Left arrow key
+//         game->player_col -= 1;
+//     else if (keycode == 65363)  // Right arrow key
+//         game->player_col += 1;
+//     else if (keycode == 65362)  // Up arrow key
+//         game->player_row -= 1;
+//     else if (keycode == 65364)  // Down arrow key
+//         game->player_row += 1;
+//     else if (keycode == 65307)  // ESC key
+//         exit(0);  // Exit the game
 
-    return 0;
-}
+//     return 0;
+// }
 
 void process_the_map_rendering(t_game *game)
 {

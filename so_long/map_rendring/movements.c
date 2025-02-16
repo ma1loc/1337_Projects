@@ -15,17 +15,20 @@ int	press_key(int keycode, t_game *game)
 		game->player_col += 1;
 	else if (keycode == ESC_KEY)
 		exit(0);
+
+	player_directions(game, 0);
 	return (0);
 }
 
 void	player_directions(t_game *game, int key_move)
 {
-	if (key_move == 0)		//	[ init	 , 	window ,    image        ,        ?,                 ?]			
-		mlx_put_image_to_window(game->mlx, game->win, game->player.up, game->player_col, game->player_row);
-	else if (key_move == 1)
-		mlx_put_image_to_window(game->mlx, game->win, game->player.down, game->player_col, game->player_row);
-	else if (key_move == 2)
-		mlx_put_image_to_window(game->mlx, game->win, game->player.left, game->player_col, game->player_row);
-	else if (key_move == 3)
-		mlx_put_image_to_window(game->mlx, game->win, game->player.right, game->player_col, game->player_row);
+	(void) key_move;
+	// if (key_move == 0)		//	[ init	 , 	window ,    image        ,        ?,                 ?]			
+		mlx_put_image_to_window(game->mlx, game->win, game->player.up, game->player_col *64, game->player_row *64);
+	//else if (key_move == 1)
+	//	mlx_put_image_to_window(game->mlx, game->win, game->player.down, game->player_col, game->player_row);
+	//else if (key_move == 2)
+	//	mlx_put_image_to_window(game->mlx, game->win, game->player.left, game->player_col, game->player_row);
+	//else if (key_move == 3)
+	//	mlx_put_image_to_window(game->mlx, game->win, game->player.right, game->player_col, game->player_row);
 }
