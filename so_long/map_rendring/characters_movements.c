@@ -22,8 +22,8 @@ void	load_player_images(t_game *game)
 	"/home/yanflous/Desktop/Project_/so_long/map_rendring/img_resource/enemy/enemy.xpm", \
 	&width, &height);
 
-	if (!game->player.up || !game->player.down || !game->player.left || !game->player.right)
-		cleanup_and_exit("Error: Failed to load player images\n", game); // have free some resurses here !!!
+	// if (!game->player.up || !game->player.down || !game->player.left || !game->player.right)
+	// 	cleanup_and_exit("Error: Failed to load player images\n", game); // have free some resurses here !!!
 }
 
 // move function.
