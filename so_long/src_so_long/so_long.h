@@ -58,19 +58,8 @@ typedef struct s_game
 	void		*win;			// -- done
 	void		*textures[5];	// -- not yet
 	t_player	player;
+	void		*enemy[5];
 }	t_game;
-
-typedef	struct s_data
-{
-	void	*img;			// -- done
-	char	*addr;			// -- not yet
-	int		bits_per_pixel;	// -- not yet
-	int		line_length;	// -- not yet
-	int		endian;			// -- not yet
-	
-	int height;
-	int width;
-}	t_data;
 
 t_game	*pars_the_map(char *map);
 t_game	*map_processing(char *map);
@@ -87,6 +76,9 @@ void	is_reach_all_map(t_game *game);
 void	process_the_map_rendering(t_game *game);
 void	put_img_to_win(t_game *game);
 void	load_player_images(t_game *game);
+void	load_enemy_images(t_game *game);
 void	player_directions(t_game *game, int key_move);
+void	enemy_directions(t_game *game);
+
 
 #endif
