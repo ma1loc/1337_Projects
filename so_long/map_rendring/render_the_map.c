@@ -7,15 +7,12 @@ void	init_and_window(t_game *game)
 	
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		cleanup_and_exit("Error\nInitialization of the mlx failed.", game);
+		cleanup_and_exit("Error\nInitialization of the mlx failed.", game, 1);
 	width = game->cols * 64;
 	height = game->rows * 64;
 	game->win = mlx_new_window(game->mlx, width, height, "so_long");
 	if (!game->win)
-	{
-		mlx_destroy_window(game->mlx, game->win);
-		cleanup_and_exit("Error\nWindow failed to open.", game);
-	}
+		cleanup_and_exit("Error\nWindow failed to open.", game, 1);
 }
 
 void	init_the_map(t_game *game)
@@ -30,7 +27,7 @@ void	init_the_map(t_game *game)
 		while (game->map[row][col])
 		{
 			if (game->map[row][col] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->player.right, col *64, row *64);
+				mlx_put_image_to_window(game->mlx, game->win, game->player[0], col *64, row *64);
 			else if (game->map[row][col] == '1')
 				mlx_put_image_to_window(game->mlx, game->win, game->wall, col *64, row *64);
 			else if (game->map[row][col] == '0')
@@ -39,56 +36,62 @@ void	init_the_map(t_game *game)
 				mlx_put_image_to_window(game->mlx, game->win, game->coin, col *64, row *64);
 			else if (game->map[row][col] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win, game->exit_door[0], col *64, row *64);
-			// if (game->map[row][col] == 'N')
-			// 	mlx_put_image_to_window(game->mlx, game->win, game->wall, game->player_col *64, game->player_row *64);
+			if (game->map[row][col] == 'N')
+				mlx_put_image_to_window(game->mlx, game->win, game->enemy[0], col *64, row *64);
 			col++;
 		}
 		row++;
 	}
 }
 
-int	press_key(int keycode, t_game *game)
+int press_key(int keycode, t_game *game)
 {
-    t_direction row;
-	t_direction col;
+    t_direction move;
 
-	row.new_row = game->player_row;
-	col.new_col = game->player_col;
-	
-	int new_row = game->player_row;
-    int new_col = game->player_col;
+	move.new_row = game->player_row;
+	move.new_col = game->player_col;
 
     if (keycode == UP_KEY)
-		row.new_row -= 1;
+		move.new_row -= 1;
     else if (keycode == DOWN_KEY)
-        row.new_row += 1;
+        move.new_row += 1;
     else if (keycode == LEFT_KEY)
-		col.new_col -= 1;
+		move.new_col -= 1;
     else if (keycode == RIGHT_KEY)
-		col.new_col += 1;
-    else if (keycode == ESC_KEY)
-        exit(0);
-	return (keycode)
+		move.new_col += 1;
+	else if (keycode == ESC_KEY)
+		cleanup_and_exit("game finish", game, 0);
+	do_press_key(game, move, keycode);
+	return (0);
 }
 
-void	do_press_key(t_game *game)
+void	do_press_key(t_game *game, t_direction move, int keycode)
 {
-
-
-	if (game->map[row.new_row][col.new_col] == '1')
+	if (game->map[move.new_row][move.new_col] == '1')
 		return ;
-    mlx_put_image_to_window(game->mlx, game->win, game->free_sapce, game->player_col * 64, game->player_row * 64);
+	mlx_put_image_to_window(game->mlx, game->win, game->free_sapce, game->player_col * 64, game->player_row * 64);
+	game->player_col = move.new_col;
+	game->player_row = move.new_row;
 
-    if (keycode == UP_KEY)
-        mlx_put_image_to_window(game->mlx, game->win, game->player.up, game->player_col * 64, game->player_row * 64);
-    else if (keycode == DOWN_KEY)
-        mlx_put_image_to_window(game->mlx, game->win, game->player.down,  game->player_col * 64, game->player_row * 64);
-    else if (keycode == LEFT_KEY)
-        mlx_put_image_to_window(game->mlx, game->win, game->player.left,  game->player_col * 64, game->player_row * 64);
-    else if (keycode == RIGHT_KEY)
-        mlx_put_image_to_window(game->mlx, game->win, game->player.right, game->player_col * 64, game->player_row * 64);
+	if (keycode == UP_KEY)
+		mlx_put_image_to_window(game->mlx, game->win, game->player[1], game->player_col * 64, game->player_row * 64);
+	else if (keycode == DOWN_KEY)
+		mlx_put_image_to_window(game->mlx, game->win, game->player[2],  game->player_col * 64, game->player_row * 64);
+	else if (keycode == LEFT_KEY)
+		mlx_put_image_to_window(game->mlx, game->win, game->player[3],  game->player_col * 64, game->player_row * 64);
+	else if (keycode == RIGHT_KEY)
+		mlx_put_image_to_window(game->mlx, game->win, game->player[4], game->player_col * 64, game->player_row * 64);
 }	
 
+// void	allocte_map_images(t_game *game)
+// {
+// 	game->player = malloc(sizeof(void *) * 6);
+// 	if (!game->player)
+// 	{
+//    		printf("Allocation failed for player images\n");
+//    		cleanup_and_exit("Error: Memory allocation failed for player images\n", game, 1);
+// 	}
+// }
 
 void	put_img_to_win(t_game *game)
 {

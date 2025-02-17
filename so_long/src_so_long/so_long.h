@@ -37,14 +37,6 @@ int		count_lines(char *map);
 int		count_cols(char **map);
 void	map_free(char **readed_map);
 
-typedef struct s_player
-{
-    void *up;
-    void *down;
-    void *left;
-    void *right;
-} t_player;
-
 typedef struct s_game
 {
 	char		**map;
@@ -60,13 +52,13 @@ typedef struct s_game
 	int			moves;
 	int			player_count;
 	int			exit_count;
-	void		*mlx;			// -- done
-	void		*win;			// -- done
-	void		*wall;			// -- done
-	void		*free_sapce;	// -- done
-	t_player	player;			// -- done
-	void		*enemy[5];		// -- done
-	void		*exit_door[2];	// -- done
+	void		*mlx;			// -- done free
+	void		*win;			// -- done free
+	void		*wall;			// -- done free
+	void		*free_sapce;	// -- done free
+	void		**player;		// -- 
+	void		**enemy;		// -- done
+	void		**exit_door;	// -- done
 	void		*coin;			// -- done soon
 }	t_game;
 
@@ -81,7 +73,7 @@ t_game	*pars_the_map(char *map);
 t_game	*map_processing(char *map);
 void	is_map_valid(t_game *game);
 void	wall_check(t_game *game);
-void	cleanup_and_exit(char *str, t_game *game);
+void	cleanup_and_exit(char *str, t_game *game, int msg);
 void	count_duplicate_char_in_the_map(t_game *game);
 void	check_is_valid_dup_char(t_game *game);
 void	finding_player_position(t_game *map);
@@ -98,6 +90,7 @@ void	load_doors_images(t_game *game);
 void	load_coin_images(t_game *game);
 
 int		press_key(int keycode, t_game *game);
+void	do_press_key(t_game *game, t_direction move, int keycode);
 
 
 #endif

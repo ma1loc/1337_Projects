@@ -50,10 +50,10 @@ void	is_reach_all_map(t_game *game)
 {
 	if (game->exit_count == 0)
 		cleanup_and_exit("Error\
-		\nPlayer can't reach the exit door.", game);
+		\nPlayer can't reach the exit door.", game, 1);
 	else if (game->collected != game->collectibles)
 		cleanup_and_exit("Error\
-		\nPlayer can't reach all the collectibles in the MAP", game);
+		\nPlayer can't reach all the collectibles in the MAP", game, 1);
 }
 
 void	map_validation_path(t_game *game, int row, int col)

@@ -21,16 +21,16 @@ void    is_map_valid(t_game *game)
 	if (game->map[i])
 		len_line = ft_strlen(game->map[i]);
 	else
-		cleanup_and_exit("Error\nMap is empty.", game);
+		cleanup_and_exit("Error\nMap is empty.", game, 1);
     while (game->map[i])
     {
 		if (game->map[i][0] == '\n' && game->map[i][1] == '\0')
-			cleanup_and_exit("Error\nProvided map has empty line.", game);
+			cleanup_and_exit("Error\nProvided map has empty line.", game, 1);
 		line = game->map[i];
 		if (line[len_line - 1] != '\n')
  			len_line--;
 		if (ft_strlen(line) != len_line)
-            cleanup_and_exit("Error\nMap is not \"Rectangular\".", game);
+            cleanup_and_exit("Error\nMap is not \"Rectangular\".", game, 1);
 		i++;
     }
 }
@@ -44,7 +44,7 @@ t_game	*map_processing(char *map)
 		ft_putstr_fd("Error\nAllocation faild.");
 	game->map = read_map(map);
 	if (!game->map)
-		cleanup_and_exit("Error\nParsing Faild!!!", game);
+		cleanup_and_exit("Error\nParsing Faild!!!", game, 1);
 	is_map_valid(game);
 	count_duplicate_char_in_the_map(game);
 	check_is_valid_dup_char(game);
