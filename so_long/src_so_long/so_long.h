@@ -62,9 +62,12 @@ typedef struct s_game
 	int			exit_count;
 	void		*mlx;			// -- done
 	void		*win;			// -- done
-	void		*textures[5];	// -- not yet
-	t_player	player;
-	void		*enemy[5];
+	void		*wall;			// -- done
+	void		*free_sapce;	// -- done
+	t_player	player;			// -- done
+	void		*enemy[5];		// -- done
+	void		*exit_door[2];	// -- done
+	void		*coin;			// -- done soon
 }	t_game;
 
 t_game	*pars_the_map(char *map);
@@ -83,7 +86,10 @@ void	process_the_map_rendering(t_game *game);
 void	put_img_to_win(t_game *game);
 void	load_player_images(t_game *game);
 void	load_enemy_images(t_game *game);
-void	player_directions(t_game *game, int key_move);
+void	load_space_and_wall_images(t_game *game);
+void	load_doors_images(t_game *game);
+void	load_coin_images(t_game *game);
+
 int		press_key(int keycode, t_game *game);
 
 

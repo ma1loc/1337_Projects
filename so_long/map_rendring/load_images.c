@@ -1,5 +1,6 @@
 #include "../src_so_long/so_long.h"
 
+// check that file later for inhancing !!!
 void	load_player_images(t_game *game)
 {
 	int	width;
@@ -24,7 +25,7 @@ void	load_player_images(t_game *game)
 	}
 }
 
-void load_enemy_images(t_game *game)
+void	load_enemy_images(t_game *game)
 {
     int width;
     int height;
@@ -43,5 +44,54 @@ void load_enemy_images(t_game *game)
 	{
 		mlx_destroy_window(game->mlx, game->win);
 		cleanup_and_exit("Error: Failed to load enemy images\n", game); // have free some resurses here !!!
+	}
+}
+
+void load_space_and_wall_images(t_game *game)
+{
+	int	width;
+	int	height;
+	
+	game->free_sapce = mlx_xpm_file_to_image(game->mlx,\
+		"map_rendring/img_resource/background/space.xpm", &width, &height);
+	game->wall = mlx_xpm_file_to_image(game->mlx,\
+		"map_rendring/img_resource/wall/wall.xpm", &width, &height);
+
+	if (!game->free_sapce || !game->wall)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		cleanup_and_exit("Error: Failed to load free_sapce or wall images\n", game); // have free some resurses here !!!	
+	}
+}
+
+void	load_doors_images(t_game *game)
+{
+	int	width;
+	int	height;
+
+	game->exit_door[0] = mlx_xpm_file_to_image(game->mlx,\
+		"map_rendring/img_resource/door/door_close.xpm", &width, &height);
+	game->exit_door[1] = mlx_xpm_file_to_image(game->mlx,\
+		"map_rendring/img_resource/door/door_open.xpm", &width, &height);
+	if (!game->exit_door[0] || !game->exit_door[1])
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		cleanup_and_exit("Error: Failed to load doors images\n", game); // have free some resurses here !!!	
+	}
+}
+
+void load_coin_images(t_game *game)
+{
+	int width;
+	int height;
+
+	// have an update in the future !!!
+	game->coin = mlx_xpm_file_to_image(game->mlx,\
+		"map_rendring/img_resource/coin/coin.xpm", &width, &height);
+
+	if (!game->coin)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		cleanup_and_exit("Error: Failed to load coins images\n", game); // have free some resurses here !!!	
 	}
 }
