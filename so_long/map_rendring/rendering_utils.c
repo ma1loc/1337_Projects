@@ -128,3 +128,25 @@
 //     }
 //     free(game->player); // Free the array itself
 // }
+
+void	do_press_key(t_game *game, t_direction move, int keycode)
+{
+	if (game->map[move.new_row][move.new_col] == '1')
+		return ; // Prevent moving into walls
+
+	// Clear old position on map
+	game->map[game->player_row][game->player_col] = '0';
+	mlx_put_image_to_window(game->mlx, game->win, game->free_sapce, game->player_col * 64, game->player_row * 64);
+
+	// Update player's position
+	game->player_col = move.new_col;
+	game->player_row = move.new_row;
+	game->map[game->player_row][game->player_col] = 'P';
+
+	// Draw the correct player image
+	int index = 1; // Default (UP_KEY)
+	if (keycode == DOWN_KEY) index = 2;
+	else if (keycode == LEFT_KEY) index = 3;
+	else if (keycode == RIGHT_KEY) index = 4;
+	mlx_put_image_to_window(game->mlx, game->win, game->player[index], game->player_col * 64, game->player_row * 64);
+}

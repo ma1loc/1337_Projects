@@ -15,7 +15,6 @@ int	main(int argc, char **argv)
 	else
 		ft_putstr_fd("Error\nToo many arguments.\
 		\nUsage => \"./so_long map.ber\"");
-	
 	// have a func to batter free the resurses.
 	// map_free(game->map);
 	// map_free(game->map_copy);

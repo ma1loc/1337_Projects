@@ -5,13 +5,7 @@ void	load_player_images(t_game *game)
 {
 	int	width = 0;
 	int	height = 0;
-	
-	game->player = malloc(sizeof(void *) * 6);
-	if (!game->player)
-	{
-   		printf("Allocation failed for player images\n");
-   		cleanup_and_exit("Error: Memory allocation failed for player images\n", game, 1);
-	}
+
 	game->player[0] = mlx_xpm_file_to_image(game->mlx, \
 		"map_rendring/img_resource/player/defult.xpm", \
 	&	width, &height);
@@ -48,6 +42,7 @@ void	load_enemy_images(t_game *game)
     	"map_rendring/img_resource/enemy/enemy_3.xpm", &width, &height);
     game->enemy[4] = mlx_xpm_file_to_image(game->mlx,\
     	"map_rendring/img_resource/enemy/enemy_4.xpm", &width, &height);
+	game->enemy[5] = NULL;
 	if (!game->enemy[0] || !game->enemy[1] || !game->enemy[2] || !game->enemy[3] || !game->enemy[4])
 		cleanup_and_exit("Error: Failed to load enemy images\n", game, 1); // have free some resurses here !!!
 }
@@ -74,6 +69,7 @@ void	load_doors_images(t_game *game)
 		"map_rendring/img_resource/door/door_close.xpm", &width, &height);
 	game->exit_door[1] = mlx_xpm_file_to_image(game->mlx,\
 		"map_rendring/img_resource/door/door_open.xpm", &width, &height);
+	game->exit_door[2] = NULL;
 	if (!game->exit_door[0] || !game->exit_door[1])
 		cleanup_and_exit("Error: Failed to load doors images\n", game, 1); // have free some resurses here !!!	
 }

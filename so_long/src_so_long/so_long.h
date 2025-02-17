@@ -56,10 +56,10 @@ typedef struct s_game
 	void		*win;			// -- done free
 	void		*wall;			// -- done free
 	void		*free_sapce;	// -- done free
-	void		**player;		// -- 
-	void		**enemy;		// -- done
-	void		**exit_door;	// -- done
-	void		*coin;			// -- done soon
+	void		*player[6];		// -- done
+	void		*exit_door[3];	// -- done
+	void		*enemy[6];		// -- done
+	void		*coin;			// -- 
 }	t_game;
 
 typedef struct s_direction
@@ -82,7 +82,7 @@ void	map_validation_path(t_game *game, int row, int col);
 void	is_reach_all_map(t_game *game);
 
 void	process_the_map_rendering(t_game *game);
-void	put_img_to_win(t_game *game);
+void	load_img_to_win(t_game *game);
 void	load_player_images(t_game *game);
 void	load_enemy_images(t_game *game);
 void	load_space_and_wall_images(t_game *game);
