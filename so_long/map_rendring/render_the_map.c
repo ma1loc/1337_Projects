@@ -67,12 +67,33 @@ int press_key(int keycode, t_game *game)
 	return (0);
 }
 
+int	confirmed_press_key(t_game *game, t_direction move)
+{
+	if (game->map[move.new_row][move.new_col] == '1' || 
+		game->map[move.new_row][move.new_col] == 'E')
+		return (1);
+	if (game->map[move.new_row][move.new_col] == 'N')
+	{
+		printf("Game Over, you loss\n");
+		exit(0);
+	}
+	if (game->map[move.new_row][move.new_col] == 'C')
+	{
+		printf("collected -> %d\n", game->collected);
+		printf("collectebles -> %d\n", game->collectibles);
+		if (game->collected == game->collectibles)
+			mlx_put_image_to_window(game->mlx, game->win, game->exit_door[1],\
+				game->exit_col *64, game->exit_row *64);
+		game->collected += 1;
+	}
+	return (0);
+}
+
 void	do_press_key(t_game *game, t_direction move, int keycode)
 {
-	if (game->map[move.new_row][move.new_col] == '1')
-		return ;
+	if (confirmed_press_key(game, move) == 1)
+		return;
 	game->map[game->player_row][game->player_col] = '0';
-	// game->map[game->player_row * 64][game->player_col * 64] = '0';
 	mlx_put_image_to_window(game->mlx, game->win, game->free_sapce,\
 		game->player_col * 64, game->player_row * 64);
 	game->player_col = move.new_col;
@@ -93,14 +114,11 @@ void	do_press_key(t_game *game, t_direction move, int keycode)
 
 void	load_img_to_win(t_game *game)
 {
-	// load the images
 	load_player_images(game);
 	load_enemy_images(game);
 	load_space_and_wall_images(game);
 	load_coin_images(game);
 	load_doors_images(game);
-
-	// Render the Initial Map
 	init_the_map(game);
 }
 
@@ -108,6 +126,7 @@ void	load_img_to_win(t_game *game)
 // -------------- main func -----------------
 void process_the_map_rendering(t_game *game)
 {
+	game->collected = 1;
     init_and_window(game);
     load_img_to_win(game);
     mlx_key_hook(game->win, press_key, game);

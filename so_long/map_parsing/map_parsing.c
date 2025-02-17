@@ -79,7 +79,7 @@ void    count_duplicate_char_in_the_map(t_game *game)
         while(game->map[i][j])
         {
             if (game->map[i][j] != '1' && game->map[i][j] != '0' && game->map[i][j] != 'P' 
-            && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\n')
+            && game->map[i][j] != 'E' && game->map[i][j] != 'C' && game->map[i][j] != '\n' && game->map[i][j] != 'N')
                 cleanup_and_exit("Error\nMAP has a characters rather than i have to be", game, 1);
             else if (game->map[i][j] == 'P')
                 game->player_count++;
