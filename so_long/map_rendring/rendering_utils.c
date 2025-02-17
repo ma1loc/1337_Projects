@@ -38,3 +38,40 @@
 // 	}	
 // 	i += 64;
 // }
+
+int press_key(int keycode, t_game *game)
+{
+    int new_row = game->player_row;
+    int new_col = game->player_col;
+
+    if (keycode == UP_KEY)
+        new_row -= 1;
+    else if (keycode == DOWN_KEY)
+        new_row += 1;
+    else if (keycode == LEFT_KEY)
+        new_col -= 1;
+    else if (keycode == RIGHT_KEY)
+        new_col += 1;
+    else if (keycode == ESC_KEY)
+        exit(0);
+
+    if (game->map[new_row][new_col] != '1')
+    {
+        mlx_put_image_to_window(game->mlx, game->win, game->free_sapce, game->player_col * 64, game->player_row * 64);
+
+        // Update player's position
+        game->player_row = new_row;
+        game->player_col = new_col;
+
+        // Draw the new player position with the correct sprite
+        if (keycode == UP_KEY)
+            mlx_put_image_to_window(game->mlx, game->win, game->player.up, new_col * 64, new_row * 64);
+        else if (keycode == DOWN_KEY)
+            mlx_put_image_to_window(game->mlx, game->win, game->player.down, new_col * 64, new_row * 64);
+        else if (keycode == LEFT_KEY)
+            mlx_put_image_to_window(game->mlx, game->win, game->player.left, new_col * 64, new_row * 64);
+        else if (keycode == RIGHT_KEY)
+            mlx_put_image_to_window(game->mlx, game->win, game->player.right, new_col * 64, new_row * 64);
+    }
+    return (0);
+}

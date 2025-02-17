@@ -70,6 +70,13 @@ typedef struct s_game
 	void		*coin;			// -- done soon
 }	t_game;
 
+typedef struct s_direction
+{
+	int new_row;
+	int new_col;
+} t_direction;
+
+
 t_game	*pars_the_map(char *map);
 t_game	*map_processing(char *map);
 void	is_map_valid(t_game *game);
