@@ -45,6 +45,8 @@ t_game	*map_processing(char *map)
 	game->map = read_map(map);
 	if (!game->map)
 		cleanup_and_exit("Error\nParsing Faild!!!", game, 1);
+	game->exit_count = 0;
+	game->collected = 0;
 	is_map_valid(game);
 	count_duplicate_char_in_the_map(game);
 	check_is_valid_dup_char(game);
@@ -63,9 +65,7 @@ t_game	*pars_the_map(char *map)
 
 	is_there_extension(map);	// done
 	game = map_processing(map);	// done
-	game->exit_count = 0;
 	map_validation_path(game, game->player_row, game->player_col);
 	is_reach_all_map(game);
-	map_free(game->map_copy);	// free the copy_map (no more needed)?
 	return (game);
 }

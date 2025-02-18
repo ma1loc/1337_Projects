@@ -31,11 +31,11 @@ void load_space_and_wall_images(t_game *game)
 	int	width;
 	int	height;
 	
-	game->free_sapce = mlx_xpm_file_to_image(game->mlx,\
+	game->free_space = mlx_xpm_file_to_image(game->mlx,\
 		"map_rendring/img_resource/background/space.xpm", &width, &height);
 	game->wall = mlx_xpm_file_to_image(game->mlx,\
 		"map_rendring/img_resource/wall/wall.xpm", &width, &height);
-	if (!game->free_sapce || !game->wall)
+	if (!game->free_space || !game->wall)
 		cleanup_and_exit("Error: Failed to load free_sapce or wall images\n", game, 1);
 }
 

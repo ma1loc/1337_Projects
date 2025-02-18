@@ -5,7 +5,7 @@ void	do_press_key(t_game *game, t_direction move, int keycode)
 	if (confirmed_press_key(game, move) == 1)
 		return;
 	game->map[game->player_row][game->player_col] = '0';
-	mlx_put_image_to_window(game->mlx, game->win, game->free_sapce,\
+	mlx_put_image_to_window(game->mlx, game->win, game->free_space,\
 		game->player_col * 64, game->player_row * 64);
 	game->player_col = move.new_col;
 	game->player_row = move.new_row;

@@ -1,66 +1,73 @@
 #include "../src_so_long/so_long.h"
 
-void    map_free(char **map)
-{
-    int i;
 
-    i = 0;
-    while (map[i])
+
+void map_free(char **map)
+{
+    if (map) 
     {
-        free(map[i]);
-        i++;
+        int i = 0;
+        while (map[i]) {
+            free(map[i]);
+            i++;
+        }
+        free(map);
     }
-    free(map);
 }
 
-// i have to do somting about this shit (segfulte)
-void    cleanup_and_exit(char *str, t_game *game, int msg)
+void cleanup_and_exit(char *str, t_game *game, int msg)
 {
-    // int i;
-
-    // i = 0;
-    // while (game->player[i])
-    // {
-    //     if (game->player[i])
-    //     {
-    //         printf("image P -> %d\n", i);
-	//     	mlx_destroy_image(game->mlx, game->player[i]);
-    //     }
-    //     i++;
-    // }
-    // i = 0;
-    // while (game->exit_door[i])
-    // {
-    //     if (game->exit_door[i])
-    //     {
-    //         printf("image E -> %d\n", i);
-	//     	mlx_destroy_image(game->mlx, game->exit_door[i]);
-    //     }
-    //     i++;
-    // }
-	// if (game->wall)
-	// 	mlx_destroy_image(game->mlx, game->wall);
-	// if (game->free_sapce)
-	// 	mlx_destroy_image(game->mlx, game->free_sapce);
-	// if (game->coin)
-	// 	mlx_destroy_image(game->mlx, game->coin);
-	// if (game->exit_door[0])
-	// 	mlx_destroy_image(game->mlx, game->exit_door[0]);
-    // if (game->win)
-	//     mlx_destroy_window(game->mlx, game->win);
-    // mlx_destroy_display(game->mlx);
-    // if (game->wall)
-    //     free(game->wall);
-    // if (game->coin)
-    //     free(game->coin);
-    // if (game->free_sapce)
-    //     free(game->free_sapce);
-    if (game->map)
-        map_free(game->map);
-    if (game->map_copy)
-        map_free(game->map_copy);
-    free(game->mlx);
-    free(game);
-    if (msg)
+    if (game) 
+    {
+        if (game->map)
+        {
+            map_free(game->map);
+            game->map = NULL;
+        }
+        if (game->map_copy) {
+            map_free(game->map_copy);
+            game->map_copy = NULL;
+        }
+        if (game->win) {
+            mlx_destroy_window(game->mlx, game->win);
+            game->win = NULL; 
+        }
+        if (game->wall) {
+            mlx_destroy_image(game->mlx, game->wall);
+            game->wall = NULL;
+        }
+        if (game->coin) {
+            mlx_destroy_image(game->mlx, game->coin);
+            game->coin = NULL;
+        }
+        if (game->free_space) {
+            mlx_destroy_image(game->mlx, game->free_space);
+            game->free_space = NULL;
+        }
+        int i = 0;
+        while (i < 6)
+        {
+            if (game->player[i])
+            {
+                mlx_destroy_image(game->mlx, game->player[i]);
+                game->player[i] = NULL;
+            }
+            i++;
+        }
+        i = 0;
+        while (i < 3)
+        {
+            if (game->exit_door[i])
+            {
+                mlx_destroy_image(game->mlx, game->exit_door[i]);
+                game->exit_door[i] = NULL;
+            }
+            i++;
+        }
+        free(game);
+        game = NULL;
+    }
+    if (msg) {
         ft_putstr_fd(str);
+    }
 }

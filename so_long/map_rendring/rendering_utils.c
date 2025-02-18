@@ -16,7 +16,7 @@ void	init_the_map(t_game *game)
 			else if (game->map[row][col] == '1')
 				mlx_put_image_to_window(game->mlx, game->win, game->wall, col *64, row *64);
 			else if (game->map[row][col] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, game->free_sapce, col *64, row *64);
+				mlx_put_image_to_window(game->mlx, game->win, game->free_space, col *64, row *64);
 			else if (game->map[row][col] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win, game->coin, col *64, row *64);
 			else if (game->map[row][col] == 'E')
