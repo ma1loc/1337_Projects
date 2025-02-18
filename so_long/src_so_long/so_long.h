@@ -5,7 +5,6 @@
 #  define BUFFER_SIZE   42
 # endif
 
-// remove it
 #define UP_KEY XK_Up
 #define DOWN_KEY XK_Down
 #define LEFT_KEY XK_Left
@@ -19,7 +18,7 @@
 # include <stdio.h>
 # include <mlx.h>
 #include <X11/keysym.h>
-#include <X11/X.h>
+// #include <X11/X.h>
 
 
 size_t	ft_strlen(char *str);
@@ -54,12 +53,11 @@ typedef struct s_game
 	int			exit_count;
 	void		*mlx;			// -- done free
 	void		*win;			// -- done free
-	void		*wall;			// -- done free
-	void		*free_sapce;	// -- done free
+	void		*wall;			// -- done
+	void		*coin;			// -- done
+	void		*free_sapce;	// -- done
 	void		*player[6];		// -- done
 	void		*exit_door[3];	// -- done
-	void		*enemy[6];		// -- done
-	void		*coin;			// -- 
 }	t_game;
 
 typedef struct s_direction
@@ -84,13 +82,13 @@ void	is_reach_all_map(t_game *game);
 void	process_the_map_rendering(t_game *game);
 void	load_img_to_win(t_game *game);
 void	load_player_images(t_game *game);
-void	load_enemy_images(t_game *game);
 void	load_space_and_wall_images(t_game *game);
 void	load_doors_images(t_game *game);
 void	load_coin_images(t_game *game);
 
-int		press_key(int keycode, t_game *game);
+void	init_the_map(t_game *game);
+int		confirmed_press_key(t_game *game, t_direction move);
 void	do_press_key(t_game *game, t_direction move, int keycode);
-
+int		press_key(int keycode, t_game *game);
 
 #endif
