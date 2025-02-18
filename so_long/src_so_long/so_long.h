@@ -78,14 +78,12 @@ void	finding_player_position(t_game *map);
 void	finding_player_exit(t_game *game);
 void	map_validation_path(t_game *game, int row, int col);
 void	is_reach_all_map(t_game *game);
-
 void	process_the_map_rendering(t_game *game);
 void	load_img_to_win(t_game *game);
 void	load_player_images(t_game *game);
 void	load_space_and_wall_images(t_game *game);
 void	load_doors_images(t_game *game);
 void	load_coin_images(t_game *game);
-
 void	init_the_map(t_game *game);
 int		confirmed_press_key(t_game *game, t_direction move);
 void	do_press_key(t_game *game, t_direction move, int keycode);

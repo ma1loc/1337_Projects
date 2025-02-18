@@ -61,11 +61,11 @@ t_game	*pars_the_map(char *map)
 {
 	t_game *game;
 
-	is_there_extension(map);
-	game = map_processing(map);
+	is_there_extension(map);	// done
+	game = map_processing(map);	// done
 	game->exit_count = 0;
 	map_validation_path(game, game->player_row, game->player_col);
 	is_reach_all_map(game);
-	map_free(game->map_copy);
+	map_free(game->map_copy);	// free the copy_map (no more needed)?
 	return (game);
 }
