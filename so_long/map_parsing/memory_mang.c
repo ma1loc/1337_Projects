@@ -65,7 +65,7 @@ void	cleanup_and_exit(char *str, t_game *game, int std)
 		if (game->free_space)
 			mlx_destroy_image(game->mlx, game->free_space);
 		image_cleanup(game);
-		mlx_destroy_display(game->mlx);
+		mlx_destroy_display(game->mlx); // i have a segfult here
 		free(game->mlx);
 		free(game);
 	}
