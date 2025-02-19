@@ -48,7 +48,7 @@ void	count_duplicate_char_in_the_map(t_game *game)
 			if (game->map[i][j] != '1' && game->map[i][j] != '0'
 				&& game->map[i][j] != 'P' && game->map[i][j] != 'E'
 				&& game->map[i][j] != 'C' && game->map[i][j] != '\n')
-				cleanup_and_exit("Error\nWrong char in the MAP.", game, 2);
+				cleanup_and_exit("Error\nWrong char in the MAP.", game, 2); // here seg
 			else if (game->map[i][j] == 'P')
 				game->player_count++;
 			else if (game->map[i][j] == 'E')
