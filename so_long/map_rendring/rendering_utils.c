@@ -25,19 +25,19 @@ void	init_the_map(t_game *game)
 		{
 			if (game->map[row][col] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, \
-				game->player[0], col * 64, row * 64);
+					game->player[0], col * 64, row * 64);
 			else if (game->map[row][col] == '1')
 				mlx_put_image_to_window(game->mlx, game->win, \
-				game->wall, col * 64, row * 64);
+					game->wall, col * 64, row * 64);
 			else if (game->map[row][col] == '0')
 				mlx_put_image_to_window(game->mlx, game->win, \
-				game->free_space, col * 64, row * 64);
+					game->free_space, col * 64, row * 64);
 			else if (game->map[row][col] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win, \
-				game->coin, col * 64, row * 64);
+					game->coin, col * 64, row * 64);
 			else if (game->map[row][col] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win, \
-				game->exit_door[0], col * 64, row * 64);
+					game->exit_door[0], col * 64, row * 64);
 			col++;
 		}
 		row++;
