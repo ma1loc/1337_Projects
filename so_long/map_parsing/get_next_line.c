@@ -101,4 +101,3 @@ char	*get_next_line(int fd)
 	new_len = extracted_line(&left_ch);
 	return (new_len);
 }
-
