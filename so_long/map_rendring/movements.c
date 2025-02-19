@@ -34,7 +34,7 @@ void	do_press_key(t_game *game, t_direction move, int keycode)
 		mlx_put_image_to_window(game->mlx, game->win, game->player[4], \
 			game->player_col * 64, game->player_row * 64);
 	game->moves += 1;
-	printf("Player Moves -> %d\n", game->moves);
+	printf("Player Moves -> %d\n", game->moves); // not done (printf)
 }
 
 int	press_key(int keycode, t_game *game)
