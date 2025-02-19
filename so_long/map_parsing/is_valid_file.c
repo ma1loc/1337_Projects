@@ -60,7 +60,7 @@ t_game	*map_processing(char *map)
 	game->exit_count = 0;
 	game->collected = 0;
 	is_map_valid(game);
-	count_duplicate_char_in_the_map(game);
+	count_duplicate_char_in_the_map(game); // here the seg
 	check_is_valid_dup_char(game);
 	wall_check(game);
 	game->rows = count_lines(map);
