@@ -44,6 +44,8 @@ char	**read_map(char *map);
 int		count_lines(char *map);
 int		count_cols(char **map);
 void	map_free(char **readed_map);
+void    ft_putstr(char *str, int num);
+char	*ft_itoa(int n);
 
 typedef struct s_game
 {
