@@ -27,5 +27,4 @@ int	main(int argc, char **argv)
 	else
 		ft_putstr_fd("Error\nToo many arguments.\
 		\nUsage => \"./so_long map.ber\"", 2);
-	cleanup_and_exit(NULL, game, 1);
 }
