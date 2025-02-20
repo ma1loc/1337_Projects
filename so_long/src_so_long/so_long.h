@@ -17,11 +17,6 @@
 #  define BUFFER_SIZE   42
 # endif
 
-// # define UP_KEY XK_Up
-// # define DOWN_KEY XK_Down
-// # define LEFT_KEY XK_Left
-// # define RIGHT_KEY XK_Right
-
 # define UP_KEY    XK_w
 # define DOWN_KEY  XK_s
 # define LEFT_KEY  XK_a
