@@ -62,18 +62,31 @@ void	is_reach_all_map(t_game *game)
 {
 	if (game->exit_count == 0)
 		cleanup_and_exit("Error\
-		\nPlayer can't reach the exit door.", game, 2);
+		\nPlayer can't reach the exit door.", game, 2, 0);
 	else if (game->collected != game->collectibles)
 		cleanup_and_exit("Error\
-		\nPlayer can't reach all the collectibles in the MAP", game, 2);
+		\nPlayer can't reach all the collectibles in the MAP", game, 2, 0);
+}
+
+void	init_directions(int dir[4][2])
+{
+	dir[0][0] = -1;
+	dir[0][1] = 0;
+	dir[1][0] = 1;
+	dir[1][1] = 0;
+	dir[2][0] = 0;
+	dir[2][1] = 1;
+	dir[3][0] = 0;
+	dir[3][1] = -1;
 }
 
 void	map_validation_path(t_game *game, int row, int col)
 {
 	int	i;
+	int	dir[4][2];
 
-	int	dir[4][2] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}}; // have to divide this
 	i = 0;
+	init_directions(dir);
 	if (row < 0 || col < 0 || row >= game->rows || col >= game->cols)
 		return ;
 	if (game->map_copy[row][col] == '1' || game->map_copy[row][col] == 'V')
