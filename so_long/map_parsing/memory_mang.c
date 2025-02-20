@@ -6,7 +6,7 @@
 /*   By: yanflous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:15:45 by yanflous          #+#    #+#             */
-/*   Updated: 2025/02/19 11:42:19 by yanflous         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:26:38 by yanflous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	image_cleanup(t_game *game)
 	}
 }
 
-void	cleanup_and_exit(char *str, t_game *game, int std)
+void	cleanup_and_exit(char *str, t_game *game, int std, int display)
 {
 	if (game)
 	{
@@ -56,7 +56,7 @@ void	cleanup_and_exit(char *str, t_game *game, int std)
 			map_free(game->map);
 		if (game->map_copy)
 			map_free(game->map_copy);
-		if (game->win)
+		if (game->mlx && game->win)
 			mlx_destroy_window(game->mlx, game->win);
 		if (game->wall)
 			mlx_destroy_image(game->mlx, game->wall);
@@ -65,7 +65,8 @@ void	cleanup_and_exit(char *str, t_game *game, int std)
 		if (game->free_space)
 			mlx_destroy_image(game->mlx, game->free_space);
 		image_cleanup(game);
-		mlx_destroy_display(game->mlx); // i have a segfult here
+		if (display)
+			mlx_destroy_display(game->mlx);
 		free(game->mlx);
 		free(game);
 	}
