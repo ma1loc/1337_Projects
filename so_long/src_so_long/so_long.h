@@ -17,16 +17,22 @@
 #  define BUFFER_SIZE   42
 # endif
 
-# define UP_KEY XK_Up
-# define DOWN_KEY XK_Down
-# define LEFT_KEY XK_Left
-# define RIGHT_KEY XK_Right
-# define ESC_KEY XK_Escape
+// # define UP_KEY XK_Up
+// # define DOWN_KEY XK_Down
+// # define LEFT_KEY XK_Left
+// # define RIGHT_KEY XK_Right
+
+# define UP_KEY    XK_w
+# define DOWN_KEY  XK_s
+# define LEFT_KEY  XK_a
+# define RIGHT_KEY XK_d
+# define ESC_KEY   XK_Escape
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <stdarg.h>
 # include <mlx.h>
 # include <X11/keysym.h>
 
@@ -44,8 +50,14 @@ char	**read_map(char *map);
 int		count_lines(char *map);
 int		count_cols(char **map);
 void	map_free(char **readed_map);
-void    ft_putstr(char *str, int num);
 char	*ft_itoa(int n);
+int		ft_printf(const char *s, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_puthex(unsigned int un, char c);
+int		ft_putuint(unsigned int un);
+int		ft_putadd(void *add);
 
 typedef struct s_game
 {
@@ -83,7 +95,7 @@ int		count_lines(char *map);
 char	**read_map(char *map);
 void	is_map_valid(t_game *game);
 void	wall_check(t_game *game);
-void	cleanup_and_exit(char *str, t_game *game, int msg);
+void	cleanup_and_exit(char *str, t_game *game, int msg, int display);
 void	count_duplicate_char_in_the_map(t_game *game);
 void	check_is_valid_dup_char(t_game *game);
 void	finding_player_position(t_game *map);
