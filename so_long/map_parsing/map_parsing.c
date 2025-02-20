@@ -16,19 +16,19 @@ void	check_is_valid_dup_char(t_game *game)
 {
 	if (game->player_count == 0)
 		cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\"\
-		in provided MAP.", game, 1);
+		in provided MAP.", game, 1, 0);
 	if (game->exit_count == 0)
 		cleanup_and_exit("Error\nThere's no \"EXIT_DOOR\"\
-		in provided MAP.", game, 1);
+		in provided MAP.", game, 1, 0);
 	if (game->player_count > 1)
 		cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\"\
-		in provided MAP", game, 1);
+		in provided MAP", game, 1, 0);
 	if (game->exit_count > 1)
 		cleanup_and_exit("Error\nThere's a \"DUP_EXIT DOORS\"\
-		in provided MAP", game, 1);
+		in provided MAP", game, 1, 0);
 	if (game->collectibles == 0)
 		cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\"\
-		in provided MAP", game, 1);
+		in provided MAP", game, 1, 0);
 }
 
 void	count_duplicate_char_in_the_map(t_game *game)
@@ -37,9 +37,6 @@ void	count_duplicate_char_in_the_map(t_game *game)
 	int	j;
 
 	i = 0;
-	game->player_count = 0;
-	game->exit_count = 0;
-	game->collectibles = 0;
 	while (game->map[i])
 	{
 		j = 0;
@@ -48,7 +45,7 @@ void	count_duplicate_char_in_the_map(t_game *game)
 			if (game->map[i][j] != '1' && game->map[i][j] != '0'
 				&& game->map[i][j] != 'P' && game->map[i][j] != 'E'
 				&& game->map[i][j] != 'C' && game->map[i][j] != '\n')
-				cleanup_and_exit("Error\nWrong char in the MAP.", game, 2); // here seg
+				cleanup_and_exit("Error\nWrong char in the MAP.\n", game, 2, 0);
 			else if (game->map[i][j] == 'P')
 				game->player_count++;
 			else if (game->map[i][j] == 'E')
@@ -86,8 +83,8 @@ void	last_row(t_game *game)
 	while (_last_row[i])
 	{
 		if (_last_row[i] != '1')
-			cleanup_and_exit("Error\n\"Bottom Walls\"\
-			not set as it expected.", game, 2);
+			cleanup_and_exit("Error\n\"Bottom Walls\"" \
+			" not set as it expected.\n", game, 2, 0);
 		i++;
 	}
 }
@@ -101,8 +98,8 @@ void	wall_check(t_game *game)
 	while (game->map[0][i] && game->map[0][i] != '\n')
 	{
 		if (game->map[0][i] != '1')
-			cleanup_and_exit("Error\n\"Top Walls\"\
-			not set as it expected.", game, 2);
+			cleanup_and_exit("Error\n\"Top Walls\"" \
+			" not set as it expected.\n", game, 2, 0);
 		i++;
 	}
 	i = 0;
@@ -112,8 +109,8 @@ void	wall_check(t_game *game)
 		if (game->map[i][len_of_line - 1] == '\n')
 			len_of_line -= 1;
 		if (game->map[i][0] != '1' || game->map[i][len_of_line - 1] != '1')
-			cleanup_and_exit("Error\n\"Left or Right Walls\"\
-			not set as it expected.", game, 2);
+			cleanup_and_exit("Error\n\"Left or Right Walls\""\
+			" not set as it expected.\n", game, 2, 0);
 		i++;
 	}
 	last_row(game);
