@@ -35,7 +35,7 @@ void	load_player_images(t_game *game)
 	game->player[5] = NULL;
 	if (!game->player[0] || !game->player[1] || !game->player[2] \
 		|| !game->player[3] || !game->player[4])
-		cleanup_and_exit("Error\nFailed to load player images\n", game, 2);
+		cleanup_and_exit("Error\nFailed to load player images\n", game, 2, 1);
 }
 
 void	load_space_and_wall_images(t_game *game)
@@ -49,7 +49,7 @@ void	load_space_and_wall_images(t_game *game)
 		"map_rendring/img_resource/wall/wall.xpm", &width, &height);
 	if (!game->free_space || !game->wall)
 		cleanup_and_exit("Error\n\
-		Failed to load free_sapce or wall images\n", game, 2);
+		Failed to load free_sapce or wall images\n", game, 2, 1);
 }
 
 void	load_doors_images(t_game *game)
@@ -63,7 +63,7 @@ void	load_doors_images(t_game *game)
 		"map_rendring/img_resource/door/door_open.xpm", &width, &height);
 	game->exit_door[2] = NULL;
 	if (!game->exit_door[0] || !game->exit_door[1])
-		cleanup_and_exit("Error\nFailed to load doors images\n", game, 2);
+		cleanup_and_exit("Error\nFailed to load doors images\n", game, 2, 1);
 }
 
 void	load_coin_images(t_game *game)
@@ -74,5 +74,5 @@ void	load_coin_images(t_game *game)
 	game->coin = mlx_xpm_file_to_image(game->mlx, \
 		"map_rendring/img_resource/coin/coin.xpm", &width, &height);
 	if (!game->coin)
-		cleanup_and_exit("Error\nFailed to load coins images\n", game, 2);
+		cleanup_and_exit("Error\nFailed to load coins images\n", game, 2, 1);
 }
