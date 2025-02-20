@@ -13,7 +13,7 @@
 #include "../src_so_long/so_long.h"
 
 void	do_press_key(t_game *game, t_direction move, int keycode)
-{	
+{
 	if (confirmed_press_key(game, move) == 1)
 		return ;
 	game->map[game->player_row][game->player_col] = '0';
@@ -34,8 +34,7 @@ void	do_press_key(t_game *game, t_direction move, int keycode)
 		mlx_put_image_to_window(game->mlx, game->win, game->player[4], \
 			game->player_col * 64, game->player_row * 64);
 	game->moves += 1;
-	// write the moves here
-
+	ft_printf("Player Moves -> %d\n", game->moves);
 }
 
 int	press_key(int keycode, t_game *game)
@@ -53,7 +52,7 @@ int	press_key(int keycode, t_game *game)
 	else if (keycode == RIGHT_KEY)
 		move.new_col += 1;
 	else if (keycode == ESC_KEY)
-		cleanup_and_exit("EXIT THE GAME.\n", game, 1);
+		cleanup_and_exit("EXIT THE GAME.\n", game, 1, 1);
 	else
 		return (0);
 	do_press_key(game, move, keycode);
