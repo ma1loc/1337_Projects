@@ -12,8 +12,9 @@
 
 #include "../src_so_long/so_long.h"
 
-void	ft_perror(char *str)
+void	ft_perror(char *str, t_game *game)
 {
 	perror(str);
+	free(game);
 	exit(1);
 }
