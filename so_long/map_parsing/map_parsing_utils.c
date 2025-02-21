@@ -12,7 +12,31 @@
 
 #include "../src_so_long/so_long.h"
 
-int	count_lines(char *map)
+void	game_init(t_game *game)
+{
+	int	i;
+
+	game->player_count = 0;
+	game->moves = 0;
+	game->exit_count = 0;
+	game->collectibles = 0;
+	game->collected = 0;
+	game->map = NULL;
+	game->map_copy = NULL;
+	game->win = NULL;
+	game->wall = NULL;
+	game->coin = NULL;
+	game->free_space = NULL;
+	game->mlx = NULL;
+	i = 0;
+	while (i < 6)
+		game->player[i++] = NULL;
+	i = 0;
+	while (i < 3)
+		game->exit_door[i++] = NULL;
+}
+
+int	count_lines(char *map, t_game *game)
 {
 	int		fd;
 	int		count;
@@ -21,7 +45,7 @@ int	count_lines(char *map)
 	count = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_perror("Error\nOpen");
+		ft_perror("Error\nOpen", game);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -33,7 +57,7 @@ int	count_lines(char *map)
 	return (count);
 }
 
-char	**read_map(char *map)
+char	**read_map(char *map, t_game *game)
 {
 	char	*line;
 	char	**split_map;
@@ -42,7 +66,7 @@ char	**read_map(char *map)
 
 	if (!map)
 		return (NULL);
-	split_map = malloc(sizeof(char *) * (count_lines(map) + 1));
+	split_map = malloc(sizeof(char *) * (count_lines(map, game) + 1));
 	if (!split_map)
 		return (NULL);
 	fd = open(map, O_RDONLY);
@@ -59,5 +83,5 @@ char	**read_map(char *map)
 	}
 	split_map[i] = NULL;
 	close(fd);
-	return (split_map);
+	return (close(fd), split_map[i] = NULL, split_map);
 }
