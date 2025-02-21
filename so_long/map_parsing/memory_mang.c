@@ -67,7 +67,8 @@ void	cleanup_and_exit(char *str, t_game *game, int std, int display)
 		image_cleanup(game);
 		if (display)
 			mlx_destroy_display(game->mlx);
-		free(game->mlx);
+		if (game->mlx)
+			free(game->mlx);
 		free(game);
 	}
 	ft_putstr_fd(str, std);
