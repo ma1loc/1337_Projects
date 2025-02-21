@@ -39,10 +39,7 @@ char	*get_next_line(int fd);
 char	*ft_strchr(const char *str, char c);
 char	*ft_strdup(const char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-void	ft_perror(char *str);
 void	is_there_extension(char *map);
-char	**read_map(char *map);
-int		count_lines(char *map);
 int		count_cols(char **map);
 void	map_free(char **readed_map);
 char	*ft_itoa(int n);
@@ -86,8 +83,10 @@ typedef struct s_direction
 
 t_game	*pars_the_map(char *map);
 t_game	*map_processing(char *map);
-int		count_lines(char *map);
-char	**read_map(char *map);
+void	game_init(t_game *game);
+void	ft_perror(char *str, t_game *game);
+int		count_lines(char *map, t_game *game);
+char	**read_map(char *map, t_game *game);
 void	is_map_valid(t_game *game);
 void	wall_check(t_game *game);
 void	cleanup_and_exit(char *str, t_game *game, int msg, int display);
