@@ -15,20 +15,20 @@
 void	check_is_valid_dup_char(t_game *game)
 {
 	if (game->player_count == 0)
-		cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\"\
-		in provided MAP.", game, 1, 0);
+		cleanup_and_exit("Error\nThere's no \"PLAYER_POSITOIN\""\
+		" in provided MAP.\n", game, 2, 0);
 	if (game->exit_count == 0)
-		cleanup_and_exit("Error\nThere's no \"EXIT_DOOR\"\
-		in provided MAP.", game, 1, 0);
+		cleanup_and_exit("Error\nThere's no \"EXIT_DOOR\""\
+		" in provided MAP.\n", game, 2, 0);
 	if (game->player_count > 1)
-		cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\"\
-		in provided MAP", game, 1, 0);
+		cleanup_and_exit("Error\nThere's a \"DUP_POSITOIN\""\
+		" in provided MAP\n", game, 2, 0);
 	if (game->exit_count > 1)
-		cleanup_and_exit("Error\nThere's a \"DUP_EXIT DOORS\"\
-		in provided MAP", game, 1, 0);
+		cleanup_and_exit("Error\nThere's a \"DUP_EXIT DOORS\""\
+		" in provided MAP\n", game, 2, 0);
 	if (game->collectibles == 0)
-		cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\"\
-		in provided MAP", game, 1, 0);
+		cleanup_and_exit("Error\nThere's no \"COLLECTIBLES\""\
+		" in provided MAP\n", game, 2, 0);
 }
 
 void	count_duplicate_char_in_the_map(t_game *game)
@@ -109,7 +109,7 @@ void	wall_check(t_game *game)
 		if (game->map[i][len_of_line - 1] == '\n')
 			len_of_line -= 1;
 		if (game->map[i][0] != '1' || game->map[i][len_of_line - 1] != '1')
-			cleanup_and_exit("Error\n\"Left or Right Walls\""\
+			cleanup_and_exit("Error\n\"Left or Right Walls\"" \
 			" not set as it expected.\n", game, 2, 0);
 		i++;
 	}
