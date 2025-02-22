@@ -43,5 +43,6 @@ void	process_the_map_rendering(t_game *game)
 	init_and_window(game);
 	load_img_to_win(game);
 	mlx_key_hook(game->win, press_key, game);
+	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_loop(game->mlx);
 }
