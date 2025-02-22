@@ -72,3 +72,9 @@ int	confirmed_press_key(t_game *game, t_direction move)
 	}
 	return (0);
 }
+
+int	close_window(t_game *game)
+{
+	cleanup_and_exit("EXIT THE GAME", game, 2, 1);
+	return (0);
+}
