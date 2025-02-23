@@ -107,5 +107,6 @@ int		confirmed_press_key(t_game *game, t_direction move);
 void	do_press_key(t_game *game, t_direction move, int keycode);
 int		press_key(int keycode, t_game *game);
 int		close_window(t_game *game);
+void	is_valid_screen_size(t_game *game);
 
 #endif
