@@ -80,6 +80,7 @@ t_game	*map_processing(char *map)
 	wall_check(game);
 	game->rows = count_lines(map, game);
 	game->cols = count_cols(game->map);
+	is_valid_screen_size(game);
 	finding_player_position(game);
 	finding_player_exit(game);
 	game->map_copy = read_map(map, game);
@@ -92,6 +93,7 @@ t_game	*pars_the_map(char *map)
 
 	is_there_extension(map);
 	game = map_processing(map);
+	game->exit_count = 0;
 	map_validation_path(game, game->player_row, game->player_col);
 	is_reach_all_map(game);
 	return (game);
