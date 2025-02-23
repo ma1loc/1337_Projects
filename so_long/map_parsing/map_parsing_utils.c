@@ -12,6 +12,19 @@
 
 #include "../src_so_long/so_long.h"
 
+void	is_valid_screen_size(t_game *game)
+{
+	int	screen_hight;
+	int	screen_wight;
+
+	screen_hight = 3840;
+	screen_wight = 2160;
+	if (screen_hight <= (game->cols * 64)
+		|| screen_wight <= (game->rows * 64))
+		cleanup_and_exit("Error\nThe Map provided is bigger" \
+			"then screen size \"3840x2160\"\n", game, 2, 0);
+}
+
 void	game_init(t_game *game)
 {
 	int	i;
