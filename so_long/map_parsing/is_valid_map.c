@@ -62,10 +62,10 @@ void	is_reach_all_map(t_game *game)
 {
 	if (game->exit_count == 0)
 		cleanup_and_exit("Error\
-		\nPlayer can't reach the exit door.", game, 2, 0);
+		\nPlayer can't reach the exit door.\n", game, 2, 0);
 	else if (game->collected != game->collectibles)
 		cleanup_and_exit("Error\
-		\nPlayer can't reach all the collectibles in the MAP", game, 2, 0);
+		\nPlayer can't reach all the collectibles in the MAP.\n", game, 2, 0);
 }
 
 void	init_directions(int dir[4][2])
