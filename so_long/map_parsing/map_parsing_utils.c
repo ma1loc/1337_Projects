@@ -58,7 +58,7 @@ int	count_lines(char *map, t_game *game)
 	count = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_perror("Error\nOpen", game);
+		ft_perror("Error\nOpen\n", game);
 	line = get_next_line(fd);
 	while (line)
 	{
