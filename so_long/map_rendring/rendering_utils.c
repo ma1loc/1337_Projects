@@ -75,6 +75,6 @@ int	confirmed_press_key(t_game *game, t_direction move)
 
 int	close_window(t_game *game)
 {
-	cleanup_and_exit("EXIT THE GAME", game, 2, 1);
+	cleanup_and_exit("EXIT THE GAME.\n", game, 2, 1);
 	return (0);
 }
