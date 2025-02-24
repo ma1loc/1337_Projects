@@ -25,7 +25,7 @@ void	init_and_window(t_game *game)
 	height = game->rows * 64;
 	game->win = mlx_new_window(game->mlx, width, height, "so_long");
 	if (!game->win)
-		cleanup_and_exit("Error\nWindow failed to open.", game, 2, 0);
+		cleanup_and_exit("Error\nWindow failed to open.\n", game, 2, 0);
 }
 
 void	load_img_to_win(t_game *game)
