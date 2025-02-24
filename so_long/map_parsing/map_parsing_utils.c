@@ -22,7 +22,7 @@ void	is_valid_screen_size(t_game *game)
 	if (screen_hight <= (game->cols * 64)
 		|| screen_wight <= (game->rows * 64))
 		cleanup_and_exit("Error\nThe Map provided is bigger" \
-			"then screen size \"3840x2160\"\n", game, 2, 0);
+			" then screen size \"3840x2160\"\n", game, 2, 0);
 }
 
 void	game_init(t_game *game)
