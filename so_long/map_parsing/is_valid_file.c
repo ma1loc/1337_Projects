@@ -52,14 +52,15 @@ void	is_map_valid(t_game *game)
 	int		i;
 
 	i = 0;
-	line_len = ft_strlen(game->map[i]);
+	line_len = 0;
+	if (!game->map[0])
+		cleanup_and_exit("Error\nMap is empty.\n", game, 2, 0);
 	if (game->map[i])
 	{
+		line_len = ft_strlen(game->map[i]);
 		if (game->map[i][line_len - 1] == '\n')
 			line_len--;
 	}
-	else
-		cleanup_and_exit("Error\nMap is empty.\n", game, 2, 0);
 	edges_loop(game, line_len);
 }
 
