@@ -27,10 +27,10 @@ The game reads a `.ber` map file and verifies:
 3. **Components**: Exactly one `P` and `E`, and at least one `C`.  
 
 **Example Valid Map**:  
-111111
-1P0001
-1C0E11
-111111
+111111  
+1P0001  
+1C0E11  
+111111  
 
 
 ### Step 2: Graphics Initialization  
