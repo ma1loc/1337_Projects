@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     {
         while (1)
         {
-            input = readline("\nminishell$ ");
+            input = readline("minishell$ ");
             if (input == NULL)
             {
                 printf("minishell exit done\n");
@@ -17,10 +17,14 @@ int main(int argc, char **argv)
             }
             if (*input)
                 add_history(input);
-            // >>> parsing will start here.
-            echo_msg(input);
+            // >>> parsing
+                // will start here.
+                // just to take an image.
+            // <<<
+
+            // >>> test the execution.
+            echo_msg(input, "-n");
             free(input);
-            // free(input);  // Free the allocated memory for input
         }
     }
     else
