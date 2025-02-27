@@ -1,6 +1,8 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = mini_shell/mini_shell.c
+
+SRC = mini_shell/mini_shell.c execution/built_in_cmds.c libft/ft_strlen.c libft/ft_split.c
+
 OBJ = $(SRC:.c=.o)
 NAME = minishell
 RM = rm -rf
@@ -8,7 +10,7 @@ RM = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -lreadline -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
